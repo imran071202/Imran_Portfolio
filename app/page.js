@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Body from '@/components/Body'
 import About from '@/components/About'
@@ -11,21 +11,45 @@ import { Toaster } from 'react-hot-toast';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Experience from '@/components/Experience'
 import Certificate from '@/components/Certificate'
+import Loader from '@/components/Loader'
 
 const page = () => {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const revealItems = document.querySelectorAll('.reveal')
+
+    if (!revealItems.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+          }
+        })
+      },
+      { threshold: 0.15 }
+    )
+
+    revealItems.forEach((item) => observer.observe(item))
+
+    return () => observer.disconnect()
+  }, [isLoading])
+
   return (
     <>
-      {/* <Navbar /> */}
-      <div>
+      {isLoading && <Loader onFinish={() => setIsLoading(false)} />}
+      <div className={isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100 transition-opacity duration-700'}>
         <Navbar/>
-        <Body />
-        <About />
-        <Experience/>
-        <Project />
-        <Certificate/>
+        <div className="reveal"><Body /></div>
+        <div className="reveal"><About /></div>
+        <div className="reveal"><Experience/></div>
+        <div className="reveal"><Project /></div>
+        <div className="reveal"><Certificate/></div>
         {/* <Resume /> */}
-        <Contact />
-        <Footer />
+        <div className="reveal"><Contact /></div>
+        <div className="reveal"><Footer /></div>
       </div>
       <Toaster position="top-center"
         reverseOrder={false}

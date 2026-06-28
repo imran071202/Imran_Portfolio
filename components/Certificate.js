@@ -92,7 +92,9 @@ const Lightbox = ({ cert, onClose, isDark }) => {
         background: 'rgba(0,0,0,0.93)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: 20, backdropFilter: 'blur(16px)',
+        overflowY: 'auto',
       }}
+      className="cert-lightbox"
     >
       <motion.div
         initial={{ scale: 0.8, opacity: 0, y: 40 }}
@@ -100,11 +102,14 @@ const Lightbox = ({ cert, onClose, isDark }) => {
         exit={{ scale: 0.8, opacity: 0, y: 40 }}
         transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
         onClick={e => e.stopPropagation()}
+        className="cert-lightbox-panel"
         style={{
           borderRadius: 24, overflow: 'hidden',
           border: `1px solid ${cert.color}45`,
           background: D ? 'rgba(6,4,1,0.99)' : 'rgba(255,253,242,0.99)',
           maxWidth: 740, width: '100%',
+          maxHeight: 'calc(100vh - 40px)',
+          overflowY: 'auto',
           boxShadow: `0 0 100px ${cert.color}18, 0 0 60px rgba(212,175,55,0.15), 0 30px 80px rgba(0,0,0,0.75)`,
           position: 'relative',
         }}
@@ -133,7 +138,7 @@ const Lightbox = ({ cert, onClose, isDark }) => {
         ><FiX /></motion.button>
 
         {/* image zone */}
-        <div style={{
+        <div className="cert-lightbox-image" style={{
           width: '100%', height: 340, overflow: 'hidden', position: 'relative',
           background: D
             ? 'linear-gradient(160deg, rgba(10,7,1,0.97) 0%, rgba(18,13,3,0.97) 100%)'
@@ -193,7 +198,7 @@ const Lightbox = ({ cert, onClose, isDark }) => {
         </div>
 
         {/* info */}
-        <div style={{ padding: '24px 30px 30px', position: 'relative' }}>
+        <div className="cert-lightbox-info" style={{ padding: '24px 30px 30px', position: 'relative' }}>
           {/* pills row */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
             <span style={{
@@ -214,7 +219,7 @@ const Lightbox = ({ cert, onClose, isDark }) => {
           </div>
 
           {/* title + issuer row */}
-          <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 16 }}>
+          <div className="cert-lightbox-title-row" style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 16 }}>
             <div style={{
               width: 52, height: 52, borderRadius: 14, flexShrink: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -257,6 +262,7 @@ const Lightbox = ({ cert, onClose, isDark }) => {
             {cert.url && cert.url !== '#' && (
               <motion.a
                 href={cert.url} target="_blank" rel="noopener noreferrer"
+                className="cert-lightbox-verify"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(212,175,55,0.55)' }}
                 whileTap={{ scale: 0.96 }}
                 style={{
@@ -554,9 +560,9 @@ const Certificate = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap');
         #Certificate { font-family: 'Rajdhani', sans-serif; }
-        .cert-wrap { position: relative; }
+        .cert-wrap { position: relative; overflow: hidden; max-width: 100vw; }
         .cert-wrap::before {
-          content: ''; position: absolute; inset: 0; pointer-events: none; z index: 0;
+          content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
           background-image:
             linear-gradient(${gridLine} 1px, transparent 1px),
             linear-gradient(90deg, ${gridLine} 1px, transparent 1px);
@@ -577,6 +583,47 @@ const Certificate = () => {
           border-color: rgba(212,175,55,0.52); color: #d4af37;
           box-shadow: 0 0 16px rgba(212,175,55,0.18), inset 0 0 8px rgba(212,175,55,0.06);
         }
+        @media (max-width: 640px) {
+          .f-pill {
+            padding: 6px 12px;
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+          }
+          .cert-grid {
+            grid-template-columns: minmax(0, 1fr) !important;
+            gap: 20px !important;
+          }
+          .cert-stats {
+            gap: 12px !important;
+            padding: 14px 16px !important;
+          }
+          .cert-stats-divider {
+            display: none !important;
+          }
+          .cert-lightbox {
+            padding: 12px !important;
+            align-items: center !important;
+          }
+          .cert-lightbox-panel {
+            border-radius: 16px !important;
+            max-height: calc(100vh - 24px) !important;
+          }
+          .cert-lightbox-image {
+            height: clamp(190px, 56vw, 260px) !important;
+          }
+          .cert-lightbox-info {
+            padding: 18px 16px 20px !important;
+          }
+          .cert-lightbox-title-row {
+            gap: 10px !important;
+          }
+          .cert-lightbox-verify {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 10px 14px !important;
+            letter-spacing: 0.12em !important;
+          }
+        }
       `}</style>
 
       <section
@@ -594,6 +641,7 @@ const Certificate = () => {
           <motion.div
             initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }}
             transition={{ duration:0.5 }} viewport={{ once:true }}
+            className="cert-stats"
             style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:20, padding:'16px 28px', borderRadius:16, border:`1px solid ${filterBdr}`, background:filterBg, backdropFilter:'blur(12px)', maxWidth:440, margin:'0 auto 44px' }}
           >
             {[
@@ -602,7 +650,7 @@ const Certificate = () => {
               { val:`${Array.from(new Set(certificates.map(c=>c.category))).length}`, lbl:'Categories'  },
             ].map((s,i)=>(
               <React.Fragment key={s.lbl}>
-                {i>0 && <div style={{ width:1, background:D?'rgba(212,175,55,0.2)':'rgba(160,110,10,0.2)' }}/>}
+                {i>0 && <div className="cert-stats-divider" style={{ width:1, background:D?'rgba(212,175,55,0.2)':'rgba(160,110,10,0.2)' }}/>}
                 <div style={{ textAlign:'center' }}>
                   <p style={{ fontSize:'1.65rem', fontWeight:900, lineHeight:1, background:'linear-gradient(135deg,#f5d060,#d4af37)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>{s.val}</p>
                   <p style={{ fontSize:'0.59rem', textTransform:'uppercase', letterSpacing:'0.18em', color:D?'#6b7280':'#7a4d0a', marginTop:3, fontFamily:'Rajdhani, sans-serif' }}>{s.lbl}</p>
@@ -630,6 +678,7 @@ const Certificate = () => {
               key={activeFilter}
               initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-10 }}
               transition={{ duration:0.3 }}
+              className="cert-grid"
               style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(290px,1fr))', gap:26 }}
             >
               {filtered.map((cert,i)=>(

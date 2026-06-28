@@ -36,25 +36,40 @@ const Contact = () => {
     return () => observer.disconnect()
   }, [])
 
-  const onSubmit = async (event) => {
-    event.preventDefault()
-    setResult("Sending...")
-    const formData = new FormData(event.target)
-    formData.append("access_key", "6b87daf5-3f0f-47ce-918f-f53190fb7881")
-    const response = await fetch("https://api.web3forms.com/submit", {
+ const onSubmit = async (event) => {
+  event.preventDefault();
+  setResult("Sending...");
+
+  const formData = {
+    name: event.target.name.value,
+    phone: event.target.Number.value,
+    email: event.target["Mail id"].value,
+    message: event.target.message.value,
+  };
+
+  try {
+    const response = await fetch("/api/contact", {
       method: "POST",
-      body: formData,
-    })
-    const data = await response.json()
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
     if (data.success) {
-      toast.success("Your Message Submitted Successfully")
-      event.target.reset()
-      setResult("")
+      toast.success("Your Message Submitted Successfully");
+      event.target.reset();
     } else {
-      toast.error("Something went wrong")
-      setResult("")
+      toast.error("Something went wrong");
     }
+  } catch (error) {
+    toast.error("Failed to send message");
   }
+
+  setResult("");
+};
 
   const D = isDark
   const bg       = D ? '#050503'                        : '#faf6e8'

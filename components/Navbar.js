@@ -16,10 +16,10 @@ import { FiHome, FiUser, FiBriefcase, FiFileText, FiMail } from "react-icons/fi"
 const navItems = [
   { id: 1, text: "Home",    icon: <FiHome />,      to: "Body"    },
   { id: 2, text: "About",   icon: <FiUser />,      to: "About"   },
-   { id: 3, text: "Experience", icon: <FaInternetExplorer />, to: "Experience" },
-  { id: 3, text: "Project", icon: <FiBriefcase />, to: "Project" },
-  { id: 4, text: "Certificates",  icon: <FaStickyNote />,  to: "Certificate"  },
-  { id: 5, text: "Contact", icon: <FiMail />,      to: "Contact" },
+  { id: 3, text: "Experience", icon: <FaInternetExplorer />, to: "Experience" },
+  { id: 4, text: "Project", icon: <FiBriefcase />, to: "Project" },
+  { id: 5, text: "Certificates",  icon: <FaStickyNote />,  to: "Certificate"  },
+  { id: 6, text: "Contact", icon: <FiMail />,      to: "Contact" },
 ]
 
 const socials = [
@@ -189,58 +189,63 @@ const SocialBtn = ({ href, icon, colorDark, colorLight, label, delay = 0, isDark
 )
 
 /* ── RIGHT sidebar: Nav Icon Pill ── */
-const NavPill = ({ item, active, index, isDark }) => (
-  <Link to={item.to} smooth duration={500} offset={-20} spy>
+const pillVariants = {
+  rest: { scale: 1, y: 0 },
+  hover: { scale: 1.08, y: -2 },
+  active: { scale: 1.06, y: -1 },
+}
+const underlineVariants = {
+  rest: { width: 0, opacity: 0 },
+  hover: { width: 26, opacity: 1 },
+  active: { width: 26, opacity: 1 },
+}
+const NavPill = ({ item, active, index, isDark, onActivate }) => (
+  <Link to={item.to} smooth duration={500} offset={-20} spy onSetActive={() => onActivate(item.text)}>
     <motion.div
-      whileHover="hov"
-      initial={{ opacity: 0, x: 18 }}
-      animate={{ opacity: 1, x: 0 }}
+      variants={pillVariants}
+      initial="rest"
+      whileHover="hover"
+      animate={active ? 'active' : 'rest'}
+      onClick={() => onActivate(item.text)}
       transition={{ delay: 0.18 + index * 0.07, duration: 0.45, ease: 'backOut' }}
       style={{ position: 'relative', width: 44, height: 44,
         display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
     >
-      {/* background */}
+      {/* background spacer, no visible hover fill */}
       <motion.span
         style={{ position: 'absolute', inset: 0, borderRadius: 13, overflow: 'hidden' }}
         animate={{
-          background: active
-            ? 'linear-gradient(135deg,rgba(212,175,55,0.22),rgba(212,175,55,0.07))'
-            : 'transparent',
-          border: active ? '1px solid rgba(212,175,55,0.5)' : '1px solid transparent',
-          boxShadow: active ? '0 0 22px rgba(212,175,55,0.25), inset 0 0 8px rgba(212,175,55,0.06)' : 'none',
+          background: 'transparent',
+          border: '1px solid transparent',
+          boxShadow: 'none',
         }}
-        variants={{ hov: {
-          background: 'linear-gradient(135deg,rgba(212,175,55,0.14),rgba(212,175,55,0.04))',
-          border: '1px solid rgba(212,175,55,0.35)',
-          boxShadow: '0 0 16px rgba(212,175,55,0.2)',
-        }}}
-        transition={{ duration: 0.2 }}
+      />
+
+      {/* hover / active underline */}
+      <motion.span
+        variants={underlineVariants}
+        animate={active ? 'active' : 'rest'}
+        style={{
+          position: 'absolute', left: '50%', bottom: 8, transform: 'translateX(-50%)',
+          height: 2, borderRadius: 99,
+          background: '#d4af37',
+          boxShadow: '0 0 12px rgba(212,175,55,0.5)',
+          transformOrigin: 'center',
+        }}
+        transition={{ type: 'spring', stiffness: 260, damping: 24, duration: 0.18 }}
       />
 
       {/* active left accent bar with layoutId for smooth movement */}
-      <AnimatePresence>
-        {active && (
-          <motion.span
-            layoutId="activeBar"
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={{ opacity: 1, scaleY: 1 }}
-            exit={{ opacity: 0, scaleY: 0 }}
-            style={{
-              position: 'absolute', left: -1, top: '50%', translateY: '-50%',
-              width: 3, height: 22, borderRadius: 3,
-              background: 'linear-gradient(180deg,#fffacd,#d4af37,#b8860b)',
-              boxShadow: '0 0 10px rgba(212,175,55,0.8), 0 0 20px rgba(212,175,55,0.3)',
-            }}
-          />
-        )}
-      </AnimatePresence>
 
       {/* icon */}
       <motion.span
         style={{ position: 'relative', zIndex: 1, fontSize: '1.15rem', lineHeight: 1 }}
-        animate={{ color: active ? '#d4af37' : isDark ? '#3f4652' : '#9a7d3a' }}
+        animate={{
+          color: active ? '#d4af37' : isDark ? '#3f4652' : '#9a7d3a',
+          rotate: active ? [0, 4, 0] : 0,
+        }}
         variants={{ hov: { color: '#d4af37', filter: 'drop-shadow(0 0 6px rgba(212,175,55,0.6))' } }}
-        transition={{ duration: 0.15 }}
+        transition={{ duration: 0.22, ease: 'easeOut' }}
       >{item.icon}</motion.span>
 
       {/* tooltip LEFT */}
@@ -394,7 +399,47 @@ const Navbar = () => {
         .nb-ham-l { color: #92650a; background: linear-gradient(135deg,rgba(180,140,20,0.1),rgba(180,140,20,0.04)); }
         .nb-ham:hover {
           border-color: rgba(212,175,55,0.6);
-          box-shadow: 0 0 18px rgba(212,175,55,0.32), inset 0 0 8px rgba(212,175,55,0.06);
+          box-shadow: 0 0 18px rgba(212,175,55,0.32), inset 0 0 10px rgba(212,175,55,0.08);
+        }
+        .nb-ham::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 12px;
+          background: radial-gradient(circle at center, rgba(255,255,255,0.14), transparent 35%);
+          opacity: 0.16;
+          pointer-events: none;
+        }
+        .nb-ham::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 12px;
+          background: radial-gradient(circle at center, rgba(212,175,55,0.14), transparent 48%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+        .nb-ham-on::after {
+          opacity: 1;
+          animation: nbHamPulse 1.6s ease-in-out infinite;
+        }
+        .nb-ham .nb-ham-ring {
+          position: absolute;
+          inset: 4px;
+          border-radius: 10px;
+          border: 1px solid rgba(212,175,55,0.14);
+          opacity: 0.65;
+          pointer-events: none;
+        }
+        .nb-ham-on .nb-ham-ring {
+          opacity: 1;
+          box-shadow: 0 0 14px rgba(212,175,55,0.45);
+          transform: scale(1.05);
+        }
+        @keyframes nbHamPulse {
+          0%, 100% { transform: scale(1); opacity: 0.88; }
+          50% { transform: scale(1.08); opacity: 0.52; }
         }
 
         /* ── mobile overlay ── */
@@ -402,28 +447,72 @@ const Navbar = () => {
           position: fixed; inset: 0; top: 62px; z-index: 49;
           display: flex; flex-direction: column; align-items: center; justify-content: center;
           overflow: hidden;
+          backdrop-filter: blur(18px);
+          border-top: 1px solid rgba(212,175,55,0.08);
         }
-        /* ambient glow top-left */
         .nb-overlay::before {
-          content: ''; position: absolute; top: -80px; left: -80px;
-          width: 300px; height: 300px;
-          background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+          content: ''; position: absolute; top: -90px; left: -88px;
+          width: 340px; height: 340px;
+          background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 62%);
+          filter: blur(2px);
           pointer-events: none;
         }
-        /* ambient glow bottom-right */
         .nb-overlay::after {
-          content: ''; position: absolute; bottom: -80px; right: -80px;
-          width: 300px; height: 300px;
-          background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+          content: ''; position: absolute; bottom: -90px; right: -88px;
+          width: 320px; height: 320px;
+          background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
+          filter: blur(2px);
           pointer-events: none;
         }
-        .nb-ol-d { background: rgba(3,2,1,0.98); }
-        .nb-ol-l { background: rgba(255,253,242,0.99); }
+        .nb-ol-d {
+          background: radial-gradient(circle at 20% 20%, rgba(212,175,55,0.08), transparent 28%),
+                      radial-gradient(circle at 80% 80%, rgba(212,175,55,0.05), transparent 30%),
+                      rgba(3,2,1,0.98);
+        }
+        .nb-ol-l {
+          background: radial-gradient(circle at 20% 20%, rgba(180,140,20,0.08), transparent 28%),
+                      radial-gradient(circle at 80% 80%, rgba(180,140,20,0.05), transparent 30%),
+                      rgba(255,253,242,0.99);
+        }
 
-        /* grid overlay on mobile menu */
-        .nb-ol-d::before { background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%) !important; }
+        .nb-ol-d::before { background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%) !important; }
 
-        /* ── mobile nav items ── */
+        .nb-mi {
+          display: flex; align-items: center; gap: 18px;
+          padding: 18px 22px; width: 300px;
+          border-bottom: 1px solid rgba(212,175,55,0.08);
+          border-radius: 18px;
+          margin-bottom: 12px;
+          background: rgba(255,255,255,0.03);
+          backdrop-filter: blur(12px);
+          font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.2em;
+          cursor: pointer; transition: all 0.26s ease;
+          position: relative;
+        }
+        .nb-mi-d { color: #b8b8b8; }
+        .nb-mi-l { color: #8c6c1a; }
+        .nb-mi .ic { font-size: 1.15rem; transition: all 0.2s; flex-shrink: 0; }
+        .nb-mi-d .ic { color: rgba(212,175,55,0.35); }
+        .nb-mi-l .ic { color: rgba(140,100,10,0.45); }
+        .nb-mi:hover, .nb-mi.on { color: #d4af37; transform: translateX(6px); background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.12); }
+        .nb-mi:hover .ic, .nb-mi.on .ic {
+          color: #d4af37;
+          filter: drop-shadow(0 0 6px rgba(212,175,55,0.7));
+        }
+        .nb-mi.on {
+          box-shadow: inset 0 0 24px rgba(212,175,55,0.08);
+        }
+        .nb-mi.on::before {
+          content: '';
+          position: absolute; left: 0; top: 10%; bottom: 10%;
+          width: 4px;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #fffacd, #d4af37, #b8860b);
+          box-shadow: 0 0 12px rgba(212,175,55,0.45);
+        }
+
+        /* ── breakpoint visibility — logic unchanged ── */
         .nb-mi {
           display: flex; align-items: center; gap: 18px;
           padding: 16px 0; width: 280px;
@@ -523,6 +612,7 @@ const Navbar = () => {
               active={active === item.text}
               index={i}
               isDark={D}
+              onActivate={setActive}
             />
           ))}
         </div>
@@ -543,17 +633,22 @@ const Navbar = () => {
       >
         <a href="/" className="nb-mLogo">&lt;Imran /&gt;</a>
 
-        <div className="flex items-center gap-2.5  mr-7 md:mr-0">
+        <div className="flex items-center gap-2.5  mr-0 md:mr-0">
           {/* <ThemeBtn isDark={D} onToggle={() => setIsDark(p => !p)} /> */}
 
           <div style={{ width: 1, height: 24,
             background: D ? 'rgba(212,175,55,0.22)' : 'rgba(180,140,20,0.25)' }} />
 
-          <button
-            className={`nb-ham ${D ? 'nb-ham-d' : 'nb-ham-l'}`}
+          <motion.button
+            className={`nb-ham ${D ? 'nb-ham-d' : 'nb-ham-l'} ${menu ? 'nb-ham-on' : ''}`}
             onClick={() => setMenu(!menu)}
             aria-label="menu"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.92 }}
+            animate={{ rotate: menu ? 4 : 0, scale: menu ? 1.02 : 1 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
           >
+            <span className="nb-ham-ring" aria-hidden="true" />
             <AnimatePresence mode="wait">
               {menu
                 ? <motion.span key="x"
@@ -568,7 +663,7 @@ const Navbar = () => {
                   </motion.span>
               }
             </AnimatePresence>
-          </button>
+          </motion.button>
         </div>
       </motion.header>
 
