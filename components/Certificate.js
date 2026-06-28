@@ -6,6 +6,7 @@ import { HiOutlineBadgeCheck } from "react-icons/hi"
 import { BsStarFill, BsPatchCheckFill } from "react-icons/bs"
 import { RiMedalFill } from "react-icons/ri"
 
+
 /* ══ CERTIFICATES DATA ════════════════════════════════════════ */
 const certificates = [
   {
@@ -193,7 +194,7 @@ const Lightbox = ({ cert, onClose, isDark }) => {
           {/* glow overlay at bottom */}
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, zIndex: 2, pointerEvents: 'none',
-            background: `linear-gradient(transparent, ${D?'rgba(6,4,1,0.6)':'rgba(248,242,220,0.6)'})`,
+            background: `linear-gradient(transparent, ${D ? 'rgba(6,4,1,0.6)' : 'rgba(248,242,220,0.6)'})`,
           }} />
         </div>
 
@@ -289,10 +290,10 @@ const Lightbox = ({ cert, onClose, isDark }) => {
 /* ══ Certificate Card ═════════════════════════════════════════ */
 const CertCard = ({ cert, index, isDark, onOpen }) => {
   const D = isDark
-  const bgCard  = D ? 'rgba(9,7,2,0.94)'       : 'rgba(255,253,242,0.97)'
-  const borderC = D ? 'rgba(212,175,55,0.12)'   : 'rgba(160,110,10,0.18)'
-  const textH   = D ? '#f3f4f6'                 : '#180e03'
-  const textM   = D ? '#6b7280'                 : '#7a4d0a'
+  const bgCard = D ? 'rgba(9,7,2,0.94)' : 'rgba(255,253,242,0.97)'
+  const borderC = D ? 'rgba(212,175,55,0.12)' : 'rgba(160,110,10,0.18)'
+  const textH = D ? '#f3f4f6' : '#180e03'
+  const textM = D ? '#6b7280' : '#7a4d0a'
 
   return (
     <motion.div
@@ -545,11 +546,11 @@ const Certificate = () => {
   }, [])
 
   const D = isDark
-  const bg       = D ? '#050503'                  : '#faf6e8'
-  const gridLine = D ? 'rgba(212,175,55,0.035)'   : 'rgba(160,120,10,0.055)'
-  const filterBg = D ? 'rgba(10,8,3,0.9)'         : 'rgba(255,253,242,0.95)'
-  const filterBdr= D ? 'rgba(212,175,55,0.14)'    : 'rgba(160,110,10,0.2)'
-  const subColor = D ? '#6b7280'                  : '#7a4d0a'
+  const bg = D ? '#050503' : '#faf6e8'
+  const gridLine = D ? 'rgba(212,175,55,0.035)' : 'rgba(160,120,10,0.055)'
+  const filterBg = D ? 'rgba(10,8,3,0.9)' : 'rgba(255,253,242,0.95)'
+  const filterBdr = D ? 'rgba(212,175,55,0.14)' : 'rgba(160,110,10,0.2)'
+  const subColor = D ? '#6b7280' : '#7a4d0a'
 
   const filtered = activeFilter === "All"
     ? certificates
@@ -631,29 +632,29 @@ const Certificate = () => {
         className="cert-wrap w-full py-20 md:py-28 px-5 md:px-16 transition-colors duration-400"
         style={{ background: bg }}
       >
-        <div style={{ position:'absolute', top:'6%', left:'4%', width:400, height:400, background:'radial-gradient(circle,rgba(212,175,55,0.055) 0%,transparent 70%)', pointerEvents:'none', borderRadius:'50%', zIndex:0 }} />
-        <div style={{ position:'absolute', bottom:'8%', right:'3%', width:320, height:320, background:'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)', pointerEvents:'none', borderRadius:'50%', zIndex:0 }} />
+        <div style={{ position: 'absolute', top: '6%', left: '4%', width: 400, height: 400, background: 'radial-gradient(circle,rgba(212,175,55,0.055) 0%,transparent 70%)', pointerEvents: 'none', borderRadius: '50%', zIndex: 0 }} />
+        <div style={{ position: 'absolute', bottom: '8%', right: '3%', width: 320, height: 320, background: 'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)', pointerEvents: 'none', borderRadius: '50%', zIndex: 0 }} />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <SectionHeading />
 
           {/* stats */}
           <motion.div
-            initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }}
-            transition={{ duration:0.5 }} viewport={{ once:true }}
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }} viewport={{ once: true }}
             className="cert-stats"
-            style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:20, padding:'16px 28px', borderRadius:16, border:`1px solid ${filterBdr}`, background:filterBg, backdropFilter:'blur(12px)', maxWidth:440, margin:'0 auto 44px' }}
+            style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 20, padding: '16px 28px', borderRadius: 16, border: `1px solid ${filterBdr}`, background: filterBg, backdropFilter: 'blur(12px)', maxWidth: 440, margin: '0 auto 44px' }}
           >
             {[
-              { val:`${certificates.length}`,                                         lbl:'Total Certs' },
-              { val:`${Array.from(new Set(certificates.map(c=>c.issuer))).length}`,   lbl:'Platforms'   },
-              { val:`${Array.from(new Set(certificates.map(c=>c.category))).length}`, lbl:'Categories'  },
-            ].map((s,i)=>(
+              { val: `${certificates.length}`, lbl: 'Total Certs' },
+              { val: `${Array.from(new Set(certificates.map(c => c.issuer))).length}`, lbl: 'Platforms' },
+              { val: `${Array.from(new Set(certificates.map(c => c.category))).length}`, lbl: 'Categories' },
+            ].map((s, i) => (
               <React.Fragment key={s.lbl}>
-                {i>0 && <div className="cert-stats-divider" style={{ width:1, background:D?'rgba(212,175,55,0.2)':'rgba(160,110,10,0.2)' }}/>}
-                <div style={{ textAlign:'center' }}>
-                  <p style={{ fontSize:'1.65rem', fontWeight:900, lineHeight:1, background:'linear-gradient(135deg,#f5d060,#d4af37)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>{s.val}</p>
-                  <p style={{ fontSize:'0.59rem', textTransform:'uppercase', letterSpacing:'0.18em', color:D?'#6b7280':'#7a4d0a', marginTop:3, fontFamily:'Rajdhani, sans-serif' }}>{s.lbl}</p>
+                {i > 0 && <div className="cert-stats-divider" style={{ width: 1, background: D ? 'rgba(212,175,55,0.2)' : 'rgba(160,110,10,0.2)' }} />}
+                <div style={{ textAlign: 'center' }}>
+                  <p style={{ fontSize: '1.65rem', fontWeight: 900, lineHeight: 1, background: 'linear-gradient(135deg,#f5d060,#d4af37)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{s.val}</p>
+                  <p style={{ fontSize: '0.59rem', textTransform: 'uppercase', letterSpacing: '0.18em', color: D ? '#6b7280' : '#7a4d0a', marginTop: 3, fontFamily: 'Rajdhani, sans-serif' }}>{s.lbl}</p>
                 </div>
               </React.Fragment>
             ))}
@@ -661,13 +662,13 @@ const Certificate = () => {
 
           {/* filter pills */}
           <motion.div
-            initial={{ opacity:0, y:12 }} whileInView={{ opacity:1, y:0 }}
-            transition={{ duration:0.45, delay:0.1 }} viewport={{ once:true }}
-            style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:8, marginBottom:40 }}
+            initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.1 }} viewport={{ once: true }}
+            style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginBottom: 40 }}
           >
-            {categories.map(cat=>(
-              <button key={cat} className={`f-pill ${activeFilter===cat?'active':''}`} onClick={()=>setActiveFilter(cat)}>
-                {cat==='All'&&<span style={{ marginRight:5 }}>🏅</span>}{cat}
+            {categories.map(cat => (
+              <button key={cat} className={`f-pill ${activeFilter === cat ? 'active' : ''}`} onClick={() => setActiveFilter(cat)}>
+                {cat === 'All' && <span style={{ marginRight: 5 }}>🏅</span>}{cat}
               </button>
             ))}
           </motion.div>
@@ -676,12 +677,12 @@ const Certificate = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeFilter}
-              initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-10 }}
-              transition={{ duration:0.3 }}
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
               className="cert-grid"
-              style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(290px,1fr))', gap:26 }}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(290px,1fr))', gap: 26 }}
             >
-              {filtered.map((cert,i)=>(
+              {filtered.map((cert, i) => (
                 <CertCard key={cert.id} cert={cert} index={i} isDark={D} onOpen={setSelected} />
               ))}
             </motion.div>
@@ -689,17 +690,17 @@ const Certificate = () => {
 
           {/* footer */}
           <motion.p
-            initial={{ opacity:0, y:10 }} whileInView={{ opacity:1, y:0 }}
-            transition={{ delay:0.3 }} viewport={{ once:true }}
-            style={{ textAlign:'center', marginTop:56, fontSize:'0.78rem', letterSpacing:'0.14em', textTransform:'uppercase', color:D?'rgba(212,175,55,0.3)':'rgba(140,90,10,0.38)', fontFamily:'Rajdhani, sans-serif' }}
+            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }} viewport={{ once: true }}
+            style={{ textAlign: 'center', marginTop: 56, fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: D ? 'rgba(212,175,55,0.3)' : 'rgba(140,90,10,0.38)', fontFamily: 'Rajdhani, sans-serif' }}
           >── More certificates coming soon ──</motion.p>
         </div>
       </section>
 
-      <div style={{ height:0, background:`linear-gradient(90deg,transparent,${D?'rgba(212,175,55,0.3)':'rgba(160,110,10,0.3)'},transparent)` }} />
+      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.3)' : 'rgba(160,110,10,0.3)'},transparent)` }} />
 
       <AnimatePresence>
-        {selected && <Lightbox cert={selected} onClose={()=>setSelected(null)} isDark={D} />}
+        {selected && <Lightbox cert={selected} onClose={() => setSelected(null)} isDark={D} />}
       </AnimatePresence>
     </>
   )

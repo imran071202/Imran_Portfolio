@@ -19,11 +19,11 @@ const Loader = ({ onFinish }) => {
 
       // Multi-line updates using green text colors
       const currentLogs = [];
-      if (nextProgress >= 1)   currentLogs.push({ type: "info", text: "System system initilation..." });
-      if (nextProgress >= 25)  currentLogs.push({ type: "data", text: "Information system: loadings..." });
-      if (nextProgress >= 50)  currentLogs.push({ type: "info", text: "System system deporter..." });
-      if (nextProgress >= 75)  currentLogs.push({ type: "info", text: "System system data functment..." });
-      if (nextProgress >= 95)  currentLogs.push({ type: "data", text: "Information system stronymous..." });
+      if (nextProgress >= 1) currentLogs.push({ type: "info", text: "System system initilation..." });
+      if (nextProgress >= 25) currentLogs.push({ type: "data", text: "Information system: loadings..." });
+      if (nextProgress >= 50) currentLogs.push({ type: "info", text: "System system deporter..." });
+      if (nextProgress >= 75) currentLogs.push({ type: "info", text: "System system data functment..." });
+      if (nextProgress >= 95) currentLogs.push({ type: "data", text: "Information system stronymous..." });
       setLogs(currentLogs);
 
       if (nextProgress < 100) {
@@ -45,7 +45,7 @@ const Loader = ({ onFinish }) => {
     <div className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[#050505] text-[#d5de25] font-mono select-none">
       {/* Radial Background Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.15),_transparent_60%)]" />
-      
+
       {/* Grid Pattern Overlay */}
       <div
         className="absolute inset-0 opacity-15"
@@ -57,7 +57,7 @@ const Loader = ({ onFinish }) => {
       />
 
       {/* CRT Scanline Effect Overlay */}
-      <div 
+      <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: "linear-gradient(rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%)",
@@ -67,7 +67,7 @@ const Loader = ({ onFinish }) => {
 
       {/* Terminal Main Container */}
       <div className="relative w-11/12 md:w-full max-w-[500px] rounded-xl border border-[#d4af37]/40 bg-[#070707]/95 p-6 shadow-[0_0_50px_rgba(212,175,55,0.15)] backdrop-blur-md">
-        
+
         {/* Terminal Header Bar with Red, Yellow, Green window circles */}
         <div className="relative mb-5 flex items-center border-b border-[#d4af37]/20 pb-3">
           <div className="flex gap-1.5">
@@ -96,11 +96,10 @@ const Loader = ({ onFinish }) => {
             return (
               <span
                 key={index}
-                className={`h-2 rounded-xs border transition-colors duration-150 ${
-                  progress >= threshold 
-                    ? 'bg-[#d4af37] border-[#f5d06b]/50 shadow-[0_0_6px_rgba(212,175,55,0.4)]' 
+                className={`h-2 rounded-xs border transition-colors duration-150 ${progress >= threshold
+                    ? 'bg-[#d4af37] border-[#f5d06b]/50 shadow-[0_0_6px_rgba(212,175,55,0.4)]'
                     : 'bg-[#121212] border-transparent'
-                }`}
+                  }`}
               />
             );
           })}
@@ -116,7 +115,7 @@ const Loader = ({ onFinish }) => {
                 <span>{log.text}</span>
               </div>
             ))}
-            
+
             {/* Active entry line with blinking green block cursor */}
             <div className="flex items-center text-[#22c55e]">
               <span>&gt;</span>
@@ -124,7 +123,7 @@ const Loader = ({ onFinish }) => {
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   );

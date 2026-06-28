@@ -188,7 +188,7 @@ const CenterDivider = () => (
       background: 'linear-gradient(to bottom, transparent, rgba(80,160,255,0.7), transparent)',
       boxShadow: '0 0 6px 2px rgba(80,160,255,0.4)',
       animation: 'lineBeam 4s ease-in-out infinite',
-      animationDelay: '2s', 
+      animationDelay: '2s',
     }} />
 
     {/* data packets — small colored pills sliding down */}
