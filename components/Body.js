@@ -9,9 +9,10 @@ import { motion, useMotionValue, useTransform, useSpring } from "motion/react"
 import { FaFileDownload } from "react-icons/fa";
 
 /* ─── Particle field ─────────────────────────────────────────── */
-const Particles = () => {
+const Particles = ({ enabled = true }) => {
   const canvasRef = useRef(null)
   useEffect(() => {
+    if (!enabled) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -54,13 +55,15 @@ const Particles = () => {
     window.addEventListener('resize', onResize)
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
   }, [])
+  if (!enabled) return null
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />
 }
 
 /* ─── Matrix Rain ─────────────────────────────────────────────── */
-const MatrixRain = () => {
+const MatrixRain = ({ enabled = true }) => {
   const canvasRef = useRef(null)
   useEffect(() => {
+    if (!enabled) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -105,6 +108,7 @@ const MatrixRain = () => {
     window.addEventListener('resize', onResize)
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
   }, [])
+  if (!enabled) return null
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1, opacity: 0.5 }} />
 }
 
@@ -165,15 +169,15 @@ const CenterDivider = () => (
     }} />
 
     {/* animated sweep beam — gold */}
-    <div style={{
+    {/* <div style={{
       position: 'absolute',
       left: 0,
       width: '1px',
       height: '120px',
-      background: 'linear-gradient(to bottom, transparent, rgba(212,175,55,0.9), transparent)',
+      background: 'linear-gradient(to bottom, transparent, rgba(222, 83, 55 ,0.9), transparent)',
       boxShadow: '0 0 8px 2px rgba(212,175,55,0.5)',
       animation: 'lineBeam 4s ease-in-out infinite',
-    }} />
+    }} /> */}
 
     {/* animated sweep beam — blue (offset) */}
     <div style={{
@@ -184,7 +188,7 @@ const CenterDivider = () => (
       background: 'linear-gradient(to bottom, transparent, rgba(80,160,255,0.7), transparent)',
       boxShadow: '0 0 6px 2px rgba(80,160,255,0.4)',
       animation: 'lineBeam 4s ease-in-out infinite',
-      animationDelay: '2s',
+      animationDelay: '2s', 
     }} />
 
     {/* data packets — small colored pills sliding down */}
@@ -296,15 +300,15 @@ const TermWindow = ({ children, style, delay = 0, duration = 9, title = 'termina
 )
 
 /* ─── Scan Sweep ──────────────────────────────────────────────── */
-const ScanSweep = () => (
-  <div style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', overflow: 'hidden', borderRadius: 'inherit' }}>
-    <div style={{
-      position: 'absolute', left: 0, right: 0, height: '2px',
-      background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.7), rgba(80,160,255,0.5), transparent)',
-      animation: 'scanSweep 3.5s ease-in-out infinite', boxShadow: '0 0 10px rgba(212,175,55,0.6)',
-    }} />
-  </div>
-)
+// const ScanSweep = () => (
+//   <div style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', overflow: 'hidden', borderRadius: 'inherit' }}>
+//     <div style={{
+//       position: 'absolute', left: 0, right: 0, height: '2px',
+//       background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.7), rgba(80,160,255,0.5), transparent)',
+//       animation: 'scanSweep 3.5s ease-in-out infinite', boxShadow: '0 0 10px rgba(212,175,55,0.6)',
+//     }} />
+//   </div>
+// )
 
 /* ─── 3D Tilt Card ────────────────────────────────────────────── */
 const TiltCard = ({ children }) => {
@@ -347,13 +351,17 @@ const Stat = ({ value, label, delay, isDark }) => (
 const Body = () => {
   const [isOpen, setIsOpen] = useState()
   const [isDark, setIsDark] = useState(true)
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
     const check = () => { const t = document.documentElement.getAttribute('data-theme'); setIsDark(t !== 'light') }
+    const updateSize = () => setIsSmallScreen(window.innerWidth <= 767)
     check()
+    updateSize()
     const obs = new MutationObserver(check)
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-    return () => obs.disconnect()
+    window.addEventListener('resize', updateSize)
+    return () => { obs.disconnect(); window.removeEventListener('resize', updateSize) }
   }, [])
 
   const handleDownloadPdf = () => {
@@ -506,10 +514,11 @@ const Body = () => {
         /* ── MOBILE ── */
         @media (max-width: 640px) {
           #Body { padding-top:86px; width:100vw; max-width:100vw; align-items:center; overflow-x:hidden; }
-          .hero-copy { width:100% !important; max-width:calc(100vw - 32px) !important; overflow:hidden; }
-          .hero-media { width:100% !important; max-width:calc(100vw - 32px) !important; overflow:hidden; }
+          .hero-copy { width:100% !important; max-width:calc(100vw - 32px) !important; overflow: visible !important; }
+          .hero-media { width:100% !important; max-width:calc(100vw - 32px) !important; overflow: visible !important; }
           .gold-title { width:100%; max-width:100%; font-size:clamp(2rem,10vw,3rem) !important; line-height:1.12 !important; text-align:center; overflow-wrap:anywhere; }
-          .hero-role { max-width:100%; overflow-wrap:anywhere; }
+          .hero-role { width:100%; max-width:100%; overflow-wrap:anywhere; }
+          .sys-strip { width:100%; justify-content:center; }
           .hero-stats { width:100% !important; max-width:100% !important; }
           .hero-avatar { width:min(220px,calc(100vw - 80px)) !important; height:min(240px,calc((100vw - 80px)*1.08)) !important; }
           .hero-glow { width:min(280px,calc(100vw - 44px)) !important; height:min(280px,calc(100vw - 44px)) !important; }
@@ -518,7 +527,6 @@ const Body = () => {
           .term-desktop { display:none !important; }
           .bracket-bg { display:none !important; }
           .data-label { display:none !important; }
-          .sys-strip { justify-content:center; }
           .hacker-badge { font-size:10px; padding:5px 12px; }
           .term-mobile-strip { display:flex !important; }
           .center-divider { display:none !important; }
@@ -532,6 +540,9 @@ const Body = () => {
           .data-label { display:none !important; }
           .center-divider { display:none !important; }
         }
+        @media (max-width: 767px) {
+          .scanlines-overlay { display: none !important; }
+        }
       `}</style>
 
       <motion.div
@@ -540,8 +551,8 @@ const Body = () => {
         className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 px-5 md:px-16 lg:px-28 py-16 md:py-0"
         style={{ background: sectionBg, color: D ? '#ffffff' : '#180e03' }}
       >
-        <Particles />
-        <MatrixRain />
+        <Particles enabled={!isSmallScreen} />
+        <MatrixRain enabled={!isSmallScreen} />
         <CircuitBoard />
         <div className="scanlines-overlay" />
 
@@ -618,7 +629,7 @@ const Body = () => {
         <motion.div
           initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="hero-copy relative flex flex-col items-center md:items-start text-center md:text-left max-w-xl w-full"
+          className="hero-copy md:ml-4 relative flex flex-col items-center md:items-start text-center md:text-left max-w-xl w-full"
           style={{ zIndex: 10 }}
         >
           {/* <motion.div initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.5 }} className="hacker-badge">
@@ -687,7 +698,7 @@ const Body = () => {
           style={{ zIndex: 10 }}
         >
           <TiltCard>
-            <div className="relative flex items-center justify-center mt-5 md:mt-0">
+            <div className="relative flex  md:mr-8 items-center justify-center mt-5 md:mt-0">
               <div className="avatar-ring absolute rounded-full"
                 style={{ width: 'calc(100% + 8px)', height: 'calc(100% + 8px)', top: '-12px', left: '-4px' }} />
 
@@ -706,7 +717,7 @@ const Body = () => {
                   <img src="./photo/imran-removebg.png" alt="Imran Shaikh"
                     className="w-full h-full object-cover object-center"
                     style={{ filter: 'brightness(1.05) contrast(1.05)' }} />
-                  <ScanSweep />
+                  {/* <ScanSweep /> */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-yellow-400/5 pointer-events-none" />
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0,

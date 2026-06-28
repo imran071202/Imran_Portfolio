@@ -631,7 +631,7 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <a href="/" className="nb-mLogo">&lt;Imran /&gt;</a>
+        <a href="/" className="nb-mLogo ">&lt; Imran /&gt;</a>
 
         <div className="flex items-center gap-2.5  mr-0 md:mr-0">
           {/* <ThemeBtn isDark={D} onToggle={() => setIsDark(p => !p)} /> */}
@@ -674,9 +674,9 @@ const Navbar = () => {
         {menu && (
           <motion.div
             className={`nb-overlay ${D ? 'nb-ol-d' : 'nb-ol-l'}`}
-            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-            exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)', y: -24 }}
+            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)', y: 0 }}
+            exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)', y: -24 }}
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* section label */}
