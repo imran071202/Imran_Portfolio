@@ -11,20 +11,22 @@ import { Link } from 'react-scroll';
 import { motion } from "motion/react"
 
 const navLinks = [
-  { label: "Home",    to: "Body"    },
-  { label: "About",   to: "About"   },
-   { label: "Experience", to: "Experience" },
+  { label: "Home", to: "Body" },
+  { label: "About", to: "About" },
+  { label: "Experience", to: "Experience" },
   { label: "Project", to: "Project" },
-  { label: "Certificates",  to: "Certificate"  },
+  { label: "Certificates", to: "Certificate" },
   { label: "Contact", to: "Contact" },
 ]
 
+
+
 const socials = [
-  { href: "https://www.linkedin.com/in/imran-shaikh-163372241/", icon: <FaLinkedin />,       colorD: "#38bdf8", colorL: "#0284c7", label: "LinkedIn"  },
-  { href: "https://github.com/imran071202",                       icon: <FaGithub />,          colorD: "#e2e8f0", colorL: "#1f2937", label: "GitHub"    },
-  { href: "https://x.com/Imran___02",                            icon: <FaXTwitter />,        colorD: "#e2e8f0", colorL: "#1f2937", label: "X"         },
-  { href: "#1",                                                   icon: <FaInstagram />,       colorD: "#f472b6", colorL: "#db2777", label: "Instagram" },
-  { href: "https://www.facebook.com/imran.shaikh.562433",        icon: <FaFacebookSquare />,  colorD: "#3b82f6", colorL: "#1d4ed8", label: "Facebook"  },
+  { href: "https://www.linkedin.com/in/imran-shaikh-163372241/", icon: <FaLinkedin />, colorD: "#38bdf8", colorL: "#0284c7", label: "LinkedIn" },
+  { href: "https://github.com/imran071202", icon: <FaGithub />, colorD: "#e2e8f0", colorL: "#1f2937", label: "GitHub" },
+  { href: "https://x.com/Imran___02", icon: <FaXTwitter />, colorD: "#e2e8f0", colorL: "#1f2937", label: "X" },
+  { href: "#1", icon: <FaInstagram />, colorD: "#f472b6", colorL: "#db2777", label: "Instagram" },
+  { href: "https://www.facebook.com/imran.shaikh.562433", icon: <FaFacebookSquare />, colorD: "#3b82f6", colorL: "#1d4ed8", label: "Facebook" },
 ]
 
 const Footer = () => {
@@ -42,13 +44,13 @@ const Footer = () => {
   }, [])
 
   const D = isDark
-  const bg       = D ? '#050503'                    : '#faf6e8'
-  const bgDeep   = D ? '#020201'                    : '#f5f0dc'
-  const bgCopy   = D ? '#000000'                    : '#efe8cc'
-  const borderC  = D ? 'rgba(212,175,55,0.12)'      : 'rgba(160,110,10,0.18)'
-  const textH    = D ? '#f3f4f6'                    : '#180e03'
-  const textM    = D ? '#6b7280'                    : '#8a5c08'
-  const textSub  = D ? 'rgba(212,175,55,0.35)'      : 'rgba(130,80,10,0.45)'
+  const bg = D ? '#050503' : '#faf6e8'
+  const bgDeep = D ? '#020201' : '#f5f0dc'
+  const bgCopy = D ? '#000000' : '#efe8cc'
+  const borderC = D ? 'rgba(212,175,55,0.12)' : 'rgba(160,110,10,0.18)'
+  const textH = D ? '#f3f4f6' : '#180e03'
+  const textM = D ? '#6b7280' : '#8a5c08'
+  const textSub = D ? 'rgba(212,175,55,0.35)' : 'rgba(130,80,10,0.45)'
 
   return (
     <>
@@ -124,7 +126,7 @@ const Footer = () => {
       <footer className="ft-root" style={{ background: bg }}>
 
         {/* ── top divider ── */}
-        <div style={{ height:1, background:`linear-gradient(90deg,transparent,${D?'rgba(212,175,55,0.35)':'rgba(160,110,10,0.3)'},transparent)` }} />
+        <div style={{ height: 1, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.35)' : 'rgba(160,110,10,0.3)'},transparent)` }} />
 
         {/* ── back to top ── */}
         <div style={{
@@ -157,16 +159,16 @@ const Footer = () => {
         }}>
           {/* grid overlay */}
           <div style={{
-            position:'absolute', inset:0, pointerEvents:'none',
-            backgroundImage: `linear-gradient(${D?'rgba(212,175,55,0.03)':'rgba(160,120,10,0.05)'} 1px,transparent 1px),linear-gradient(90deg,${D?'rgba(212,175,55,0.03)':'rgba(160,120,10,0.05)'} 1px,transparent 1px)`,
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            backgroundImage: `linear-gradient(${D ? 'rgba(212,175,55,0.03)' : 'rgba(160,120,10,0.05)'} 1px,transparent 1px),linear-gradient(90deg,${D ? 'rgba(212,175,55,0.03)' : 'rgba(160,120,10,0.05)'} 1px,transparent 1px)`,
             backgroundSize: '56px 56px',
           }} />
           {/* ambient glow */}
           <div style={{
-            position:'absolute', bottom:'-60px', left:'50%', transform:'translateX(-50%)',
-            width:600, height:200,
-            background:'radial-gradient(ellipse,rgba(212,175,55,0.07) 0%,transparent 70%)',
-            pointerEvents:'none',
+            position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)',
+            width: 600, height: 200,
+            background: 'radial-gradient(ellipse,rgba(212,175,55,0.07) 0%,transparent 70%)',
+            pointerEvents: 'none',
           }} />
 
           <div className="max-w-5xl mx-auto relative z-10">
@@ -174,55 +176,65 @@ const Footer = () => {
 
               {/* ── col 1 — brand ── */}
               <motion.div
-                initial={{ opacity:0, y:20 }}
-                whileInView={{ opacity:1, y:0 }}
-                transition={{ duration:0.5 }}
-                viewport={{ once:true }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
                 className="flex flex-col items-center md:items-start gap-3"
               >
                 <a href="/" className="ft-logo">&lt;Imran Shaikh/&gt;</a>
-                <p style={{ fontSize:'0.72rem', fontWeight:700, textTransform:'uppercase',
-                  letterSpacing:'0.22em', color:textSub }}>Full Stack Developer</p>
+                <p style={{
+                  fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+                  letterSpacing: '0.22em', color: textSub
+                }}>Full Stack Developer</p>
 
-                <div style={{ width:48, height:1, margin:'4px 0',
-                  background:'linear-gradient(90deg,#d4af37,transparent)' }} />
+                <div style={{
+                  width: 48, height: 1, margin: '4px 0',
+                  background: 'linear-gradient(90deg,#d4af37,transparent)'
+                }} />
 
-                <p style={{ color:textM, fontSize:'0.84rem', lineHeight:1.8,
-                  textAlign: 'center', maxWidth: 240 }}
+                <p style={{
+                  color: textM, fontSize: '0.84rem', lineHeight: 1.8,
+                  textAlign: 'center', maxWidth: 240
+                }}
                   className="md:text-left">
                   Crafting responsive, high-performance web experiences with modern technologies.
                 </p>
 
                 {/* location */}
                 <div className="flex items-center gap-2 mt-1">
-                  <FaLocationDot style={{ color:'#ef4444', fontSize:'0.85rem', flexShrink:0 }} />
-                  <span style={{ color:textM, fontSize:'0.8rem' }}>Krishnanagar, Nadia, West Bengal. India</span>
+                  <FaLocationDot style={{ color: '#ef4444', fontSize: '0.85rem', flexShrink: 0 }} />
+                  <span style={{ color: textM, fontSize: '0.8rem' }}>Krishnanagar, Nadia, West Bengal. India</span>
                 </div>
               </motion.div>
 
               {/* ── col 2 — navigation ── */}
               <motion.div
-                initial={{ opacity:0, y:20 }}
-                whileInView={{ opacity:1, y:0 }}
-                transition={{ duration:0.5, delay:0.1 }}
-                viewport={{ once:true }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
                 className="flex flex-col items-center md:items-start"
               >
-                <p style={{ fontFamily:'Cinzel,serif', fontSize:'0.78rem', fontWeight:900,
-                  letterSpacing:'0.18em', textTransform:'uppercase', marginBottom:18,
-                  background:'linear-gradient(135deg,#f5d060,#d4af37)',
-                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
+                <p style={{
+                  fontFamily: 'Cinzel,serif', fontSize: '0.78rem', fontWeight: 900,
+                  letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 18,
+                  background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+                }}>
                   Navigation
                 </p>
-                <div style={{ width:36, height:1, marginBottom:16,
-                  background:'linear-gradient(90deg,#d4af37,transparent)' }} />
+                <div style={{
+                  width: 36, height: 1, marginBottom: 16,
+                  background: 'linear-gradient(90deg,#d4af37,transparent)'
+                }} />
 
                 <ul className="flex flex-col gap-3 items-center md:items-start">
                   {navLinks.map(link => (
                     <li key={link.label}>
                       <Link to={link.to} smooth duration={500} offset={-20}>
                         <span className="ft-nav-link flex items-center gap-2">
-                          <span style={{ color:'rgba(212,175,55,0.4)', fontSize:'0.6rem' }}>◆</span>
+                          <span style={{ color: 'rgba(212,175,55,0.4)', fontSize: '0.6rem' }}>◆</span>
                           {link.label}
                         </span>
                       </Link>
@@ -233,20 +245,24 @@ const Footer = () => {
 
               {/* ── col 3 — social ── */}
               <motion.div
-                initial={{ opacity:0, y:20 }}
-                whileInView={{ opacity:1, y:0 }}
-                transition={{ duration:0.5, delay:0.2 }}
-                viewport={{ once:true }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
                 className="flex flex-col items-center md:items-start"
               >
-                <p style={{ fontFamily:'Cinzel,serif', fontSize:'0.78rem', fontWeight:900,
-                  letterSpacing:'0.18em', textTransform:'uppercase', marginBottom:18,
-                  background:'linear-gradient(135deg,#f5d060,#d4af37)',
-                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
+                <p style={{
+                  fontFamily: 'Cinzel,serif', fontSize: '0.78rem', fontWeight: 900,
+                  letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 18,
+                  background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+                }}>
                   Find Me On
                 </p>
-                <div style={{ width:36, height:1, marginBottom:16,
-                  background:'linear-gradient(90deg,#d4af37,transparent)' }} />
+                <div style={{
+                  width: 36, height: 1, marginBottom: 16,
+                  background: 'linear-gradient(90deg,#d4af37,transparent)'
+                }} />
 
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   {socials.map((s, i) => (
@@ -258,10 +274,10 @@ const Footer = () => {
                       aria-label={s.label}
                       className="ft-social"
                       style={{ color: D ? s.colorD : s.colorL }}
-                      initial={{ opacity:0, scale:0.7 }}
-                      whileInView={{ opacity:1, scale:1 }}
-                      transition={{ delay:0.25+i*0.06 }}
-                      viewport={{ once:true }}
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.25 + i * 0.06 }}
+                      viewport={{ once: true }}
                     >
                       {s.icon}
                     </motion.a>
@@ -270,25 +286,29 @@ const Footer = () => {
 
                 {/* available badge */}
                 <motion.div
-                  initial={{ opacity:0 }}
-                  whileInView={{ opacity:1 }}
-                  transition={{ delay:0.55 }}
-                  viewport={{ once:true }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.55 }}
+                  viewport={{ once: true }}
                   className="flex items-center gap-2 mt-6 px-4 py-2 rounded-full"
                   style={{
-                    border:`1px solid rgba(34,197,94,0.3)`,
-                    background:'rgba(34,197,94,0.07)',
+                    border: `1px solid rgba(34,197,94,0.3)`,
+                    background: 'rgba(34,197,94,0.07)',
                   }}
                 >
                   <motion.span
-                    animate={{ scale:[1,1.4,1], opacity:[1,0.4,1] }}
-                    transition={{ repeat:Infinity, duration:2, ease:'easeInOut' }}
-                    style={{ width:7, height:7, borderRadius:'50%',
-                      background:'#22c55e', boxShadow:'0 0 6px #22c55e',
-                      display:'inline-block', flexShrink:0 }}
+                    animate={{ scale: [1, 1.4, 1], opacity: [1, 0.4, 1] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+                    style={{
+                      width: 7, height: 7, borderRadius: '50%',
+                      background: '#22c55e', boxShadow: '0 0 6px #22c55e',
+                      display: 'inline-block', flexShrink: 0
+                    }}
                   />
-                  <span style={{ fontSize:'0.68rem', fontWeight:700,
-                    textTransform:'uppercase', letterSpacing:'0.15em', color:'#22c55e' }}>
+                  <span style={{
+                    fontSize: '0.68rem', fontWeight: 700,
+                    textTransform: 'uppercase', letterSpacing: '0.15em', color: '#22c55e'
+                  }}>
                     Available for Work
                   </span>
                 </motion.div>
@@ -297,13 +317,15 @@ const Footer = () => {
             </div>
 
             {/* ── divider ── */}
-            <div style={{ height:1, margin:'36px 0',
-              background:`linear-gradient(90deg,transparent,${D?'rgba(212,175,55,0.25)':'rgba(160,110,10,0.22)'},transparent)` }} />
+            <div style={{
+              height: 1, margin: '36px 0',
+              background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.25)' : 'rgba(160,110,10,0.22)'},transparent)`
+            }} />
 
             {/* ── bottom row ── */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-              <div className="flex items-center gap-2" style={{ color:textM, fontSize:'0.78rem' }}>
-                <FaCopyright style={{ fontSize:'0.75rem', color: D?'rgba(212,175,55,0.5)':'rgba(130,80,10,0.5)' }} />
+              <div className="flex items-center gap-2" style={{ color: textM, fontSize: '0.78rem' }}>
+                <FaCopyright style={{ fontSize: '0.75rem', color: D ? 'rgba(212,175,55,0.5)' : 'rgba(130,80,10,0.5)' }} />
                 <span>Copyright 2025 ·</span>
                 {/* <motion.span
                   animate={{ scale:[1,1.25,1] }}
@@ -318,12 +340,14 @@ const Footer = () => {
               </div>
 
 
-              <div style={{ fontSize:'0.68rem', color:textSub, letterSpacing:'0.12em',
-                textTransform:'uppercase', fontFamily:'Rajdhani,sans-serif', fontWeight:700 }}>
+              <div style={{
+                fontSize: '0.68rem', color: textSub, letterSpacing: '0.12em',
+                textTransform: 'uppercase', fontFamily: 'Rajdhani,sans-serif', fontWeight: 700
+              }}>
                 <span style={{
-                  fontFamily:'Cinzel,serif', fontWeight:700,
-                  background:'linear-gradient(135deg,#f5d060,#d4af37)',
-                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text',
+                  fontFamily: 'Cinzel,serif', fontWeight: 700,
+                  background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                 }}>Imran Shaikh</span>
               </div>
             </div>
