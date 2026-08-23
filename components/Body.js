@@ -778,15 +778,16 @@ const Body = () => {
 
         {/* Drifting Multi-Color Coding Symbols */}
         {[
-          { text: "const",   top: "14%", left: "7%",   delay: 0,   color: "rgba(80, 160, 255, 0.22)" },
-          { text: "{ }",     top: "70%", left: "8%",   delay: 3,   color: "rgba(255, 200, 60, 0.22)"  },
-          { text: "=>",      top: "38%", left: "5%",   delay: 1.5, color: "rgba(255, 100, 80, 0.20)"  },
-          { text: "import",  top: "80%", right: "8%",  delay: 4.5, color: "rgba(80, 160, 255, 0.20)"  },
-          { text: "[ ]",     top: "22%", right: "9%",  delay: 2,   color: "rgba(255, 200, 60, 0.20)"  },
-          { text: "async",   top: "60%", right: "6%",  delay: 5.5, color: "rgba(80, 160, 255, 0.18)"  },
-          { text: "return",  top: "48%", left: "4%",   delay: 6,   color: "rgba(34, 200, 100, 0.18)"  },
-          { text: "( )",     top: "10%", right: "20%", delay: 7,   color: "rgba(255, 200, 60, 0.16)"  },
-          { text: "export",  top: "55%", right: "18%", delay: 3.5, color: "rgba(80, 160, 255, 0.15)"  },
+          { text: "const", top: "14%", left: "7%", delay: 0, color: "rgba(80, 160, 255, 0.22)" },
+          { text: "</>", top: "10%", left: "17%", delay: 0, color: "rgba(80, 160, 255, 0.22)" },
+          { text: "{ }", top: "70%", left: "8%", delay: 3, color: "rgba(255, 200, 60, 0.22)" },
+          { text: "=>", top: "38%", left: "5%", delay: 1.5, color: "rgba(255, 100, 80, 0.20)" },
+          { text: "import", top: "80%", right: "8%", delay: 4.5, color: "rgba(80, 160, 255, 0.20)" },
+          { text: "[ ]", top: "22%", right: "9%", delay: 2, color: "rgba(255, 200, 60, 0.20)" },
+          { text: "async", top: "60%", right: "6%", delay: 5.5, color: "rgba(80, 160, 255, 0.18)" },
+          { text: "return", top: "48%", left: "4%", delay: 6, color: "rgba(34, 200, 100, 0.18)" },
+          { text: "( )", top: "10%", right: "20%", delay: 7, color: "rgba(255, 200, 60, 0.16)" },
+          { text: "export", top: "55%", right: "18%", delay: 3.5, color: "rgba(80, 160, 255, 0.15)" },
         ].map((item, idx) => (
           <motion.div
             key={idx}

@@ -3,23 +3,23 @@ import React, { useState, useEffect } from 'react'
 import { TiThMenu } from "react-icons/ti";
 import { IoClose } from "react-icons/io5";
 import { BsLinkedin } from "react-icons/bs";
-import { FaGithub, FaFacebookSquare, FaInternetExplorer, FaStickyNote } from "react-icons/fa";
+import { FaGithub, FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaEnvelope } from "react-icons/fa";
 import { BiSolidSun } from "react-icons/bi";
 import { FaRegMoon } from "react-icons/fa";
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from "motion/react"
-import { FiHome, FiUser, FiBriefcase, FiFileText, FiMail } from "react-icons/fi"
+import { FiHome, FiUser, FiBriefcase, FiMail, FiCode, FiAward } from "react-icons/fi"
 
 /* ════════════ DATA — unchanged ════════════ */
 const navItems = [
-  { id: 1, text: "Home",    icon: <FiHome />,      to: "Body"    },
-  { id: 2, text: "About",   icon: <FiUser />,      to: "About"   },
-  { id: 3, text: "Experience", icon: <FaInternetExplorer />, to: "Experience" },
-  { id: 4, text: "Project", icon: <FiBriefcase />, to: "Project" },
-  { id: 5, text: "Certificates",  icon: <FaStickyNote />,  to: "Certificate"  },
-  { id: 6, text: "Contact", icon: <FiMail />,      to: "Contact" },
+  { id: 1, text: "Home",         icon: <FiHome />,     to: "Body"        },
+  { id: 2, text: "About",        icon: <FiUser />,     to: "About"       },
+  { id: 3, text: "Experience",   icon: <FiCode />,     to: "Experience"  },
+  { id: 4, text: "Project",      icon: <FiBriefcase />,to: "Project"     },
+  { id: 5, text: "Certificates", icon: <FiAward />,    to: "Certificate" },
+  { id: 6, text: "Contact",      icon: <FiMail />,     to: "Contact"     },
 ]
 
 const socials = [
@@ -445,102 +445,94 @@ const Navbar = () => {
         /* ── mobile overlay ── */
         .nb-overlay {
           position: fixed; inset: 0; top: 62px; z-index: 49;
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          overflow: hidden;
-          backdrop-filter: blur(18px);
-          border-top: 1px solid rgba(34, 139, 34,0.08);
-        }
-        .nb-overlay::before {
-          content: ''; position: absolute; top: -90px; left: -88px;
-          width: 340px; height: 340px;
-          background: radial-gradient(circle, rgba(34, 139, 34,0.12) 0%, transparent 62%);
-          filter: blur(2px);
-          pointer-events: none;
-        }
-        .nb-overlay::after {
-          content: ''; position: absolute; bottom: -90px; right: -88px;
-          width: 320px; height: 320px;
-          background: radial-gradient(circle, rgba(34, 139, 34,0.08) 0%, transparent 60%);
-          filter: blur(2px);
-          pointer-events: none;
+          display: flex; flex-direction: column; align-items: center;
+          justify-content: flex-start;
+          overflow-y: auto;
+          border-top: 1px solid rgba(34,139,34,0.18);
+          padding-bottom: 24px;
         }
         .nb-ol-d {
-          background: radial-gradient(circle at 20% 20%, rgba(34, 139, 34,0.08), transparent 28%),
-                      radial-gradient(circle at 80% 80%, rgba(34, 139, 34,0.05), transparent 30%),
-                      rgba(3,2,1,0.98);
+          background: rgba(3, 7, 3, 0.65);
+          backdrop-filter: blur(32px) saturate(2);
+          -webkit-backdrop-filter: blur(32px) saturate(2);
         }
         .nb-ol-l {
-          background: radial-gradient(circle at 20% 20%, rgba(27, 94, 32,0.08), transparent 28%),
-                      radial-gradient(circle at 80% 80%, rgba(27, 94, 32,0.05), transparent 30%),
-                      rgba(232, 245, 233,0.99);
+          background: rgba(240, 252, 240, 0.82);
+          backdrop-filter: blur(28px) saturate(1.6);
+          -webkit-backdrop-filter: blur(28px) saturate(1.6);
         }
 
-        .nb-ol-d::before { background: radial-gradient(circle, rgba(34, 139, 34,0.08) 0%, transparent 70%) !important; }
-
+        /* ── mobile nav items ── */
         .nb-mi {
-          display: flex; align-items: center; gap: 18px;
-          padding: 18px 22px; width: 300px;
-          border-bottom: 1px solid rgba(34, 139, 34,0.08);
-          border-radius: 18px;
-          margin-bottom: 12px;
-          background: rgba(255,255,255,0.03);
-          backdrop-filter: blur(12px);
-          font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700;
+          display: flex; align-items: center; gap: 16px;
+          padding: 16px 20px; width: 300px;
+          font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.2em;
-          cursor: pointer; transition: all 0.26s ease;
+          cursor: pointer; transition: color 0.2s ease;
           position: relative;
+          text-decoration: none;
+          border: none; background: none;
         }
-        .nb-mi-d { color: #b8b8b8; }
-        .nb-mi-l { color: #8c6c1a; }
-        .nb-mi .ic { font-size: 1.15rem; transition: all 0.2s; flex-shrink: 0; }
-        .nb-mi-d .ic { color: rgba(34, 139, 34,0.35); }
-        .nb-mi-l .ic { color: rgba(27, 94, 32,0.45); }
-        .nb-mi:hover, .nb-mi.on { color: #228b22; transform: translateX(6px); background: rgba(34, 139, 34,0.08); border-color: rgba(34, 139, 34,0.12); }
-        .nb-mi:hover .ic, .nb-mi.on .ic {
-          color: #228b22;
-          filter: drop-shadow(0 0 6px rgba(34, 139, 34,0.7));
-        }
-        .nb-mi.on {
-          box-shadow: inset 0 0 24px rgba(34,139,34,0.08);
-        }
-        .nb-mi.on::before {
+        /* underline bar */
+        .nb-mi::after {
           content: '';
-          position: absolute; left: 0; top: 10%; bottom: 10%;
-          width: 4px;
-          border-radius: 999px;
-          background: linear-gradient(180deg, #e8f5e9, #228b22, #1b5e20);
-          box-shadow: 0 0 12px rgba(34,139,34,0.45);
+          position: absolute; bottom: 0; left: 20px; right: 20px;
+          height: 1px;
+          background: rgba(34,139,34,0.08);
+        }
+        /* animated green underline on hover/active */
+        .nb-mi::before {
+          content: '';
+          position: absolute; bottom: 0; left: 20px;
+          height: 1px; width: 0;
+          background: linear-gradient(90deg, #28c864, rgba(34,139,34,0.3));
+          transition: width 0.3s ease;
+        }
+        .nb-mi:hover::before, .nb-mi.on::before { width: calc(100% - 40px); }
+
+        .nb-mi-d { color: rgba(160,175,160,0.45); }
+        .nb-mi-l { color: rgba(27,94,32,0.4); }
+
+        /* index number */
+        .nb-mi .nb-idx {
+          font-size: 0.52rem; letter-spacing: 0.05em; font-weight: 500;
+          width: 18px; flex-shrink: 0; opacity: 0.35;
+          transition: opacity 0.2s;
         }
 
-        /* ── breakpoint visibility — logic unchanged ── */
-        .nb-mi {
-          display: flex; align-items: center; gap: 18px;
-          padding: 16px 0; width: 280px;
-          border-bottom: 1px solid rgba(34, 139, 34,0.07);
-          font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700;
-          text-transform: uppercase; letter-spacing: 0.2em;
-          cursor: pointer; transition: all 0.22s ease; position: relative;
+        /* icon badge */
+        .nb-mi .ic-wrap {
+          width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          border: 1px solid rgba(34,139,34,0.1);
+          background: rgba(34,139,34,0.06);
+          transition: border-color 0.2s, background 0.2s;
         }
-        .nb-mi-d { color: #3f4652; }
-        .nb-mi-l { color: #1b5e20; }
-        .nb-mi .ic { font-size: 1.15rem; transition: all 0.2s; flex-shrink: 0; }
-        .nb-mi-d .ic { color: rgba(34,139,34,0.3); }
-        .nb-mi-l .ic { color: rgba(27,94,32,0.4); }
-        .nb-mi:hover, .nb-mi.on { color: #228b22; padding-left: 16px; }
-        .nb-mi:hover .ic, .nb-mi.on .ic {
-          color: #228b22;
-          filter: drop-shadow(0 0 4px rgba(34,139,34,0.6));
-        }
-        /* active left accent */
-        .nb-mi.on::before {
-          content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-          width: 3px; height: 55%;
-          background: linear-gradient(180deg, #e8f5e9, #228b22, #1b5e20);
-          border-radius: 2px;
-          box-shadow: 0 0 8px rgba(34,139,34,0.7);
+        .nb-mi .ic { font-size: 1rem; transition: color 0.2s; }
+        .nb-mi-d .ic { color: rgba(34,139,34,0.45); }
+        .nb-mi-l .ic { color: rgba(27,94,32,0.5); }
+
+        /* label */
+        .nb-mi .nb-label { flex: 1; }
+
+        /* arrow — hidden always, removed */
+        .nb-mi .nb-arr { display: none; }
+
+        /* hover — text only */
+        .nb-mi:hover { color: rgba(180,220,180,0.8); }
+        .nb-mi:hover .nb-idx { opacity: 0.6; }
+        .nb-mi:hover .ic { color: rgba(40,200,100,0.7); }
+
+        /* active */
+        .nb-mi.on { color: #28c864; }
+        .nb-mi.on .nb-idx { opacity: 1; color: #28c864; }
+        .nb-mi.on .ic { color: #28c864; }
+        .nb-mi.on .ic-wrap {
+          border-color: rgba(40,200,100,0.3);
+          background: rgba(34,139,34,0.13);
         }
 
-        /* ── breakpoint visibility — logic unchanged ── */
+        /* ── breakpoint visibility ── */
         @media (max-width: 767px)  { .nb { display: none !important; } }
         @media (min-width: 768px)  { .nb-top, .nb-overlay { display: none !important; } }
       `}</style>
@@ -674,50 +666,87 @@ const Navbar = () => {
         {menu && (
           <motion.div
             className={`nb-overlay ${D ? 'nb-ol-d' : 'nb-ol-l'}`}
-            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)', y: -24 }}
-            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)', y: 0 }}
-            exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)', y: -24 }}
-            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
           >
-            {/* section label */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            {/* ── Header (centered) ── */}
+            <motion.div
+              initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
+              style={{ textAlign: 'center', padding: '28px 24px 22px' }}
+            >
+              <p style={{
+                fontFamily: "'Cinzel', serif", fontSize: '1.1rem', fontWeight: 900, margin: 0,
+                background: 'linear-gradient(135deg, #d4f5da 0%, #81c784 35%, #228b22 70%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                letterSpacing: '0.06em',
+              }}>Imran Shaikh</p>
+              <p style={{
+                fontSize: '0.55rem', letterSpacing: '0.32em',
+                color: D ? 'rgba(34,139,34,0.4)' : 'rgba(27,94,32,0.44)',
+                textTransform: 'uppercase', marginTop: 5,
+                fontFamily: 'Rajdhani, sans-serif',
+              }}>Full Stack Developer</p>
+              <div style={{ width: 40, height: 1, margin: '14px auto 0', background: 'linear-gradient(90deg,transparent,rgba(34,139,34,0.5),transparent)' }} />
+            </motion.div>
+
+            {/* ── Nav items (centered list) ── */}
+            <div>
+              {navItems.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 + i * 0.045, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Link to={item.to} smooth duration={500} offset={-20}
+                    onClick={() => { setMenu(false); setActive(item.text) }}>
+                    <div className={`nb-mi ${D ? 'nb-mi-d' : 'nb-mi-l'} ${active === item.text ? 'on' : ''}`}>
+                      {/* index */}
+                      <span className="nb-idx">{String(i + 1).padStart(2, '0')}</span>
+                      {/* icon badge */}
+                      <span className="ic-wrap">
+                        <span className="ic">{item.icon}</span>
+                      </span>
+                      {/* label */}
+                      <span className="nb-label">{item.text}</span>
+                      {/* arrow */}
+                      <span className="nb-arr">›</span>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* ── Footer (centered) ── */}
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ delay: 0.42 }}
               style={{
-                fontFamily: 'Rajdhani, sans-serif', fontSize: '0.52rem',
-                color: D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.5)',
-                letterSpacing: '0.38em', textTransform: 'uppercase', marginBottom: 20,
+                marginTop: 'auto', paddingTop: 20,
+                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
               }}
-            >── Navigation ──</motion.p>
-
-            {navItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, x: -32 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.17 + i * 0.065, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Link to={item.to} smooth duration={500} offset={-20}
-                  onClick={() => { setMenu(false); setActive(item.text) }}>
-                  <div className={`nb-mi ${D ? 'nb-mi-d' : 'nb-mi-l'} ${active === item.text ? 'on' : ''}`}>
-                    <span className="ic">{item.icon}</span>
-                    {item.text}
-                    {active === item.text && (
-                      <motion.span
-                        layoutId="mActive"
-                        className="ml-auto"
-                        style={{
-                          fontSize: '0.55rem', color: '#228b22',
-                          filter: 'drop-shadow(0 0 4px rgba(34,139,34,0.7))',
-                        }}
-                      >◆</motion.span>
-                    )}
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-
-            {/* NO SOCIALS on mobile — as requested */}
+            >
+              <div style={{ display: 'flex', gap: 12 }}>
+                {socials.map(s => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
+                    style={{
+                      width: 38, height: 38, borderRadius: 10,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      border: '1px solid rgba(34,139,34,0.18)',
+                      background: 'rgba(34,139,34,0.06)',
+                      color: D ? s.colorDark : s.colorLight,
+                      fontSize: '1rem', transition: 'all 0.2s',
+                    }}
+                  >{s.icon}</a>
+                ))}
+              </div>
+              <span style={{ fontSize: '0.52rem', letterSpacing: '0.2em', color: D ? 'rgba(34,139,34,0.28)' : 'rgba(27,94,32,0.32)', textTransform: 'uppercase', fontFamily: 'Rajdhani,sans-serif' }}>
+                © 2024 Imran Shaikh
+              </span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
