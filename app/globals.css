@@ -7,6 +7,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px;
+  /* momentum-based smooth scroll on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 html,
@@ -21,21 +23,68 @@ body {
   margin: 0;
   background: #000000;
   scroll-behavior: smooth;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(34, 139, 34, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 139, 34, 0.012) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: moveGrid 45s linear infinite;
+  /* promote to own GPU layer so grid animation never touches scroll thread */
+  will-change: background-position;
+  transform: translateZ(0);
+}
+
+@keyframes moveGrid {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(34, 139, 34, 0.25);
+  color: #81c784;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050503;
+}
+::-webkit-scrollbar-thumb {
+  background: #228b22;
+  border-radius: 999px;
+  border: 2px solid #050503;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1b5e20;
 }
 
 section[id] {
   scroll-margin-top: 70px;
+  /* contain paint so backdrop-filter only samples within this section,
+     not the entire fixed canvas behind it — eliminates scroll repaint */
+  contain: layout style;
 }
+
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.5s ease;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 img,

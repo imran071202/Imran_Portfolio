@@ -1,132 +1,170 @@
-"use client";
+"use client"
+import { useEffect, useState, useRef } from "react"
 
-import { useEffect, useState } from "react";
+const STEPS = [
+  { at: 10,  text: "Initializing environment..." },
+  { at: 30,  text: "Loading components..." },
+  { at: 55,  text: "Compiling styles..." },
+  { at: 75,  text: "Connecting services..." },
+  { at: 95,  text: "Finalizing portfolio..." },
+]
+
+/* ── tiny canvas: animated green particle plexus ── */
+const LoaderCanvas = () => {
+  const ref = useRef(null)
+  useEffect(() => {
+    const canvas = ref.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let w = canvas.width = canvas.offsetWidth
+    let h = canvas.height = canvas.offsetHeight
+    const pts = Array.from({ length: 38 }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+    }))
+    let raf
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h)
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy
+        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0
+        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0
+        ctx.beginPath(); ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(40,200,100,0.55)'; ctx.fill()
+      })
+      pts.forEach((a, i) => pts.slice(i + 1).forEach(b => {
+        const d = Math.hypot(a.x - b.x, a.y - b.y)
+        if (d < 90) {
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y)
+          ctx.strokeStyle = `rgba(34,139,34,${0.12 * (1 - d / 90)})`
+          ctx.lineWidth = 0.6; ctx.stroke()
+        }
+      }))
+      raf = requestAnimationFrame(draw)
+    }
+    draw()
+    const onResize = () => {
+      w = canvas.width = canvas.offsetWidth
+      h = canvas.height = canvas.offsetHeight
+    }
+    window.addEventListener('resize', onResize)
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
+  }, [])
+  return <canvas ref={ref} className="absolute inset-0 w-full h-full" />
+}
 
 const Loader = ({ onFinish }) => {
-  const [progress, setProgress] = useState(0);
-  const [logs, setLogs] = useState([]);
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    let frameId;
-    let startTime;
-    const duration = 1500;
+    let raf, start
+    const duration = 1800
+    const tick = (ts) => {
+      if (!start) start = ts
+      const p = Math.min(100, Math.round(((ts - start) / duration) * 100))
+      setProgress(p)
+      if (p < 100) { raf = requestAnimationFrame(tick) }
+      else { setTimeout(() => onFinish?.(), 300) }
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [onFinish])
 
-    const tick = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const nextProgress = Math.min(100, Math.round((elapsed / duration) * 100));
-      setProgress(nextProgress);
-
-      // Multi-line updates using green text colors
-      const currentLogs = [];
-      if (nextProgress >= 1) currentLogs.push({ type: "info", text: "System system initilation..." });
-      if (nextProgress >= 25) currentLogs.push({ type: "data", text: "Information system: loadings..." });
-      if (nextProgress >= 50) currentLogs.push({ type: "info", text: "System system deporter..." });
-      if (nextProgress >= 75) currentLogs.push({ type: "info", text: "System system data functment..." });
-      if (nextProgress >= 95) currentLogs.push({ type: "data", text: "Information system stronymous..." });
-      setLogs(currentLogs);
-
-      if (nextProgress < 100) {
-        frameId = window.requestAnimationFrame(tick);
-      } else {
-        const timeoutId = setTimeout(() => {
-          onFinish?.();
-        }, 200);
-        return () => clearTimeout(timeoutId);
-      }
-    };
-
-    frameId = window.requestAnimationFrame(tick);
-
-    return () => window.cancelAnimationFrame(frameId);
-  }, [onFinish]);
+  const logs = STEPS.filter(s => progress >= s.at)
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[#050505] text-[#d5de25] font-mono select-none">
-      {/* Radial Background Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.15),_transparent_60%)]" />
+    <div className="fixed inset-0 z-[200] flex items-center justify-center select-none overflow-hidden"
+      style={{ background: '#020704', fontFamily: "'Courier New', monospace" }}>
 
-      {/* Grid Pattern Overlay */}
-      <div
-        className="absolute inset-0 opacity-15"
+      {/* ── animated canvas background ── */}
+      <LoaderCanvas />
+
+      {/* ── slow drifting radial glow ── */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(34,139,34,0.13) 0%, transparent 70%)',
+          animation: 'glowPulse 4s ease-in-out infinite' }} />
+
+      {/* ── card ── */}
+      <div className="relative z-10 w-[92%] max-w-[480px] rounded-2xl p-7"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.06) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      />
+          background: 'rgba(4,12,6,0.92)',
+          border: '1px solid rgba(40,200,100,0.25)',
+          boxShadow: '0 0 40px rgba(34,139,34,0.12), inset 0 0 30px rgba(0,0,0,0.5)',
+          backdropFilter: 'blur(14px)',
+        }}>
 
-      {/* CRT Scanline Effect Overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%)",
-          backgroundSize: "100% 4px",
-        }}
-      />
-
-      {/* Terminal Main Container */}
-      <div className="relative w-11/12 md:w-full max-w-[500px] rounded-xl border border-[#d4af37]/40 bg-[#070707]/95 p-6 shadow-[0_0_50px_rgba(212,175,55,0.15)] backdrop-blur-md">
-
-        {/* Terminal Header Bar with Red, Yellow, Green window circles */}
-        <div className="relative mb-5 flex items-center border-b border-[#d4af37]/20 pb-3">
-          <div className="flex gap-1.5">
-            <span className="h-3 w-3 rounded-full bg-[#ef4444]" />
-            <span className="h-3 w-3 rounded-full bg-[#eab308]" />
-            <span className="h-3 w-3 rounded-full bg-[#22c55e]" />
-          </div>
-          <div className="absolute inset-x-0 text-center text-[0.65rem] md:text-[0.75rem] font-medium tracking-wider text-[cyan]/60">
-            IMRAN SHAIKH // V2.0.26
-          </div>
-        </div>
-
-        {/* Primary Loading Info */}
-        <div className="flex items-center justify-between text-[0.95rem] font-bold tracking-[0.15em] uppercase text-[#d4af37]">
-          <span className="flex items-center gap-1">
-            LOADING
-            <span className="animate-pulse">▋</span>
+        {/* window chrome */}
+        <div className="flex items-center gap-1.5 mb-5">
+          <span className="w-3 h-3 rounded-full" style={{ background: '#ef4444' }} />
+          <span className="w-3 h-3 rounded-full" style={{ background: '#eab308' }} />
+          <span className="w-3 h-3 rounded-full" style={{ background: '#22c55e' }} />
+          <span className="ml-auto" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', color: 'rgba(40,200,100,0.55)' }}>
+            imran@portfolio · v2.0
           </span>
-          <span className="tabular-nums">{progress}%</span>
         </div>
 
-        {/* Segmented Progress Matrix (Dot Dot Loader) - Fixed to stay on a single line on mobile */}
-        <div className="mt-4 grid grid-cols-24 gap-0.5 sm:gap-1.5">
-          {Array.from({ length: 24 }).map((_, index) => {
-            const threshold = Math.round(((index + 1) / 24) * 100);
-            return (
-              <span
-                key={index}
-                className={`h-2 rounded-xs border transition-colors duration-150 ${progress >= threshold
-                    ? 'bg-[#d4af37] border-[#f5d06b]/50 shadow-[0_0_6px_rgba(212,175,55,0.4)]'
-                    : 'bg-[#121212] border-transparent'
-                  }`}
-              />
-            );
-          })}
+        {/* progress header */}
+        <div className="flex items-center justify-between mb-2">
+          <span style={{ fontSize: '0.82rem', letterSpacing: '0.22em', color: '#28c864', fontWeight: 700 }}>
+            LOADING&nbsp;
+            <span style={{ animation: 'blink 1s step-end infinite' }}>▋</span>
+          </span>
+          <span style={{ fontSize: '0.82rem', color: '#28c864', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
+            {progress}%
+          </span>
         </div>
 
-        {/* Multi-line Terminal Log Box */}
-        <div className="mt-5 min-h-[140px] rounded-md border border-[#d4af37]/10 bg-[#020202] p-4 font-mono text-[0.78rem] tracking-wide leading-relaxed text-[#22c55e]/90">
-          <div className="space-y-1">
-            {logs.map((log, index) => (
-              <div key={index} className="truncate">
-                <span className="text-[#22c55e]/40">[status]</span>{" "}
-                <span className="text-[#22c55e]/60">{log.type}]</span>{" "}
-                <span>{log.text}</span>
+        {/* progress bar */}
+        <div className="w-full rounded-full mb-5" style={{ height: 5, background: 'rgba(34,139,34,0.12)' }}>
+          <div className="h-full rounded-full"
+            style={{
+              width: `${progress}%`,
+              background: 'linear-gradient(90deg, #1b5e20, #28c864)',
+              boxShadow: '0 0 10px rgba(40,200,100,0.6)',
+              transition: 'width 0.15s linear',
+            }} />
+        </div>
+
+        {/* terminal log */}
+        <div className="rounded-xl p-4" style={{
+          minHeight: 130,
+          background: 'rgba(0,0,0,0.55)',
+          border: '1px solid rgba(40,200,100,0.12)',
+        }}>
+          <div className="space-y-2">
+            {logs.map((log, i) => (
+              <div key={i} className="flex items-center gap-2" style={{ fontSize: '0.75rem' }}>
+                <span style={{ color: '#28c864' }}>$</span>
+                <span style={{ color: i === logs.length - 1 ? '#81c784' : 'rgba(129,199,132,0.55)' }}>
+                  {log.text}
+                </span>
+                {i < logs.length - 1 && (
+                  <span style={{ color: '#22c55e', fontSize: '0.6rem', marginLeft: 'auto' }}>✓</span>
+                )}
               </div>
             ))}
-
-            {/* Active entry line with blinking green block cursor */}
-            <div className="flex items-center text-[#22c55e]">
-              <span>&gt;</span>
-              <span className="ml-1.5 h-3.5 w-2 bg-[#22c55e] animate-[pulse_1s_infinite]" />
+            {/* blinking cursor line */}
+            <div className="flex items-center gap-2" style={{ fontSize: '0.75rem', marginTop: 4 }}>
+              <span style={{ color: '#28c864' }}>›</span>
+              <span style={{ display: 'inline-block', width: 7, height: 13, background: '#28c864',
+                animation: 'blink 1s step-end infinite', borderRadius: 1 }} />
             </div>
           </div>
         </div>
 
+        {/* footer */}
+        <div className="mt-4 text-center" style={{ fontSize: '0.62rem', letterSpacing: '0.22em', color: 'rgba(40,200,100,0.3)' }}>
+          IMRAN SHAIKH · FULL STACK DEVELOPER
+        </div>
       </div>
-    </div>
-  );
-};
 
-export default Loader;
+      <style>{`
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        @keyframes glowPulse { 0%,100%{opacity:0.8} 50%{opacity:1.4} }
+      `}</style>
+    </div>
+  )
+}
+
+export default Loader

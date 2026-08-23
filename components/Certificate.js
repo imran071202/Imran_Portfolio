@@ -41,7 +41,7 @@ const certificates = [
     url: "#",
     image: "./photo/web.jpg",
     category: "Web Development",
-    color: "#d4af37",
+    color: "#3b82f6",
     icon: "🌐",
     description: "Covered server-side rendering, static generation, API routes, and full-stack deployment with Vercel.",
   },
@@ -62,13 +62,13 @@ const SectionHeading = () => (
       fontFamily: "'Cinzel', serif",
       fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
       fontWeight: 900,
-      background: 'linear-gradient(135deg,#f5d060 0%,#d4af37 40%,#fffacd 60%,#b8860b 100%)',
+      background: 'linear-gradient(135deg,#74c69d 0%,#228b22 40%,#d8f3dc 60%,#1b5e20 100%)',
       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-      filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.45))',
+      filter: 'drop-shadow(0 0 12px rgba(34,139,34,0.45))',
       letterSpacing: '0.08em', textAlign: 'center',
     }}>Certificates</h2>
-    <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#d4af37,transparent)' }} />
-    <div style={{ width: 30, height: 2, marginTop: 5, background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.4),transparent)' }} />
+    <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#228b22,transparent)' }} />
+    <div style={{ width: 30, height: 2, marginTop: 5, background: 'linear-gradient(90deg,transparent,rgba(34,139,34,0.4),transparent)' }} />
     <p className="cert-sub" style={{
       marginTop: 14, fontSize: '0.88rem', letterSpacing: '0.06em',
       textAlign: 'center', maxWidth: 400, fontFamily: 'Rajdhani, sans-serif',
@@ -107,33 +107,33 @@ const Lightbox = ({ cert, onClose, isDark }) => {
         style={{
           borderRadius: 24, overflow: 'hidden',
           border: `1px solid ${cert.color}45`,
-          background: D ? 'rgba(6,4,1,0.99)' : 'rgba(255,253,242,0.99)',
+          background: D ? 'rgba(6,4,1,0.99)' : 'rgba(232, 245, 233,0.99)',
           maxWidth: 740, width: '100%',
           maxHeight: 'calc(100vh - 40px)',
           overflowY: 'auto',
-          boxShadow: `0 0 100px ${cert.color}18, 0 0 60px rgba(212,175,55,0.15), 0 30px 80px rgba(0,0,0,0.75)`,
+          boxShadow: `0 0 100px ${cert.color}18, 0 0 60px rgba(34, 139, 34,0.15), 0 30px 80px rgba(0,0,0,0.75)`,
           position: 'relative',
         }}
       >
         {/* full-width gold cap line */}
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, height: 2, zIndex: 10,
-          background: `linear-gradient(90deg, transparent 0%, ${cert.color} 20%, #fffacd 50%, ${cert.color} 80%, transparent 100%)`,
-          filter: 'drop-shadow(0 0 6px rgba(212,175,55,0.8))',
+          background: `linear-gradient(90deg, transparent 0%, ${cert.color} 20%, #e8f5e9 50%, ${cert.color} 80%, transparent 100%)`,
+          filter: 'drop-shadow(0 0 6px rgba(34, 139, 34,0.8))',
         }} />
 
         {/* close */}
         <motion.button
           onClick={onClose}
-          whileHover={{ scale: 1.12, background: 'rgba(212,175,55,0.22)' }}
+          whileHover={{ scale: 1.12, background: 'rgba(34, 139, 34,0.22)' }}
           whileTap={{ scale: 0.88 }}
           style={{
             position: 'absolute', top: 16, right: 16, zIndex: 20,
             width: 40, height: 40, borderRadius: 12,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '1px solid rgba(212,175,55,0.38)',
-            background: 'rgba(212,175,55,0.09)',
-            color: '#d4af37', cursor: 'pointer', fontSize: '1.1rem',
+            display: 'flex', alignItems: 'center', justifycontent: 'center',
+            border: '1px solid rgba(34,139,34,0.38)',
+            background: 'rgba(34,139,34,0.09)',
+            color: '#228b22', cursor: 'pointer', fontSize: '1.1rem',
             transition: 'all 0.2s',
           }}
         ><FiX /></motion.button>
@@ -231,19 +231,19 @@ const Lightbox = ({ cert, onClose, isDark }) => {
             <div>
               <h3 style={{
                 fontFamily: 'Cinzel, serif', fontSize: 'clamp(1rem,2.5vw,1.15rem)', fontWeight: 900, lineHeight: 1.3, marginBottom: 5,
-                background: 'linear-gradient(135deg,#f5d060,#d4af37,#c4961a)',
+                background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               }}>{cert.title}</h3>
-              <p style={{ color: D ? '#e5e7eb' : '#180e03', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'Rajdhani, sans-serif' }}>
+              <p style={{ color: D ? '#e5e7eb' : '#1b5e20', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'Rajdhani, sans-serif' }}>
                 {cert.issuer}
               </p>
             </div>
           </div>
 
-          <div style={{ height: 1, margin: '14px 0', background: `linear-gradient(90deg,${cert.color}35,rgba(212,175,55,0.15),transparent)` }} />
+          <div style={{ height: 1, margin: '14px 0', background: `linear-gradient(90deg,${cert.color}35,rgba(34, 139, 34,0.15),transparent)` }} />
 
           {cert.description && (
-            <p style={{ color: D ? '#c9cdd5' : '#2d1a04', lineHeight: 1.85, fontSize: '0.88rem', fontFamily: 'Rajdhani, sans-serif', marginBottom: 20 }}>
+            <p style={{ color: D ? '#c9cdd5' : '#1b5e20', lineHeight: 1.85, fontSize: '0.88rem', fontFamily: 'Rajdhani, sans-serif', marginBottom: 20 }}>
               {cert.description}
             </p>
           )}
@@ -251,11 +251,11 @@ const Lightbox = ({ cert, onClose, isDark }) => {
           {/* meta + btn */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.82rem', color: D ? '#7a8090' : '#7a4d0a', fontFamily: 'Rajdhani, sans-serif' }}>
-                <FiCalendar style={{ color: '#d4af37', fontSize: '0.85rem' }} /> {cert.date}
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.82rem', color: D ? '#7a8090' : '#1b5e20', fontFamily: 'Rajdhani, sans-serif' }}>
+                <FiCalendar style={{ color: '#228b22', fontSize: '0.85rem' }} /> {cert.date}
               </span>
               {cert.credentialId && (
-                <span style={{ fontSize: '0.78rem', color: D ? '#6b7280' : '#7a4d0a', fontFamily: 'Rajdhani, sans-serif' }}>
+                <span style={{ fontSize: '0.78rem', color: D ? '#6b7280' : '#1b5e20', fontFamily: 'Rajdhani, sans-serif' }}>
                   ID: {cert.credentialId}
                 </span>
               )}
@@ -264,16 +264,16 @@ const Lightbox = ({ cert, onClose, isDark }) => {
               <motion.a
                 href={cert.url} target="_blank" rel="noopener noreferrer"
                 className="cert-lightbox-verify"
-                whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(212,175,55,0.55)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(34,139,34,0.55)' }}
                 whileTap={{ scale: 0.96 }}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 7,
                   padding: '10px 22px', borderRadius: 12,
-                  background: 'linear-gradient(135deg,#f5d060,#d4af37,#b8860b)',
+                  background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
                   color: '#050300', fontWeight: 800, fontSize: '0.72rem',
                   textTransform: 'uppercase', letterSpacing: '0.18em',
                   textDecoration: 'none', fontFamily: 'Rajdhani, sans-serif',
-                  boxShadow: '0 0 20px rgba(212,175,55,0.38)',
+                  boxShadow: '0 0 20px rgba(34,139,34,0.38)',
                   position: 'relative', overflow: 'hidden',
                 }}
               >
@@ -290,10 +290,10 @@ const Lightbox = ({ cert, onClose, isDark }) => {
 /* ══ Certificate Card ═════════════════════════════════════════ */
 const CertCard = ({ cert, index, isDark, onOpen }) => {
   const D = isDark
-  const bgCard = D ? 'rgba(9,7,2,0.94)' : 'rgba(255,253,242,0.97)'
-  const borderC = D ? 'rgba(212,175,55,0.12)' : 'rgba(160,110,10,0.18)'
-  const textH = D ? '#f3f4f6' : '#180e03'
-  const textM = D ? '#6b7280' : '#7a4d0a'
+  const bgCard = D ? 'rgba(9,7,2,0.94)' : 'rgba(232, 245, 233,0.97)'
+  const borderC = D ? 'rgba(34, 139, 34,0.12)' : 'rgba(27, 94, 32,0.18)'
+  const textH = D ? '#f3f4f6' : '#1b5e20'
+  const textM = D ? '#6b7280' : '#1b5e20'
 
   return (
     <motion.div
@@ -319,7 +319,7 @@ const CertCard = ({ cert, index, isDark, onOpen }) => {
       {/* ── top shimmer line (on hover) ── */}
       <div className="cert-shimmer" style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 2, zIndex: 5,
-        background: `linear-gradient(90deg,transparent 0%,${cert.color} 25%,#fffacd 50%,${cert.color} 75%,transparent 100%)`,
+        background: `linear-gradient(90deg,transparent 0%,${cert.color} 25%,#e8f5e9 50%,${cert.color} 75%,transparent 100%)`,
         opacity: 0, transition: 'opacity 0.38s',
         filter: `drop-shadow(0 0 4px ${cert.color})`,
       }} />
@@ -437,7 +437,7 @@ const CertCard = ({ cert, index, isDark, onOpen }) => {
         <span style={{
           position: 'absolute', bottom: 9, left: 13, zIndex: 7,
           fontSize: '0.54rem', fontWeight: 700,
-          color: D ? 'rgba(212,175,55,0.45)' : 'rgba(130,80,10,0.5)',
+          color: D ? 'rgba(34, 139, 34,0.45)' : 'rgba(27, 94, 32,0.5)',
           fontFamily: 'Rajdhani, sans-serif', letterSpacing: '0.12em', textTransform: 'uppercase',
         }}>{cert.issuer}</span>
 
@@ -473,7 +473,7 @@ const CertCard = ({ cert, index, isDark, onOpen }) => {
           fontFamily: 'Cinzel, serif',
           fontSize: 'clamp(0.8rem, 1.8vw, 0.95rem)',
           fontWeight: 900, lineHeight: 1.35, marginBottom: 5,
-          background: 'linear-gradient(135deg,#f5d060,#d4af37,#c4961a)',
+          background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
           WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
         }}>{cert.title}</h3>
 
@@ -492,13 +492,13 @@ const CertCard = ({ cert, index, isDark, onOpen }) => {
         {/* bottom — date + hint */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 4, marginTop: 'auto' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: textM, fontSize: '0.76rem', fontFamily: 'Rajdhani, sans-serif' }}>
-            <FiCalendar style={{ color: '#d4af37', fontSize: '0.72rem', flexShrink: 0 }} />
+            <FiCalendar style={{ color: '#228b22', fontSize: '0.72rem', flexShrink: 0 }} />
             {cert.date}
           </span>
           <span style={{
             display: 'flex', alignItems: 'center', gap: 4,
             fontSize: '0.57rem', letterSpacing: '0.08em',
-            color: D ? `${cert.color}60` : 'rgba(130,80,10,0.5)',
+            color: D ? `${cert.color}60` : 'rgba(27, 94, 32,0.5)',
             fontFamily: 'Rajdhani, sans-serif',
           }}>
             <FiZoomIn style={{ fontSize: '0.62rem' }} /> Click to view
@@ -546,11 +546,11 @@ const Certificate = () => {
   }, [])
 
   const D = isDark
-  const bg = D ? '#050503' : '#faf6e8'
-  const gridLine = D ? 'rgba(212,175,55,0.035)' : 'rgba(160,120,10,0.055)'
-  const filterBg = D ? 'rgba(10,8,3,0.9)' : 'rgba(255,253,242,0.95)'
-  const filterBdr = D ? 'rgba(212,175,55,0.14)' : 'rgba(160,110,10,0.2)'
-  const subColor = D ? '#6b7280' : '#7a4d0a'
+  const bg = D ? 'transparent' : '#faf6e8'
+  const gridLine = D ? 'rgba(34, 139, 34,0.035)' : 'rgba(27, 94, 32,0.055)'
+  const filterBg = D ? 'rgba(10,8,3,0.9)' : 'rgba(232, 245, 233,0.95)'
+  const filterBdr = D ? 'rgba(34, 139, 34,0.14)' : 'rgba(27, 94, 32,0.2)'
+  const subColor = D ? '#6b7280' : '#1b5e20'
 
   const filtered = activeFilter === "All"
     ? certificates
@@ -562,13 +562,6 @@ const Certificate = () => {
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap');
         #Certificate { font-family: 'Rajdhani', sans-serif; }
         .cert-wrap { position: relative; overflow: hidden; max-width: 100vw; }
-        .cert-wrap::before {
-          content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
-          background-image:
-            linear-gradient(${gridLine} 1px, transparent 1px),
-            linear-gradient(90deg, ${gridLine} 1px, transparent 1px);
-          background-size: 56px 56px;
-        }
         .cert-sub { color: ${subColor}; }
         .f-pill {
           padding: 7px 20px; border-radius: 99px; cursor: pointer;
@@ -576,13 +569,13 @@ const Certificate = () => {
           letter-spacing: 0.15em; transition: all 0.22s ease;
           font-family: 'Rajdhani', sans-serif;
           border: 1px solid ${filterBdr}; background: transparent;
-          color: ${D ? '#4b5563' : '#92700a'};
+          color: ${D ? '#4b5563' : '#1b5e20'};
         }
-        .f-pill:hover { border-color: rgba(212,175,55,0.42); color: #d4af37; background: rgba(212,175,55,0.07); }
+        .f-pill:hover { border-color: rgba(34,139,34,0.42); color: #228b22; background: rgba(34,139,34,0.07); }
         .f-pill.active {
-          background: linear-gradient(135deg,rgba(212,175,55,0.2),rgba(212,175,55,0.07));
-          border-color: rgba(212,175,55,0.52); color: #d4af37;
-          box-shadow: 0 0 16px rgba(212,175,55,0.18), inset 0 0 8px rgba(212,175,55,0.06);
+          background: linear-gradient(135deg,rgba(34,139,34,0.2),rgba(34,139,34,0.07));
+          border-color: rgba(34,139,34,0.52); color: #228b22;
+          box-shadow: 0 0 16px rgba(34,139,34,0.18), inset 0 0 8px rgba(34,139,34,0.06);
         }
         @media (max-width: 640px) {
           .f-pill {
@@ -632,8 +625,8 @@ const Certificate = () => {
         className="cert-wrap w-full py-20 md:py-28 px-5 md:px-16 transition-colors duration-400"
         style={{ background: bg }}
       >
-        <div style={{ position: 'absolute', top: '6%', left: '4%', width: 400, height: 400, background: 'radial-gradient(circle,rgba(212,175,55,0.055) 0%,transparent 70%)', pointerEvents: 'none', borderRadius: '50%', zIndex: 0 }} />
-        <div style={{ position: 'absolute', bottom: '8%', right: '3%', width: 320, height: 320, background: 'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)', pointerEvents: 'none', borderRadius: '50%', zIndex: 0 }} />
+        <div style={{ position: 'absolute', top: '6%', left: '4%', width: 400, height: 400, background: 'radial-gradient(circle,rgba(34, 139, 34,0.055) 0%,transparent 70%)', pointerEvents: 'none', borderRadius: '50%', zIndex: 0 }} />
+        <div style={{ position: 'absolute', bottom: '8%', right: '3%', width: 320, height: 320, background: 'radial-gradient(circle,rgba(34, 139, 34,0.04) 0%,transparent 70%)', pointerEvents: 'none', borderRadius: '50%', zIndex: 0 }} />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <SectionHeading />
@@ -651,10 +644,10 @@ const Certificate = () => {
               { val: `${Array.from(new Set(certificates.map(c => c.category))).length}`, lbl: 'Categories' },
             ].map((s, i) => (
               <React.Fragment key={s.lbl}>
-                {i > 0 && <div className="cert-stats-divider" style={{ width: 1, background: D ? 'rgba(212,175,55,0.2)' : 'rgba(160,110,10,0.2)' }} />}
+                {i > 0 && <div className="cert-stats-divider" style={{ width: 1, background: D ? 'rgba(34, 139, 34,0.2)' : 'rgba(27, 94, 32,0.2)' }} />}
                 <div style={{ textAlign: 'center' }}>
-                  <p style={{ fontSize: '1.65rem', fontWeight: 900, lineHeight: 1, background: 'linear-gradient(135deg,#f5d060,#d4af37)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{s.val}</p>
-                  <p style={{ fontSize: '0.59rem', textTransform: 'uppercase', letterSpacing: '0.18em', color: D ? '#6b7280' : '#7a4d0a', marginTop: 3, fontFamily: 'Rajdhani, sans-serif' }}>{s.lbl}</p>
+                  <p style={{ fontSize: '1.65rem', fontWeight: 900, lineHeight: 1, background: 'linear-gradient(135deg,#81c784,#228b22)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{s.val}</p>
+                  <p style={{ fontSize: '0.59rem', textTransform: 'uppercase', letterSpacing: '0.18em', color: D ? '#6b7280' : '#1b5e20', marginTop: 3, fontFamily: 'Rajdhani, sans-serif' }}>{s.lbl}</p>
                 </div>
               </React.Fragment>
             ))}
@@ -692,12 +685,12 @@ const Certificate = () => {
           <motion.p
             initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }} viewport={{ once: true }}
-            style={{ textAlign: 'center', marginTop: 56, fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: D ? 'rgba(212,175,55,0.3)' : 'rgba(140,90,10,0.38)', fontFamily: 'Rajdhani, sans-serif' }}
+            style={{ textAlign: 'center', marginTop: 56, fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.38)', fontFamily: 'Rajdhani, sans-serif' }}
           >── More certificates coming soon ──</motion.p>
         </div>
       </section>
 
-      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.3)' : 'rgba(160,110,10,0.3)'},transparent)` }} />
+      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.3)'},transparent)` }} />
 
       <AnimatePresence>
         {selected && <Lightbox cert={selected} onClose={() => setSelected(null)} isDark={D} />}

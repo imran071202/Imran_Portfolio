@@ -62,21 +62,21 @@ const SectionHeading = ({ title }) => (
       fontFamily: "'Cinzel', serif",
       fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
       fontWeight: 900,
-      background: 'linear-gradient(135deg, #f5d060 0%, #d4af37 40%, #fffacd 60%, #b8860b 100%)',
+      background: 'linear-gradient(135deg, #74c69d 0%, #228b22 40%, #d8f3dc 60%, #1b5e20 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
-      filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.45))',
+      filter: 'drop-shadow(0 0 12px rgba(34,139,34,0.45))',
       letterSpacing: '0.08em',
       textAlign: 'center',
     }}>{title}</h2>
     <div style={{
       width: 70, height: 2, marginTop: 12,
-      background: 'linear-gradient(90deg, transparent, #d4af37, transparent)',
+      background: 'linear-gradient(90deg, transparent, #228b22, transparent)',
     }} />
     <div style={{
       width: 30, height: 2, marginTop: 5,
-      background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent)',
+      background: 'linear-gradient(90deg, transparent, rgba(34, 139, 34,0.4), transparent)',
     }} />
   </motion.div>
 )
@@ -99,20 +99,20 @@ const About = () => {
   const D = isDark
 
   // ── theme tokens ──────────────────────────────────────────────
-  const bg = D ? '#050503' : '#faf6e8'
-  //   const bgCard    = D ? 'rgba(12,10,4,0.9)'                   : 'rgba(255,253,242,0.95)'
+  const bg = D ? 'transparent' : '#faf6e8'
+  //   const bgCard    = D ? 'rgba(12,10,4,0.9)'                   : 'rgba(232, 245, 233,0.95)'
   const bgCard = D ? 'rgba(30,30,30,0.95)' : 'rgba(245,245,245,0.95)'
 
-  //   const bgCardHov = D ? 'rgba(20,16,5,0.95)'                  : 'rgba(255,251,232,1)'
+  //   const bgCardHov = D ? 'rgba(20,16,5,0.95)'                  : 'rgba(232, 245, 233,1)'
   const bgCardHov = D ? 'rgba(45,45,45,1)' : 'rgba(230,230,230,1)'
-  const borderCol = D ? 'rgba(212,175,55,0.15)' : 'rgba(160,120,10,0.22)'
-  const borderHov = D ? 'rgba(212,175,55,0.5)' : 'rgba(160,120,10,0.55)'
-  const textH = D ? '#f3f4f6' : '#180e03'   // headings
-  const textB = D ? '#d1d5db' : '#2d1a04'   // body
-  const textM = D ? '#9ca3af' : '#7a4d0a'   // muted
-  const gridLine = D ? 'rgba(212,175,55,0.035)' : 'rgba(160,120,10,0.06)'
-  const tagBg = D ? 'rgba(212,175,55,0.08)' : 'rgba(180,130,10,0.1)'
-  const tagColor = D ? 'rgba(212,175,55,0.75)' : '#8a5c08'
+  const borderCol = D ? 'rgba(34, 139, 34,0.15)' : 'rgba(27, 94, 32,0.22)'
+  const borderHov = D ? 'rgba(34, 139, 34,0.5)' : 'rgba(27, 94, 32,0.55)'
+  const textH = D ? '#f3f4f6' : '#1b5e20'   // headings
+  const textB = D ? '#d1d5db' : '#1b5e20'   // body
+  const textM = D ? '#9ca3af' : '#1b5e20'   // muted
+  const gridLine = D ? 'rgba(34,139,34,0.035)' : 'rgba(27,94,32,0.06)'
+  const tagBg = D ? 'rgba(34,139,34,0.08)' : 'rgba(27,94,32,0.1)'
+  const tagColor = D ? 'rgba(34,139,34,0.75)' : '#1b5e20'
 
   return (
     <>
@@ -123,14 +123,6 @@ const About = () => {
 
         /* grid bg */
         .ab-wrap { position: relative; }
-        .ab-wrap::before {
-          content: '';
-          position: absolute; inset: 0; pointer-events: none; z-index: 0;
-          background-image:
-            linear-gradient(${gridLine} 1px, transparent 1px),
-            linear-gradient(90deg, ${gridLine} 1px, transparent 1px);
-          background-size: 56px 56px;
-        }
 
         /* ── education card ── */
         .edu-card {
@@ -145,14 +137,14 @@ const About = () => {
         .edu-card:hover {
           border-color: ${borderHov};
           background: ${bgCardHov};
-          box-shadow: 0 0 35px rgba(212,175,55,0.14), 0 8px 32px rgba(0,0,0,0.25);
+          box-shadow: 0 0 35px rgba(34, 139, 34,0.14), 0 8px 32px rgba(0,0,0,0.25);
           transform: translateY(-4px);
         }
         /* shimmer left bar */
         .edu-card::before {
           content: '';
           position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-          background: linear-gradient(180deg, #f5d060, #d4af37, #b8860b);
+          background: linear-gradient(180deg, #81c784, #228b22, #1b5e20);
           border-radius: 16px 0 0 16px;
           opacity: 0;
           transition: opacity 0.3s;
@@ -162,7 +154,7 @@ const About = () => {
         .edu-card::after {
           content: '';
           position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+          background: linear-gradient(90deg, transparent, rgba(34, 139, 34,0.5), transparent);
           opacity: 0; transition: opacity 0.3s;
         }
         .edu-card:hover::after { opacity: 1; }
@@ -174,15 +166,15 @@ const About = () => {
           font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
           border: 1px solid ${borderCol};
           background: ${bgCard};
-          color: ${D ? '#9ca3af' : '#6b3e08'};
+          color: ${D ? '#9ca3af' : '#1b5e20'};
           transition: all 0.25s ease;
           cursor: default;
         }
         .sk-pill:hover {
-          border-color: #d4af37;
-          color: #d4af37;
-          background: rgba(212,175,55,0.1);
-          box-shadow: 0 0 14px rgba(212,175,55,0.22);
+          border-color: #228b22;
+          color: #228b22;
+          background: rgba(34,139,34,0.1);
+          box-shadow: 0 0 14px rgba(34,139,34,0.22);
           transform: translateY(-3px) scale(1.05);
         }
 
@@ -198,11 +190,11 @@ const About = () => {
         }
         .bio-card::before {
           content: ''; position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
-          background: linear-gradient(90deg,transparent,rgba(212,175,55,0.65),transparent);
+          background: linear-gradient(90deg,transparent,rgba(34, 139, 34,0.65),transparent);
         }
         .bio-card::after {
           content: ''; position: absolute; bottom: 0; left: 8%; right: 8%; height: 1px;
-          background: linear-gradient(90deg,transparent,rgba(212,175,55,0.3),transparent);
+          background: linear-gradient(90deg,transparent,rgba(34, 139, 34,0.3),transparent);
         }
 
         /* ── cat cards ── */
@@ -215,13 +207,13 @@ const About = () => {
         }
         .cat-card:hover {
           border-color: ${borderHov};
-          box-shadow: 0 0 22px rgba(212,175,55,0.13);
+          box-shadow: 0 0 22px rgba(34, 139, 34,0.13);
           transform: translateY(-4px);
         }
 
         /* number gradient */
         .gold-num {
-          background: linear-gradient(135deg,#f5d060,#d4af37);
+          background: linear-gradient(135deg,#81c784,#228b22);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
       `}</style>
@@ -235,12 +227,12 @@ const About = () => {
         {/* ambient glow orbs */}
         <div style={{
           position: 'absolute', top: '5%', right: '3%', width: 500, height: 500,
-          background: 'radial-gradient(circle,rgba(212,175,55,0.055) 0%,transparent 70%)',
+          background: 'radial-gradient(circle,rgba(34, 139, 34,0.055) 0%,transparent 70%)',
           pointerEvents: 'none', borderRadius: '50%', zIndex: 0
         }} />
         <div style={{
           position: 'absolute', bottom: '15%', left: '2%', width: 350, height: 350,
-          background: 'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)',
+          background: 'radial-gradient(circle,rgba(34, 139, 34,0.04) 0%,transparent 70%)',
           pointerEvents: 'none', borderRadius: '50%', zIndex: 0
         }} />
 
@@ -259,7 +251,7 @@ const About = () => {
               {/* big quote */}
               <span style={{
                 fontSize: '6rem', lineHeight: 1,
-                color: D ? 'rgba(212,175,55,0.1)' : 'rgba(160,110,10,0.1)',
+                color: D ? 'rgba(34, 139, 34,0.1)' : 'rgba(27, 94, 32,0.1)',
                 fontFamily: 'Georgia,serif',
                 position: 'absolute', top: 8, left: 18,
                 userSelect: 'none', pointerEvents: 'none',
@@ -267,7 +259,7 @@ const About = () => {
 
               {/* name tag */}
               <div className="flex items-center gap-3 mb-6 pl-2">
-                <div style={{ width: 4, height: 42, background: 'linear-gradient(180deg,#f5d060,#b8860b)', borderRadius: 4 }} />
+                <div style={{ width: 4, height: 42, background: 'linear-gradient(180deg,#81c784,#1b5e20)', borderRadius: 4 }} />
                 <div>
                   <p style={{
                     fontFamily: 'Rajdhani,sans-serif', fontSize: '0.7rem', fontWeight: 700,
@@ -277,7 +269,7 @@ const About = () => {
                   </p>
                   <p style={{
                     fontFamily: 'Cinzel,serif', fontSize: '1.3rem', fontWeight: 900,
-                    background: 'linear-gradient(135deg,#f5d060,#d4af37,#b8860b)',
+                    background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   }}>Imran Shaikh</p>
                 </div>
@@ -285,12 +277,12 @@ const About = () => {
 
               <p style={{ color: textB, lineHeight: 1.9, fontSize: '1rem', paddingLeft: 6, marginBottom: 12 }}>
                 I'm a{' '}
-                <span style={{ color: '#d4af37', fontWeight: 700 }}>BCA graduate from the class of 2024</span>
+                <span style={{ color: '#228b22', fontWeight: 700 }}>BCA graduate from the class of 2024</span>
                 {' '}with a strong passion for web development and technology.
                 I enjoy creating responsive, user-friendly websites and applications that deliver great digital experiences.
                 Throughout my academic journey, I've worked on multiple projects that helped me strengthen my skills in
-                {' '}<span style={{ color: '#d4af37', fontWeight: 600 }}>HTML, CSS, JavaScript, React.js, Express JS, Tailwind CSS, PHP, PostgreSQL, MySQL, VB.Net</span> and{' '}
-                <span style={{ color: '#d4af37', fontWeight: 600 }}>Next.js</span>.
+                {' '}<span style={{ color: '#228b22', fontWeight: 600 }}>HTML, CSS, JavaScript, React.js, Express JS, Tailwind CSS, PHP, PostgreSQL, MySQL, VB.Net</span> and{' '}
+                <span style={{ color: '#228b22', fontWeight: 600 }}>Next.js</span>.
               </p>
               <p style={{ color: textM, lineHeight: 1.9, fontSize: '0.95rem', paddingLeft: 6 }}>
                 Thanks for visiting my portfolio — let's connect and create something awesome together. 🚀
@@ -330,7 +322,7 @@ const About = () => {
               {/* vertical line */}
               <div style={{
                 position: 'absolute', left: 26, top: 52, bottom: 52, width: 1,
-                background: 'linear-gradient(180deg, rgba(212,175,55,0.6), rgba(212,175,55,0.1))',
+                background: 'linear-gradient(180deg, rgba(34, 139, 34,0.6), rgba(34, 139, 34,0.1))',
                 display: 'none',
               }} />
 
@@ -350,8 +342,8 @@ const About = () => {
                         borderRight: `1px solid ${borderCol}`,
                         minWidth: 68,
                         background: D
-                          ? 'linear-gradient(180deg,rgba(212,175,55,0.07),rgba(212,175,55,0.02))'
-                          : 'linear-gradient(180deg,rgba(180,130,10,0.08),rgba(180,130,10,0.03))',
+                          ? 'linear-gradient(180deg,rgba(34, 139, 34,0.07),rgba(34, 139, 34,0.02))'
+                          : 'linear-gradient(180deg,rgba(27, 94, 32,0.08),rgba(27, 94, 32,0.03))',
                       }}>
                       <span style={{ fontSize: '1.8rem' }}>{edu.icon}</span>
                       <span style={{
@@ -386,7 +378,7 @@ const About = () => {
                         fontFamily: 'Cinzel,serif',
                         fontSize: 'clamp(0.9rem, 2vw, 1.15rem)',
                         fontWeight: 900, lineHeight: 1.35,
-                        background: 'linear-gradient(135deg,#f5d060,#d4af37,#c8a020)',
+                        background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
                         WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                         marginBottom: 4,
                       }}>{edu.degree}</p>
@@ -399,10 +391,10 @@ const About = () => {
                       {/* meta row */}
                       <div className="flex flex-wrap gap-x-5 gap-y-1">
                         <span style={{ color: textM, fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: 5 }}>
-                          <span style={{ color: '#d4af37', fontSize: '0.75rem' }}>📅</span> {edu.period}
+                          <span style={{ color: '#228b22', fontSize: '0.75rem' }}>📅</span> {edu.period}
                         </span>
                         <span style={{ color: textM, fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: 5 }}>
-                          <span style={{ color: '#d4af37', fontSize: '0.75rem' }}>📍</span> {edu.location}
+                          <span style={{ color: '#228b22', fontSize: '0.75rem' }}>📍</span> {edu.location}
                         </span>
                       </div>
                     </div>
@@ -466,7 +458,7 @@ const About = () => {
                   <p style={{
                     fontFamily: 'Rajdhani,sans-serif', fontWeight: 900,
                     fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.2em',
-                    background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                    background: 'linear-gradient(135deg,#81c784,#228b22)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     marginBottom: 10,
                   }}>{c.cat}</p>
@@ -474,7 +466,7 @@ const About = () => {
                     {c.items.map(item => (
                       <span key={item} style={{
                         fontSize: '0.7rem', fontWeight: 600, padding: '3px 9px', borderRadius: 6,
-                        background: D ? 'rgba(212,175,55,0.08)' : 'rgba(180,130,10,0.08)',
+                        background: D ? 'rgba(34, 139, 34,0.08)' : 'rgba(27, 94, 32,0.08)',
                         border: `1px solid ${borderCol}`,
                         color: textM,
                       }}>{item}</span>
@@ -488,7 +480,7 @@ const About = () => {
         </div>
       </section>
 
-      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.3)' : 'rgba(160,110,10,0.3)'},transparent)` }} />
+      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.3)'},transparent)` }} />
     </>
   )
 }

@@ -15,7 +15,7 @@ export const metadata = {
   title: "Imran Shaikh",
   description: "Full Stack Developer",
   icons: {
-    icon: "./photo/i.png", // or "/favicon.ico"
+    icon: "/photo/is_logo.svg",
   },
 };
 

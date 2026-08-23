@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
+import Particles from '@/components/Particles'
 import Body from '@/components/Body'
 import About from '@/components/About'
 import Project from '@/components/Project'
@@ -17,24 +18,32 @@ const page = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const revealItems = document.querySelectorAll('.reveal')
+    // Run observer after loading completes
+    if (isLoading) return
 
-    if (!revealItems.length) return
+    // Small delay so DOM is fully painted before observing
+    const timer = setTimeout(() => {
+      const revealItems = document.querySelectorAll('.reveal')
+      if (!revealItems.length) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-          }
-        })
-      },
-      { threshold: 0.15 }
-    )
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+              observer.unobserve(entry.target) // stop watching once visible
+            }
+          })
+        },
+        // rootMargin: pre-reveal before entering viewport, threshold very low
+        { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+      )
 
-    revealItems.forEach((item) => observer.observe(item))
+      revealItems.forEach((item) => observer.observe(item))
+      return () => observer.disconnect()
+    }, 100)
 
-    return () => observer.disconnect()
+    return () => clearTimeout(timer)
   }, [isLoading])
 
   return (
@@ -42,6 +51,7 @@ const page = () => {
       {isLoading && <Loader onFinish={() => setIsLoading(false)} />}
       <div className={isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100 transition-opacity duration-700'}>
         <Navbar/>
+        <Particles enabled={!isLoading} />
         <div className="reveal"><Body /></div>
         <div className="reveal"><About /></div>
         <div className="reveal"><Experience/></div>

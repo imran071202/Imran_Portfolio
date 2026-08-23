@@ -8,9 +8,9 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 const contactInfo = [
-  { icon: <FaEnvelope />, label: "Email", value: "imran071202@gmail.com", color: "#d4af37" },
+  { icon: <FaEnvelope />, label: "Email", value: "imran071202@gmail.com", color: "#228b22" },
   { icon: <FaPhoneAlt />, label: "Phone", value: "+91 7427928647", color: "#22c55e" },
-  { icon: <FaMapMarkerAlt />, label: "Location", value: "West Bengal, India", color: "#f87171" },
+  { icon: <FaMapMarkerAlt />, label: "Location", value: "Krishnanagar, West Bengal, India", color: "#f87171" },
 ]
 
 const socials = [
@@ -72,16 +72,16 @@ const Contact = () => {
   };
 
   const D = isDark
-  const bg = D ? '#050503' : '#faf6e8'
-  const bgCard = D ? 'rgba(10,8,3,0.92)' : 'rgba(255,253,242,0.97)'
-  const borderC = D ? 'rgba(212,175,55,0.15)' : 'rgba(160,110,10,0.2)'
-  const textH = D ? '#f3f4f6' : '#180e03'
-  const textB = D ? '#c9cdd5' : '#2d1a04'
-  const textM = D ? '#7a8090' : '#7a4d0a'
-  const inputBg = D ? 'rgba(15,12,4,0.8)' : 'rgba(255,251,232,0.9)'
-  const inputBdr = D ? 'rgba(212,175,55,0.18)' : 'rgba(160,110,10,0.22)'
-  const gridLine = D ? 'rgba(212,175,55,0.035)' : 'rgba(160,120,10,0.06)'
-  const labelC = D ? 'rgba(212,175,55,0.75)' : '#7a4008'
+  const bg = D ? 'transparent' : '#faf6e8'
+  const bgCard = D ? 'rgba(10,8,3,0.92)' : 'rgba(232, 245, 233,0.97)'
+  const borderC = D ? 'rgba(34, 139, 34,0.15)' : 'rgba(27, 94, 32,0.2)'
+  const textH = D ? '#f3f4f6' : '#1b5e20'
+  const textB = D ? '#c9cdd5' : '#1b5e20'
+  const textM = D ? '#7a8090' : '#1b5e20'
+  const inputBg = D ? 'rgba(15,12,4,0.8)' : 'rgba(232, 245, 233,0.9)'
+  const inputBdr = D ? 'rgba(34, 139, 34,0.18)' : 'rgba(27, 94, 32,0.22)'
+  const gridLine = D ? 'rgba(34, 139, 34,0.035)' : 'rgba(27, 94, 32,0.06)'
+  const labelC = D ? 'rgba(34,139,34,0.75)' : '#1b5e20'
 
   return (
     <>
@@ -116,8 +116,8 @@ const Contact = () => {
         }
         .ct-input::placeholder { color: ${D ? 'rgba(156,163,175,0.45)' : 'rgba(120,80,20,0.4)'}; }
         .ct-input:focus {
-          border-color: rgba(212,175,55,0.6);
-          box-shadow: 0 0 0 3px rgba(212,175,55,0.1), 0 0 18px rgba(212,175,55,0.12);
+          border-color: rgba(34, 139, 34,0.6);
+          box-shadow: 0 0 0 3px rgba(34, 139, 34,0.1), 0 0 18px rgba(34, 139, 34,0.12);
           background: ${D ? 'rgba(20,16,5,0.95)' : 'rgba(255,253,244,1)'};
         }
 
@@ -145,9 +145,9 @@ const Contact = () => {
           text-transform: uppercase;
           letter-spacing: 0.22em;
           cursor: pointer;
-          background: linear-gradient(135deg, #f5d060, #d4af37, #b8860b);
-          color: #0a0800;
-          box-shadow: 0 0 20px rgba(212,175,55,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+           background: linear-gradient(135deg, #81c784, #228b22, #1b5e20);
+          color: #ffffff;
+          box-shadow: 0 0 20px rgba(34,139,34,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
@@ -159,7 +159,7 @@ const Contact = () => {
           transition: left 0.5s ease;
         }
         .ct-btn:hover {
-          box-shadow: 0 0 35px rgba(212,175,55,0.6), 0 4px 20px rgba(0,0,0,0.3);
+          box-shadow: 0 0 35px rgba(34, 139, 34,0.6), 0 4px 20px rgba(0,0,0,0.3);
           transform: translateY(-2px) scale(1.01);
         }
         .ct-btn:hover::before { left: 100%; }
@@ -176,8 +176,8 @@ const Contact = () => {
           transition: all 0.3s ease;
         }
         .info-card:hover {
-          border-color: rgba(212,175,55,0.4);
-          box-shadow: 0 0 20px rgba(212,175,55,0.1);
+          border-color: rgba(34, 139, 34,0.4);
+          box-shadow: 0 0 20px rgba(34, 139, 34,0.1);
           transform: translateX(4px);
         }
 
@@ -187,15 +187,15 @@ const Contact = () => {
           display: flex; align-items: center; justify-content: center;
           border-radius: 12px;
           border: 1px solid ${borderC};
-          background: ${D ? 'rgba(212,175,55,0.05)' : 'rgba(180,130,10,0.06)'};
+          background: ${D ? 'rgba(34, 139, 34,0.05)' : 'rgba(27, 94, 32,0.06)'};
           font-size: 1.1rem;
           text-decoration: none;
           transition: all 0.25s ease;
         }
         .ct-social:hover {
-          border-color: rgba(212,175,55,0.5);
-          background: rgba(212,175,55,0.12);
-          box-shadow: 0 0 14px rgba(212,175,55,0.25);
+          border-color: rgba(34, 139, 34,0.5);
+          background: rgba(34, 139, 34,0.12);
+          box-shadow: 0 0 14px rgba(34, 139, 34,0.25);
           transform: translateY(-4px) scale(1.08);
         }
       `}</style>
@@ -206,17 +206,7 @@ const Contact = () => {
         className="ct-wrap w-full py-20 md:py-28 px-5 md:px-16 transition-colors duration-400"
         style={{ background: bg }}
       >
-        {/* ambient orbs */}
-        <div style={{
-          position: 'absolute', top: '5%', right: '5%', width: 400, height: 400,
-          background: 'radial-gradient(circle,rgba(212,175,55,0.06) 0%,transparent 70%)',
-          pointerEvents: 'none', borderRadius: '50%', zIndex: 0
-        }} />
-        <div style={{
-          position: 'absolute', bottom: '10%', left: '3%', width: 320, height: 320,
-          background: 'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)',
-          pointerEvents: 'none', borderRadius: '50%', zIndex: 0
-        }} />
+
 
         <div className="max-w-5xl mx-auto relative z-10">
 
@@ -232,13 +222,13 @@ const Contact = () => {
               fontFamily: "'Cinzel', serif",
               fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
               fontWeight: 900,
-              background: 'linear-gradient(135deg,#f5d060 0%,#d4af37 40%,#fffacd 60%,#b8860b 100%)',
+              background: 'linear-gradient(135deg,#74c69d 0%,#228b22 40%,#d8f3dc 60%,#1b5e20 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.45))',
+              filter: 'drop-shadow(0 0 12px rgba(34,139,34,0.45))',
               letterSpacing: '0.08em', textAlign: 'center',
-            }}>Get In Touch</h2>
-            <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#d4af37,transparent)' }} />
-            <div style={{ width: 30, height: 2, marginTop: 5, background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.4),transparent)' }} />
+            }}>Contact Me</h2>
+            <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#228b22,transparent)' }} />
+            <div style={{ width: 30, height: 2, marginTop: 5, background: 'linear-gradient(90deg,transparent,rgba(34,139,34,0.4),transparent)' }} />
             <p style={{ color: textM, fontSize: '0.9rem', marginTop: 14, letterSpacing: '0.06em', textAlign: 'center' }}>
               Have a project in mind? Let's create something awesome together.
             </p>
@@ -265,19 +255,19 @@ const Contact = () => {
               }}>
                 <div style={{
                   position: 'absolute', top: 0, left: '8%', right: '8%', height: 1,
-                  background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.5),transparent)',
+                  background: 'linear-gradient(90deg,transparent,rgba(34, 139, 34,0.5),transparent)',
                 }} />
                 <div className="flex items-center gap-3 mb-4">
-                  <div style={{ width: 4, height: 40, background: 'linear-gradient(180deg,#f5d060,#b8860b)', borderRadius: 4 }} />
+                  <div style={{ width: 4, height: 40, background: 'linear-gradient(180deg,#81c784,#1b5e20)', borderRadius: 4 }} />
                   <div>
                     <p style={{
                       fontFamily: 'Rajdhani,sans-serif', fontSize: '0.65rem', fontWeight: 700,
                       textTransform: 'uppercase', letterSpacing: '0.22em',
-                      color: D ? 'rgba(212,175,55,0.6)' : '#9a6010'
+                      color: D ? 'rgba(34, 139, 34,0.6)' : '#9a6010'
                     }}>Let's Connect</p>
                     <p style={{
                       fontFamily: 'Cinzel,serif', fontSize: '1.2rem', fontWeight: 900,
-                      background: 'linear-gradient(135deg,#f5d060,#d4af37,#b8860b)',
+                      background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
                       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
                     }}>
                       Imran Shaikh
@@ -285,7 +275,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <p style={{ color: textB, lineHeight: 1.85, fontSize: '0.9rem' }}>
-                  I'm a <span style={{ color: '#d4af37', fontWeight: 700 }}>Full Stack Developer</span> open to freelance projects, collaborations, and full-time opportunities. Feel free to reach out!
+                  I'm a <span style={{ color: '#228b22', fontWeight: 700 }}>Full Stack Developer</span> open to freelance projects, collaborations, and full-time opportunities. Feel free to reach out!
                 </p>
               </div>
 
@@ -361,17 +351,17 @@ const Contact = () => {
               {/* top shimmer */}
               <div style={{
                 position: 'absolute', top: 0, left: '8%', right: '8%', height: 1,
-                background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.6),transparent)',
+                background: 'linear-gradient(90deg,transparent,rgba(34, 139, 34,0.6),transparent)',
               }} />
               {/* bottom shimmer */}
               <div style={{
                 position: 'absolute', bottom: 0, left: '8%', right: '8%', height: 1,
-                background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.25),transparent)',
+                background: 'linear-gradient(90deg,transparent,rgba(34, 139, 34,0.25),transparent)',
               }} />
 
               <p style={{
                 fontFamily: 'Cinzel,serif', fontWeight: 900, fontSize: '1.1rem', marginBottom: 22,
-                background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                background: 'linear-gradient(135deg,#81c784,#228b22)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
               }}>
                 Send a Message
@@ -468,7 +458,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.3)' : 'rgba(160,110,10,0.3)'},transparent)` }} />
+      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.3)'},transparent)` }} />
     </>
   )
 }

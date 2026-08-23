@@ -44,13 +44,13 @@ const Footer = () => {
   }, [])
 
   const D = isDark
-  const bg = D ? '#050503' : '#faf6e8'
+  const bg = D ? 'transparent' : '#faf6e8'
   const bgDeep = D ? '#020201' : '#f5f0dc'
   const bgCopy = D ? '#000000' : '#efe8cc'
-  const borderC = D ? 'rgba(212,175,55,0.12)' : 'rgba(160,110,10,0.18)'
-  const textH = D ? '#f3f4f6' : '#180e03'
-  const textM = D ? '#6b7280' : '#8a5c08'
-  const textSub = D ? 'rgba(212,175,55,0.35)' : 'rgba(130,80,10,0.45)'
+  const borderC = D ? 'rgba(34, 139, 34,0.12)' : 'rgba(27, 94, 32,0.18)'
+  const textH = D ? '#f3f4f6' : '#1b5e20'
+  const textM = D ? '#6b7280' : '#1b5e20'
+  const textSub = D ? 'rgba(34,139,34,0.35)' : 'rgba(27,94,32,0.45)'
 
   return (
     <>
@@ -61,12 +61,12 @@ const Footer = () => {
 
         .ft-logo {
           font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 900;
-          background: linear-gradient(135deg, #f5d060, #d4af37, #fffacd, #b8860b);
+          background: linear-gradient(135deg, #81c784, #228b22, #e8f5e9, #1b5e20);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-          filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
+          filter: drop-shadow(0 0 8px rgba(34,139,34,0.5));
           text-decoration: none; transition: filter 0.3s;
         }
-        .ft-logo:hover { filter: drop-shadow(0 0 16px rgba(212,175,55,0.85)); }
+        .ft-logo:hover { filter: drop-shadow(0 0 16px rgba(34,139,34,0.85)); }
 
         .ft-nav-link {
           font-size: 0.82rem; font-weight: 700;
@@ -78,11 +78,11 @@ const Footer = () => {
         }
         .ft-nav-link::after {
           content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
-          background: linear-gradient(90deg, #f5d060, #b8860b);
+          background: linear-gradient(90deg, #81c784, #1b5e20);
           transform: scaleX(0); transform-origin: left;
           transition: transform 0.25s ease;
         }
-        .ft-nav-link:hover { color: #d4af37; letter-spacing: 0.2em; }
+        .ft-nav-link:hover { color: #228b22; letter-spacing: 0.2em; }
         .ft-nav-link:hover::after { transform: scaleX(1); }
 
         .ft-social {
@@ -90,15 +90,15 @@ const Footer = () => {
           display: flex; align-items: center; justify-content: center;
           border-radius: 11px;
           border: 1px solid ${borderC};
-          background: ${D ? 'rgba(212,175,55,0.05)' : 'rgba(180,130,10,0.06)'};
+          background: ${D ? 'rgba(34, 139, 34,0.05)' : 'rgba(27, 94, 32,0.06)'};
           font-size: 1.05rem;
           text-decoration: none;
           transition: all 0.25s ease;
         }
         .ft-social:hover {
-          border-color: rgba(212,175,55,0.5);
-          background: rgba(212,175,55,0.13);
-          box-shadow: 0 0 14px rgba(212,175,55,0.28);
+          border-color: rgba(34, 139, 34,0.5);
+          background: rgba(34, 139, 34,0.13);
+          box-shadow: 0 0 14px rgba(34, 139, 34,0.28);
           transform: translateY(-4px) scale(1.1);
         }
 
@@ -108,17 +108,17 @@ const Footer = () => {
           font-size: 0.7rem; font-weight: 800;
           text-transform: uppercase; letter-spacing: 0.2em;
           cursor: pointer; text-decoration: none;
-          border: 1px solid rgba(212,175,55,0.3);
-          background: ${D ? 'rgba(212,175,55,0.06)' : 'rgba(180,130,10,0.07)'};
-          color: ${D ? 'rgba(212,175,55,0.7)' : '#8a5208'};
+          border: 1px solid rgba(34,139,34,0.3);
+          background: ${D ? 'rgba(34,139,34,0.06)' : 'rgba(27,94,32,0.07)'};
+          color: ${D ? 'rgba(34,139,34,0.7)' : '#1b5e20'};
           transition: all 0.3s ease;
           font-family: 'Rajdhani', sans-serif;
         }
         .back-top:hover {
-          border-color: #d4af37;
-          background: rgba(212,175,55,0.13);
-          box-shadow: 0 0 18px rgba(212,175,55,0.25);
-          color: #d4af37;
+          border-color: #228b22;
+          background: rgba(34,139,34,0.13);
+          box-shadow: 0 0 18px rgba(34,139,34,0.25);
+          color: #228b22;
           transform: translateY(-2px);
         }
       `}</style>
@@ -126,7 +126,7 @@ const Footer = () => {
       <footer className="ft-root" style={{ background: bg }}>
 
         {/* ── top divider ── */}
-        <div style={{ height: 1, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.35)' : 'rgba(160,110,10,0.3)'},transparent)` }} />
+        <div style={{ height: 1, background: `linear-gradient(90deg,transparent,${D ? 'rgba(34, 139, 34,0.35)' : 'rgba(27, 94, 32,0.3)'},transparent)` }} />
 
         {/* ── back to top ── */}
         <div style={{
@@ -160,14 +160,14 @@ const Footer = () => {
           {/* grid overlay */}
           <div style={{
             position: 'absolute', inset: 0, pointerEvents: 'none',
-            backgroundImage: `linear-gradient(${D ? 'rgba(212,175,55,0.03)' : 'rgba(160,120,10,0.05)'} 1px,transparent 1px),linear-gradient(90deg,${D ? 'rgba(212,175,55,0.03)' : 'rgba(160,120,10,0.05)'} 1px,transparent 1px)`,
+            backgroundImage: `linear-gradient(${D ? 'rgba(34, 139, 34,0.03)' : 'rgba(27, 94, 32,0.05)'} 1px,transparent 1px),linear-gradient(90deg,${D ? 'rgba(34, 139, 34,0.03)' : 'rgba(27, 94, 32,0.05)'} 1px,transparent 1px)`,
             backgroundSize: '56px 56px',
           }} />
           {/* ambient glow */}
           <div style={{
             position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)',
             width: 600, height: 200,
-            background: 'radial-gradient(ellipse,rgba(212,175,55,0.07) 0%,transparent 70%)',
+            background: 'radial-gradient(ellipse,rgba(34, 139, 34,0.07) 0%,transparent 70%)',
             pointerEvents: 'none',
           }} />
 
@@ -190,7 +190,7 @@ const Footer = () => {
 
                 <div style={{
                   width: 48, height: 1, margin: '4px 0',
-                  background: 'linear-gradient(90deg,#d4af37,transparent)'
+                  background: 'linear-gradient(90deg,#228b22,transparent)'
                 }} />
 
                 <p style={{
@@ -219,14 +219,14 @@ const Footer = () => {
                 <p style={{
                   fontFamily: 'Cinzel,serif', fontSize: '0.78rem', fontWeight: 900,
                   letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 18,
-                  background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                  background: 'linear-gradient(135deg,#81c784,#228b22)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
                 }}>
                   Navigation
                 </p>
                 <div style={{
                   width: 36, height: 1, marginBottom: 16,
-                  background: 'linear-gradient(90deg,#d4af37,transparent)'
+                  background: 'linear-gradient(90deg,#228b22,transparent)'
                 }} />
 
                 <ul className="flex flex-col gap-3 items-center md:items-start">
@@ -234,7 +234,7 @@ const Footer = () => {
                     <li key={link.label}>
                       <Link to={link.to} smooth duration={500} offset={-20}>
                         <span className="ft-nav-link flex items-center gap-2">
-                          <span style={{ color: 'rgba(212,175,55,0.4)', fontSize: '0.6rem' }}>◆</span>
+                          <span style={{ color: 'rgba(34,139,34,0.4)', fontSize: '0.6rem' }}>◆</span>
                           {link.label}
                         </span>
                       </Link>
@@ -254,14 +254,14 @@ const Footer = () => {
                 <p style={{
                   fontFamily: 'Cinzel,serif', fontSize: '0.78rem', fontWeight: 900,
                   letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 18,
-                  background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                  background: 'linear-gradient(135deg,#81c784,#228b22)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
                 }}>
                   Find Me On
                 </p>
                 <div style={{
                   width: 36, height: 1, marginBottom: 16,
-                  background: 'linear-gradient(90deg,#d4af37,transparent)'
+                  background: 'linear-gradient(90deg,#228b22,transparent)'
                 }} />
 
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
@@ -319,13 +319,13 @@ const Footer = () => {
             {/* ── divider ── */}
             <div style={{
               height: 1, margin: '36px 0',
-              background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.25)' : 'rgba(160,110,10,0.22)'},transparent)`
+              background: `linear-gradient(90deg,transparent,${D ? 'rgba(34, 139, 34,0.25)' : 'rgba(27, 94, 32,0.22)'},transparent)`
             }} />
 
             {/* ── bottom row ── */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-3">
               <div className="flex items-center gap-2" style={{ color: textM, fontSize: '0.78rem' }}>
-                <FaCopyright style={{ fontSize: '0.75rem', color: D ? 'rgba(212,175,55,0.5)' : 'rgba(130,80,10,0.5)' }} />
+                <FaCopyright style={{ fontSize: '0.75rem', color: D ? 'rgba(34,139,34,0.5)' : 'rgba(27,94,32,0.5)' }} />
                 <span>Copyright 2025 ·</span>
                 {/* <motion.span
                   animate={{ scale:[1,1.25,1] }}
@@ -334,7 +334,7 @@ const Footer = () => {
                 >♥</motion.span> */}
                 {/* <span style={{
                   fontFamily:'Cinzel,serif', fontWeight:700,
-                  background:'linear-gradient(135deg,#f5d060,#d4af37)',
+                  background:'linear-gradient(135deg,#81c784,#228b22)',
                   WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text',
                 }}>Imran Shaikh</span> */}
               </div>
@@ -346,7 +346,7 @@ const Footer = () => {
               }}>
                 <span style={{
                   fontFamily: 'Cinzel,serif', fontWeight: 700,
-                  background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                  background: 'linear-gradient(135deg,#81c784,#228b22)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                 }}>Imran Shaikh</span>
               </div>

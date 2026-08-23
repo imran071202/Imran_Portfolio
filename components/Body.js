@@ -7,57 +7,9 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import { motion, useMotionValue, useTransform, useSpring } from "motion/react"
 import { FaFileDownload } from "react-icons/fa";
+import { Link } from 'react-scroll';
 
-/* ─── Particle field ─────────────────────────────────────────── */
-const Particles = ({ enabled = true }) => {
-  const canvasRef = useRef(null)
-  useEffect(() => {
-    if (!enabled) return
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    let w = canvas.width = window.innerWidth
-    let h = canvas.height = canvas.parentElement?.offsetHeight || 700
-    const particles = Array.from({ length: 80 }, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.3,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      a: Math.random() * 0.6 + 0.2,
-    }))
-    let raf
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h)
-      particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy
-        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0
-        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(212,175,55,${p.a})`; ctx.fill()
-      })
-      particles.forEach((a, i) => {
-        particles.slice(i + 1).forEach(b => {
-          const d = Math.hypot(a.x - b.x, a.y - b.y)
-          if (d < 120) {
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(212,175,55,${0.08 * (1 - d / 120)})`
-            ctx.lineWidth = 0.5; ctx.stroke()
-          }
-        })
-      })
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
-    const onResize = () => {
-      w = canvas.width = window.innerWidth
-      h = canvas.height = canvas.parentElement?.offsetHeight || 700
-    }
-    window.addEventListener('resize', onResize)
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
-  }, [])
-  if (!enabled) return null
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />
-}
+
 
 /* ─── Matrix Rain ─────────────────────────────────────────────── */
 const MatrixRain = ({ enabled = true }) => {
@@ -82,7 +34,7 @@ const MatrixRain = ({ enabled = true }) => {
     const drops = Array(cols).fill(0).map(() => -(Math.random() * 30))
     let raf
     const getColor = (type, alpha) => {
-      if (type === 'gold') return `rgba(212,175,55,${alpha})`
+      if (type === 'gold') return `rgba(34, 139, 34,${alpha})`
       if (type === 'green') return `rgba(40,200,100,${alpha * 0.8})`
       if (type === 'blue') return `rgba(80,160,255,${alpha * 0.7})`
       return `rgba(255,60,60,${alpha * 0.7})`
@@ -119,19 +71,19 @@ const CircuitBoard = () => (
       <filter id="glow-gold"><feGaussianBlur stdDeviation="2" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
       <filter id="glow-green"><feGaussianBlur stdDeviation="1.5" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
     </defs>
-    <g stroke="#d4af37" strokeWidth="1" fill="none" filter="url(#glow-gold)">
+    <g stroke="#228b22" strokeWidth="1" fill="none" filter="url(#glow-gold)">
       <path d="M0,100 L200,100 L230,70 L420,70" /><path d="M0,260 L140,260 L170,290 L340,290 L370,260 L650,260" />
       <path d="M1000,260 L1180,260 L1210,230 L1400,230" /><path d="M0,520 L110,520 L140,490 L280,490 L310,520 L500,520" />
       <path d="M800,680 L950,680 L980,650 L1100,650 L1130,680 L1400,680" />
       <path d="M340,0 L340,70 L370,100 L370,200" /><path d="M840,800 L840,520 L870,490 L870,260" />
       <path d="M1100,0 L1100,140 L1130,170 L1130,260" /><path d="M560,800 L560,680 L590,650 L590,520" />
       <path d="M230,70 L230,30" /><path d="M370,260 L370,220" />
-      <circle cx="230" cy="70" r="4" fill="#d4af37" /><circle cx="170" cy="290" r="4" fill="#d4af37" />
-      <circle cx="370" cy="260" r="4" fill="#d4af37" /><circle cx="1130" cy="170" r="4" fill="#d4af37" />
-      <circle cx="140" cy="490" r="4" fill="#d4af37" /><circle cx="1210" cy="230" r="4" fill="#d4af37" />
-      <circle cx="980" cy="650" r="4" fill="#d4af37" />
-      <circle cx="230" cy="30" r="3" fill="none" stroke="#d4af37" strokeWidth="1" />
-      <circle cx="370" cy="220" r="3" fill="none" stroke="#d4af37" strokeWidth="1" />
+      <circle cx="230" cy="70" r="4" fill="#228b22" /><circle cx="170" cy="290" r="4" fill="#228b22" />
+      <circle cx="370" cy="260" r="4" fill="#228b22" /><circle cx="1130" cy="170" r="4" fill="#228b22" />
+      <circle cx="140" cy="490" r="4" fill="#228b22" /><circle cx="1210" cy="230" r="4" fill="#228b22" />
+      <circle cx="980" cy="650" r="4" fill="#228b22" />
+      <circle cx="230" cy="30" r="3" fill="none" stroke="#228b22" strokeWidth="1" />
+      <circle cx="370" cy="220" r="3" fill="none" stroke="#228b22" strokeWidth="1" />
     </g>
     <g stroke="#28c864" strokeWidth="0.8" fill="none" filter="url(#glow-green)" opacity="0.7">
       <path d="M0,400 L80,400 L110,370 L250,370" /><path d="M1200,400 L1320,400 L1350,430 L1400,430" />
@@ -165,7 +117,7 @@ const CenterDivider = () => (
       position: 'absolute',
       top: 0, bottom: 0, left: 0,
       width: '1px',
-      background: 'linear-gradient(to bottom, transparent 0%, rgba(212,175,55,0.15) 20%, rgba(212,175,55,0.25) 50%, rgba(212,175,55,0.15) 80%, transparent 100%)',
+      background: 'linear-gradient(to bottom, transparent 0%, rgba(34, 139, 34,0.15) 20%, rgba(34, 139, 34,0.25) 50%, rgba(34, 139, 34,0.15) 80%, transparent 100%)',
     }} />
 
     {/* animated sweep beam — gold */}
@@ -175,7 +127,7 @@ const CenterDivider = () => (
       width: '1px',
       height: '120px',
       background: 'linear-gradient(to bottom, transparent, rgba(222, 83, 55 ,0.9), transparent)',
-      boxShadow: '0 0 8px 2px rgba(212,175,55,0.5)',
+      boxShadow: '0 0 8px 2px rgba(34, 139, 34,0.5)',
       animation: 'lineBeam 4s ease-in-out infinite',
     }} /> */}
 
@@ -193,11 +145,11 @@ const CenterDivider = () => (
 
     {/* data packets — small colored pills sliding down */}
     {/* {[
-      { color: '#d4af37', delay: '0s',   dur: '3s'  },
+      { color: '#228b22', delay: '0s',   dur: '3s'  },
       { color: '#28c864', delay: '1s',   dur: '3.5s'},
       { color: '#50a0ff', delay: '2s',   dur: '2.8s'},
       { color: '#ff5f57', delay: '1.5s', dur: '4s'  },
-      { color: '#d4af37', delay: '2.5s', dur: '3.2s'},
+      { color: '#228b22', delay: '2.5s', dur: '3.2s'},
       { color: '#28c864', delay: '0.5s', dur: '4.5s'},
     ].map((p, i) => (
       <div key={i} style={{
@@ -222,9 +174,9 @@ const CenterDivider = () => (
       transform: 'translate(-50%,-50%) rotate(45deg)',
       width: '10px',
       height: '10px',
-      border: '1px solid #d4af37',
-      background: 'rgba(212,175,55,0.15)',
-      boxShadow: '0 0 12px rgba(212,175,55,0.5)',
+      border: '1px solid #228b22',
+      background: 'rgba(34, 139, 34,0.15)',
+      boxShadow: '0 0 12px rgba(34, 139, 34,0.5)',
       animation: 'diamondPulse 2.5s ease-in-out infinite',
     }} />
 
@@ -265,7 +217,7 @@ const CenterDivider = () => (
         left: i % 2 === 0 ? '-6px' : '2px',
         width: '5px',
         height: '1px',
-        background: i % 3 === 0 ? '#28c864' : i % 3 === 1 ? '#50a0ff' : 'rgba(212,175,55,0.5)',
+        background: i % 3 === 0 ? '#28c864' : i % 3 === 1 ? '#50a0ff' : 'rgba(34, 139, 34,0.5)',
         opacity: 0.6,
       }} />
     ))}
@@ -280,35 +232,35 @@ const TermWindow = ({ children, style, delay = 0, duration = 9, title = 'termina
     transition={{ delay, duration: 0.9, ease: 'easeOut' }}
     style={{
       position: 'absolute', background: 'rgba(5,5,8,0.92)',
-      border: '1px solid rgba(212,175,55,0.25)', borderTop: '1px solid rgba(212,175,55,0.5)',
+      border: '1px solid rgba(34, 139, 34,0.25)', borderTop: '1px solid rgba(34, 139, 34,0.5)',
       borderRadius: '10px', fontFamily: '"Courier New", monospace', fontSize: '11px',
-      color: 'rgba(212,175,55,0.65)', zIndex: 3, pointerEvents: 'none',
+      color: 'rgba(34, 139, 34,0.65)', zIndex: 3, pointerEvents: 'none',
       backdropFilter: 'blur(12px)', whiteSpace: 'pre', lineHeight: 1.75,
-      boxShadow: '0 0 40px rgba(212,175,55,0.08), 0 12px 40px rgba(0,0,0,0.7)',
+      boxShadow: '0 0 40px rgba(34, 139, 34,0.08), 0 12px 40px rgba(0,0,0,0.7)',
       overflow: 'hidden', animation: `termFloat ${duration}s ease-in-out infinite`,
       animationDelay: `${delay * 0.25}s`, minWidth: 210, ...style,
     }}
   >
-    <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 12px', background: 'rgba(212,175,55,0.06)', borderBottom: '1px solid rgba(212,175,55,0.12)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 12px', background: 'rgba(34, 139, 34,0.06)', borderBottom: '1px solid rgba(34, 139, 34,0.12)' }}>
       <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#ff5f57', boxShadow: '0 0 6px #ff5f57bb' }} />
       <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#febc2e', boxShadow: '0 0 6px #febc2ebb' }} />
       <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#28c840', boxShadow: '0 0 6px #28c840bb' }} />
-      <span style={{ marginLeft: 8, fontSize: 9, color: 'rgba(212,175,55,0.38)', letterSpacing: '0.1em' }}>~ {title}</span>
+      <span style={{ marginLeft: 8, fontSize: 9, color: 'rgba(34, 139, 34,0.38)', letterSpacing: '0.1em' }}>~ {title}</span>
     </div>
     <div style={{ padding: '10px 14px' }}>{children}</div>
   </motion.div>
 )
 
 /* ─── Scan Sweep ──────────────────────────────────────────────── */
-// const ScanSweep = () => (
-//   <div style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', overflow: 'hidden', borderRadius: 'inherit' }}>
-//     <div style={{
-//       position: 'absolute', left: 0, right: 0, height: '2px',
-//       background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.7), rgba(80,160,255,0.5), transparent)',
-//       animation: 'scanSweep 3.5s ease-in-out infinite', boxShadow: '0 0 10px rgba(212,175,55,0.6)',
-//     }} />
-//   </div>
-// )
+const ScanSweep = () => (
+  <div style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', overflow: 'hidden', borderRadius: 'inherit' }}>
+    <div style={{
+      position: 'absolute', left: 0, right: 0, height: '2px',
+      background: 'linear-gradient(90deg, transparent, rgba(34, 139, 34, 0.8), rgba(80, 160, 255, 0.6), transparent)',
+      animation: 'scanSweep 4s ease-in-out infinite', boxShadow: '0 0 12px rgba(34, 139, 34, 0.7)',
+    }} />
+  </div>
+)
 
 /* ─── 3D Tilt Card ────────────────────────────────────────────── */
 const TiltCard = ({ children }) => {
@@ -334,18 +286,242 @@ const TiltCard = ({ children }) => {
 const Badge = ({ label, delay }) => (
   <motion.span initial={{ opacity: 0, scale: 0.7 }} whileInView={{ opacity: 1, scale: 1 }}
     transition={{ delay, duration: 0.4 }} viewport={{ once: true }} whileHover={{ scale: 1.1, y: -3 }}
-    className="badge px-3 py-1 text-xs font-semibold rounded-full border border-yellow-500/40 text-yellow-300 bg-yellow-500/10 backdrop-blur-sm hover:bg-yellow-500/20 transition-colors duration-200">
+    className="badge px-3 py-1 text-xs font-semibold rounded-full border border-green-500/40 text-green-300 bg-green-500/10 backdrop-blur-sm hover:bg-green-500/20 transition-colors duration-200">
     {label}
   </motion.span>
 )
 
-const Stat = ({ value, label, delay, isDark }) => (
-  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay, duration: 0.5 }} viewport={{ once: true }} className="text-center">
-    <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600">{value}</div>
-    <div className={`text-[10px] md:text-xs uppercase tracking-widest mt-0.5 ${isDark ? 'text-gray-400' : 'text-yellow-800/70'}`}>{label}</div>
-  </motion.div>
-)
+const Stat = ({ value, label, delay, isDark, color = "green" }) => {
+  const grad = color === "blue"
+    ? "from-blue-200 to-blue-500"
+    : color === "red"
+      ? "from-red-300 to-red-500"
+      : color === "purple"
+        ? "from-purple-200 to-purple-500"
+        : "from-green-200 to-green-500";
+  const lblColor = color === "blue"
+    ? "text-blue-400/60"
+    : color === "red"
+      ? "text-red-400/60"
+      : color === "purple"
+        ? "text-purple-400/60"
+        : "text-green-400/60";
+  const borderCol = color === "blue"
+    ? "rgba(59, 130, 246, 0.12)"
+    : color === "purple"
+      ? "rgba(168, 85, 247, 0.12)"
+      : "rgba(34, 139, 34, 0.12)";
+  const bgCol = color === "blue"
+    ? "rgba(59, 130, 246, 0.01)"
+    : color === "purple"
+      ? "rgba(168, 85, 247, 0.01)"
+      : "rgba(34, 139, 34, 0.01)";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6, scale: 1.04, borderColor: color === 'blue' ? 'rgba(59, 130, 246, 0.4)' : color === 'purple' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(40, 200, 100, 0.4)', boxShadow: color === 'blue' ? '0 10px 25px -10px rgba(59, 130, 246, 0.15)' : color === 'purple' ? '0 10px 25px -10px rgba(168, 85, 247, 0.15)' : '0 10px 25px -10px rgba(34, 139, 34, 0.15)' }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      viewport={{ once: true }}
+      style={{
+        border: `1px solid ${borderCol}`,
+        background: bgCol,
+        backdropFilter: 'blur(4px)',
+      }}
+      className="px-4 py-5 rounded-xl flex flex-col items-center justify-center transition-shadow duration-300 select-none w-full"
+    >
+      <div className={`text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b ${grad}`}>{value}</div>
+      <div className={`text-[10px] md:text-xs uppercase tracking-widest mt-1.5 font-mono ${isDark ? 'text-gray-400' : lblColor}`}>{label}</div>
+    </motion.div>
+  );
+}
+
+const IDEDashboard = ({ isDark }) => {
+  const [activeFile, setActiveFile] = useState('About.md')
+  const [terminalOutput, setTerminalOutput] = useState('cat About.md')
+
+  const files = [
+    { name: 'About.md', icon: '📝', color: '#50a0ff' },
+    { name: 'Skills.json', icon: '⚙️', color: '#81c784' },
+    { name: 'Projects.js', icon: '🚀', color: '#f5d060' },
+    { name: 'Contact.py', icon: '🐍', color: '#ff5f57' },
+    { name: 'package.json', icon: '📦', color: '#a855f7' }
+  ]
+
+  const getCode = () => {
+    switch (activeFile) {
+      case 'About.md':
+        return (
+          <div style={{ color: '#d1d5db' }}>
+            <span style={{ color: '#6b7280' }}># About Me</span>{'\n\n'}
+            <span style={{ color: '#ff5f57' }}>- Name:</span> <span style={{ color: '#81c784' }}>Imran Shaikh</span>{'\n'}
+            <span style={{ color: '#ff5f57' }}>- Role:</span> <span style={{ color: '#81c784' }}>Full Stack Developer</span>{'\n'}
+            <span style={{ color: '#ff5f57' }}>- Degree:</span> <span style={{ color: '#81c784' }}>BCA Graduate</span>{'\n'}
+            <span style={{ color: '#ff5f57' }}>- Exp:</span> <span style={{ color: '#81c784' }}>1+ Years</span>{'\n\n'}
+            <span style={{ color: '#6b7280' }}>### Bio</span>{'\n'}
+            <span style={{ color: '#9ca3af' }}>Passionate full-stack developer specializing in modern web apps.</span>{'\n'}
+            <span style={{ color: '#9ca3af' }}>Building performant, interactive, and responsive user experiences.</span>
+          </div>
+        )
+      case 'Skills.json':
+        return (
+          <div style={{ color: '#81c784' }}>
+            <span style={{ color: '#50a0ff' }}>{'{'}</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"frontend"</span>: <span style={{ color: '#50a0ff' }}>[</span><span style={{ color: '#88ffaa' }}>"React"</span>, <span style={{ color: '#88ffaa' }}>"Next"</span>, <span style={{ color: '#88ffaa' }}>"Tailwind"</span><span style={{ color: '#50a0ff' }}>]</span>,</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"backend"</span>: <span style={{ color: '#50a0ff' }}>[</span><span style={{ color: '#88ffaa' }}>"Node"</span>, <span style={{ color: '#88ffaa' }}>"Express"</span>, <span style={{ color: '#88ffaa' }}>"APIs"</span><span style={{ color: '#50a0ff' }}>]</span>,</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"database"</span>: <span style={{ color: '#50a0ff' }}>[</span><span style={{ color: '#88ffaa' }}>"MongoDB"</span>, <span style={{ color: '#88ffaa' }}>"PostgreSQL"</span><span style={{ color: '#50a0ff' }}>]</span>,</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"tools"</span>: <span style={{ color: '#50a0ff' }}>[</span><span style={{ color: '#88ffaa' }}>"Git"</span>, <span style={{ color: '#88ffaa' }}>"GitHub"</span>, <span style={{ color: '#88ffaa' }}>"Vercel"</span><span style={{ color: '#50a0ff' }}>]</span></span>{'\n'}
+            <span style={{ color: '#50a0ff' }}>{'}'}</span>
+          </div>
+        )
+      case 'Projects.js':
+        return (
+          <div style={{ color: '#d1d5db' }}>
+            <span style={{ color: '#50a0ff' }}>const</span> <span style={{ color: '#f5d060' }}>projects</span> = <span style={{ color: '#50a0ff' }}>[</span>{'\n'}
+            <span>  {'{'} <span style={{ color: '#ff5f57' }}>name</span>: <span style={{ color: '#88ffaa' }}>"Skill Bridge"</span>, <span style={{ color: '#ff5f57' }}>type</span>: <span style={{ color: '#88ffaa' }}>"Job Portal"</span> {'}'},</span>{'\n'}
+            <span>  {'{'} <span style={{ color: '#ff5f57' }}>name</span>: <span style={{ color: '#88ffaa' }}>"Home Roots"</span>, <span style={{ color: '#ff5f57' }}>type</span>: <span style={{ color: '#88ffaa' }}>"Real Estate"</span> {'}'},</span>{'\n'}
+            <span>  {'{'} <span style={{ color: '#ff5f57' }}>name</span>: <span style={{ color: '#88ffaa' }}>"Netflix Clone"</span>, <span style={{ color: '#ff5f57' }}>type</span>: <span style={{ color: '#88ffaa' }}>"Streaming UI"</span> {'}'},</span>{'\n'}
+            <span>  {'{'} <span style={{ color: '#ff5f57' }}>name</span>: <span style={{ color: '#88ffaa' }}>"MSI Website"</span>, <span style={{ color: '#ff5f57' }}>type</span>: <span style={{ color: '#88ffaa' }}>"Gaming Brand"</span> {'}'}</span>{'\n'}
+            <span style={{ color: '#50a0ff' }}>]</span>
+          </div>
+        )
+      case 'Contact.py':
+        return (
+          <div style={{ color: '#d1d5db' }}>
+            <span style={{ color: '#ff5f57' }}>def</span> <span style={{ color: '#a855f7' }}>get_contact_info</span>():{'\n'}
+            <span style={{ color: '#228b22' }}>    # Blazing-fast networking coords</span>{'\n'}
+            <span>    email = <span style={{ color: '#88ffaa' }}>"imran071202@gmail.com"</span></span>{'\n'}
+            <span>    phone = <span style={{ color: '#88ffaa' }}>"+91 7427928647"</span></span>{'\n'}
+            <span>    status = <span style={{ color: '#28c864' }}>"READY_TO_BUILD"</span></span>{'\n'}
+            <span style={{ color: '#ff5f57' }}>    return</span> {'{'} <span style={{ color: '#88ffaa' }}>"email"</span>: email, <span style={{ color: '#88ffaa' }}>"phone"</span>: phone, <span style={{ color: '#88ffaa' }}>"status"</span>: status {'}'}
+          </div>
+        )
+      case 'package.json':
+        return (
+          <div style={{ color: '#81c784' }}>
+            <span style={{ color: '#50a0ff' }}>{'{'}</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"name"</span>: <span style={{ color: '#88ffaa' }}>"imran-portfolio"</span>,</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"version"</span>: <span style={{ color: '#88ffaa' }}>"2.0.0"</span>,</span>{'\n'}
+            <span>  <span style={{ color: '#ff5f57' }}>"dependencies"</span>: <span style={{ color: '#50a0ff' }}>{'{'}</span></span>{'\n'}
+            <span>    <span style={{ color: '#ff5f57' }}>"next"</span>: <span style={{ color: '#88ffaa' }}>"^16.2.2"</span>,</span>{'\n'}
+            <span>    <span style={{ color: '#ff5f57' }}>"react"</span>: <span style={{ color: '#88ffaa' }}>"^19.2.4"</span>,</span>{'\n'}
+            <span>    <span style={{ color: '#ff5f57' }}>"tailwindcss"</span>: <span style={{ color: '#88ffaa' }}>"^4.0"</span></span>{'\n'}
+            <span>  <span style={{ color: '#50a0ff' }}>{'}'}</span></span>{'\n'}
+            <span style={{ color: '#50a0ff' }}>{'}'}</span>
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
+  const getLines = () => {
+    switch (activeFile) {
+      case 'About.md': return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      case 'Skills.json': return [1, 2, 3, 4, 5, 6, 7]
+      case 'Projects.js': return [1, 2, 3, 4, 5, 6, 7]
+      case 'Contact.py': return [1, 2, 3, 4, 5, 6]
+      case 'package.json': return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      default: return [1, 2, 3, 4, 5]
+    }
+  }
+
+  const handleFileClick = (name) => {
+    setActiveFile(name)
+    setTerminalOutput(`cat ${name}`)
+  }
+
+  return (
+    <div className="ide-container">
+      {/* Window Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 18px', background: 'rgba(3,3,5,0.98)', borderBottom: '1px solid rgba(34,139,34,0.12)', fontSize: 11, color: 'rgba(34,139,34,0.5)', position: 'relative' }}>
+        <div style={{ display: 'flex', gap: 6, zIndex: 5 }}>
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+        </div>
+        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', fontWeight: 600, letterSpacing: '0.05em', color: 'rgba(34, 139, 34, 0.65)' }}>
+          imran@workspace: ~/portfolio_v2.0
+        </div>
+        <div style={{ display: 'flex', gap: 10, fontSize: 10, color: 'rgba(34, 139, 34, 0.45)' }}>
+          <span>IDE::ONLINE</span>
+        </div>
+      </div>
+
+      {/* Main Inner Body */}
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        {/* Sidebar */}
+        <div className="ide-sidebar">
+          <div style={{ padding: '0 16px 8px', fontSize: 11, fontWeight: 700, color: 'rgba(34, 139, 34, 0.55)', borderBottom: '1px solid rgba(34, 139, 34, 0.12)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            Workspace
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', marginTop: 8 }}>
+            {files.map(f => (
+              <button
+                key={f.name}
+                onClick={() => handleFileClick(f.name)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 8, padding: '7px 16px',
+                  fontSize: 12, color: activeFile === f.name ? '#ffffff' : 'rgba(34, 139, 34, 0.7)',
+                  background: activeFile === f.name ? 'rgba(34, 139, 34, 0.15)' : 'transparent',
+                  borderLeft: activeFile === f.name ? '3px solid #28c864' : '3px solid transparent',
+                  textAlign: 'left', cursor: 'pointer', outline: 'none', transition: 'all 0.2s', borderRight: 'none', borderTop: 'none', borderBottom: 'none'
+                }}
+              >
+                <span style={{ fontSize: 13, color: f.color }}>{f.icon}</span>
+                <span>{f.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Editor Area */}
+        <div className="ide-editor">
+          {/* Editor Tabs */}
+          <div style={{ display: 'flex', background: 'rgba(3, 3, 5, 0.98)', borderBottom: '1px solid rgba(34, 139, 34, 0.12)', height: 32, overflowX: 'auto' }}>
+            {files.map(f => (
+              <button
+                key={f.name}
+                onClick={() => handleFileClick(f.name)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 6, padding: '0 16px',
+                  fontSize: 11, color: activeFile === f.name ? '#ffffff' : 'rgba(34, 139, 34, 0.5)',
+                  background: activeFile === f.name ? 'rgba(5, 5, 8, 0.94)' : 'transparent',
+                  borderBottom: activeFile === f.name ? '2px solid #28c864' : '2px solid transparent',
+                  cursor: 'pointer', outline: 'none', whiteSpace: 'nowrap', borderLeft: 'none', borderRight: 'none', borderTop: 'none'
+                }}
+              >
+                <span>{f.name}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Editor Code Pane */}
+          <div style={{ flex: 1, display: 'flex', padding: 16, overflowY: 'auto', textAlign: 'left', lineHeight: 1.6, fontSize: 13 }}>
+            {/* Line Numbers */}
+            <div style={{ width: 28, display: 'flex', flexDirection: 'column', color: 'rgba(34, 139, 34, 0.35)', userSelect: 'none', paddingRight: 8, borderRight: '1px solid rgba(34, 139, 34, 0.08)' }}>
+              {getLines().map(l => <span key={l}>{l}</span>)}
+            </div>
+            {/* Code */}
+            <div style={{ flex: 1, paddingLeft: 16, whiteSpace: 'pre', overflowX: 'auto' }}>
+              {getCode()}
+            </div>
+          </div>
+
+          {/* Terminal/Output footer */}
+          <div style={{ background: 'rgba(3, 3, 5, 0.96)', borderTop: '1px solid rgba(34, 139, 34, 0.12)', padding: '6px 16px', fontSize: 11, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ color: '#28c864' }}>● Terminal</span>
+              <span style={{ color: 'rgba(34, 139, 34, 0.45)' }}>imran@macbook:~ $ {terminalOutput}</span>
+            </div>
+            <span style={{ color: '#50a0ff' }}>UTF-8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 /* ─── Main ────────────────────────────────────────────────────── */
 const Body = () => {
@@ -370,15 +546,15 @@ const Body = () => {
   }
 
   const D = isDark
-  const sectionBg = D ? '#000000' : '#faf6e8'
-  const gridColor = D ? 'rgba(212,175,55,0.04)' : 'rgba(160,110,10,0.06)'
-  const glowColor = D ? 'rgba(212,175,55,0.07)' : 'rgba(180,130,10,0.07)'
+  const sectionBg = D ? 'transparent' : '#faf6e8'
+  const gridColor = D ? 'rgba(34, 139, 34,0.04)' : 'rgba(27, 94, 32,0.06)'
+  const glowColor = D ? 'rgba(34, 139, 34,0.07)' : 'rgba(27, 94, 32,0.07)'
   const greetColor = D ? '#d1d5db' : '#3d1f04'
-  const statBorder = D ? 'rgba(212,175,55,0.15)' : 'rgba(160,110,10,0.22)'
-  const statBg = D ? 'rgba(212,175,55,0.05)' : 'rgba(180,130,10,0.07)'
+  const statBorder = D ? 'rgba(34, 139, 34,0.15)' : 'rgba(27, 94, 32,0.22)'
+  const statBg = D ? 'rgba(34, 139, 34,0.05)' : 'rgba(27, 94, 32,0.07)'
   const dividerBg = D
-    ? 'linear-gradient(90deg, transparent, #d4af37, transparent)'
-    : 'linear-gradient(90deg, transparent, #b8860b, transparent)'
+    ? 'linear-gradient(90deg, transparent, #228b22, transparent)'
+    : 'linear-gradient(90deg, transparent, #1b5e20, transparent)'
 
   return (
     <>
@@ -390,50 +566,52 @@ const Body = () => {
           position: relative; overflow: hidden; overflow-x: clip;
           width: 100%; max-width: 100vw; transition: background 0.4s;
         }
-        #Body::before {
-          content: ''; position: absolute; inset: 0;
-          background-image: linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px);
-          background-size: 60px 60px; z-index: 0;
-        }
-        #Body::after {
-          content: ''; position: absolute; top: -20%; left: -10%; width: 70%; height: 80%;
-          background: radial-gradient(ellipse, ${glowColor} 0%, transparent 70%); z-index: 0; pointer-events: none;
-        }
 
         .gold-title {
           font-family: 'Cinzel Decorative', serif;
-          background: linear-gradient(135deg, #f5d060 0%, #d4af37 30%, #fff8dc 55%, #d4af37 75%, #b8860b 100%);
+          background: linear-gradient(120deg, #74c69d 0%, #228b22 25%, #d8f3dc 50%, #228b22 75%, #74c69d 100%);
+          background-size: 200% auto;
           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-          filter: drop-shadow(0 0 20px rgba(212,175,55,0.5));
+          filter: drop-shadow(0 0 20px rgba(34,139,34,0.4));
+          animation: shineGradient 8s linear infinite;
         }
-        .gold-title:hover { animation: glitchTitle 0.35s steps(2) forwards; }
-        @keyframes glitchTitle {
-          0%   { filter: drop-shadow(0 0 20px rgba(212,175,55,0.5)) drop-shadow(3px 0 rgba(80,160,255,0.55)); }
-          50%  { filter: drop-shadow(0 0 26px rgba(212,175,55,0.8)) drop-shadow(-3px 0 rgba(255,60,60,0.45)); }
-          100% { filter: drop-shadow(0 0 20px rgba(212,175,55,0.5)); }
+        @keyframes shineGradient {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
         }
 
         .hero-copy, .hero-media, .hero-stats { max-width: 100%; min-width: 0; }
 
         .avatar-ring {
-          background: conic-gradient(from 0deg, #d4af37, #fff8dc, #b8860b, #d4af37, #fff8dc, #d4af37);
-          animation: spin-ring 6s linear infinite;
+          border: 2px dashed rgba(34, 139, 34, 0.45);
+          border-top-color: #50a0ff;
+          border-bottom-color: #ff5f57;
+          animation: spin-ring 14s linear infinite;
+          background: transparent;
+        }
+        .avatar-ring-inner {
+          border: 1px dotted rgba(80, 160, 255, 0.55);
+          border-left-color: #228b22;
+          border-right-color: #ff5f57;
+          animation: spin-ring-reverse 9s linear infinite;
+          background: transparent;
         }
         @keyframes spin-ring { to { transform: rotate(360deg); } }
+        @keyframes spin-ring-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
         .avatar-inner { transform: translateZ(30px); }
 
-        .glow-btn { background: linear-gradient(135deg, #d4af37, #b8860b); box-shadow: 0 0 20px rgba(212,175,55,0.4), inset 0 1px 0 rgba(255,255,255,0.2); transition: all 0.3s ease; }
-        .glow-btn:hover { box-shadow: 0 0 35px rgba(212,175,55,0.7), inset 0 1px 0 rgba(255,255,255,0.3); transform: translateY(-2px) scale(1.03); }
+        .glow-btn { background: linear-gradient(135deg, #228b22, #1b5e20); box-shadow: 0 0 20px rgba(34, 139, 34,0.4), inset 0 1px 0 rgba(255,255,255,0.2); transition: all 0.3s ease; }
+        .glow-btn:hover { box-shadow: 0 0 35px rgba(34, 139, 34,0.7), inset 0 1px 0 rgba(255,255,255,0.3); transform: translateY(-2px) scale(1.03); }
 
-        .social-btn { width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(212,175,55,0.3); background:rgba(212,175,55,0.05); backdrop-filter:blur(8px); transition:all 0.3s ease; color:#d4af37; font-size:1.2rem; }
-        .social-btn:hover { border-color:#d4af37; background:rgba(212,175,55,0.15); box-shadow:0 0 16px rgba(212,175,55,0.5); transform:translateY(-4px) scale(1.1); }
+        .social-btn { width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(34,139,34,0.3); background:rgba(34,139,34,0.05); backdrop-filter:blur(8px); transition:all 0.3s ease; color:#228b22; font-size:1.2rem; }
+        .social-btn:hover { border-color:#228b22; background:rgba(34,139,34,0.15); box-shadow:0 0 16px rgba(34,139,34,0.5); transform:translateY(-4px) scale(1.1); }
 
         .status-dot { width:8px; height:8px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e; animation:pulse-dot 2s ease-in-out infinite; }
         @keyframes pulse-dot { 0%,100% { box-shadow:0 0 6px #22c55e; } 50% { box-shadow:0 0 14px #22c55e, 0 0 24px #22c55e55; } }
 
         .corner-bracket::before, .corner-bracket::after,
         .corner-bracket > span::before, .corner-bracket > span::after {
-          content:''; position:absolute; width:22px; height:22px; border-color:#d4af37; border-style:solid;
+          content:''; position:absolute; width:22px; height:22px; border-color:#228b22; border-style:solid;
         }
         .corner-bracket::before { top:-2px; left:-2px; border-width:2px 0 0 2px; }
         .corner-bracket::after  { top:-2px; right:-2px; border-width:2px 2px 0 0; }
@@ -465,8 +643,8 @@ const Body = () => {
           100% { top:100%; opacity:0; }
         }
         @keyframes diamondPulse {
-          0%,100% { box-shadow:0 0 12px rgba(212,175,55,0.5); transform:translate(-50%,-50%) rotate(45deg) scale(1); }
-          50%      { box-shadow:0 0 24px rgba(212,175,55,0.9); transform:translate(-50%,-50%) rotate(45deg) scale(1.3); }
+          0%,100% { box-shadow:0 0 12px rgba(34, 139, 34,0.5); transform:translate(-50%,-50%) rotate(45deg) scale(1); }
+          50%      { box-shadow:0 0 24px rgba(34, 139, 34,0.9); transform:translate(-50%,-50%) rotate(45deg) scale(1.3); }
         }
         @keyframes nodePulse {
           0%,100% { transform:translate(-50%,-50%) scale(1); }
@@ -482,34 +660,77 @@ const Body = () => {
         @keyframes bracketPulse { 0%,100% { opacity:0.05; } 50% { opacity:0.14; } }
 
         .hacker-badge {
-          display:inline-flex; align-items:center; gap:8px; padding:6px 16px;
-          border-radius:30px; font-family:'Courier New',monospace; font-size:11px;
-          font-weight:700; letter-spacing:0.07em;
-          border:1px solid rgba(40,200,100,0.4); background:rgba(40,200,100,0.07);
-          color:rgba(40,200,100,0.9); margin-bottom:16px;
+          display:inline-flex; align-items:center; gap:8px; padding:6px 14px;
+          border-radius:6px; font-family:'Courier New',monospace; font-size:11px;
+          font-weight:700; letter-spacing:0.08em;
+          border:1px solid rgba(40,200,100,0.45); background:rgba(5, 10, 5, 0.85);
+          color:rgba(40,200,100,0.95); margin-bottom:16px;
+          box-shadow: 0 0 12px rgba(40,200,100,0.08);
           animation:badgePulse 3s ease-in-out infinite;
         }
         @keyframes badgePulse {
-          0%,100% { border-color:rgba(40,200,100,0.4); box-shadow:none; }
-          50%      { border-color:rgba(40,200,100,0.75); box-shadow:0 0 16px rgba(40,200,100,0.22); }
+          0%,100% { border-color:rgba(40,200,100,0.45); box-shadow: 0 0 12px rgba(40,200,100,0.08); }
+          50%      { border-color:rgba(40,200,100,0.85); box-shadow: 0 0 20px rgba(40,200,100,0.25); }
+        }
+        @keyframes blink-cursor {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        .blinking-cursor {
+          animation: blink-cursor 1s step-end infinite;
+          color: #28c864;
+          font-weight: bold;
         }
         .ping-dot { width:8px; height:8px; border-radius:50%; display:inline-block; animation:pingAnim 1.8s ease-in-out infinite; }
         @keyframes pingAnim { 0%,100% { box-shadow:0 0 0 0 rgba(40,200,100,0.7); } 50% { box-shadow:0 0 0 6px rgba(40,200,100,0); } }
 
-        .hud-pip { position:absolute; width:6px; height:6px; border-radius:50%; background:#d4af37; animation:pipBlink 2s ease-in-out infinite; z-index:10; }
+        .hud-pip { position:absolute; width:6px; height:6px; border-radius:50%; background:#228b22; animation:pipBlink 2s ease-in-out infinite; z-index:10; }
 
         .data-label {
           position:absolute; font-family:'Courier New',monospace; font-size:9px;
-          letter-spacing:0.12em; color:rgba(212,175,55,0.38);
+          letter-spacing:0.12em; color:rgba(34, 139, 34,0.38);
           writing-mode:vertical-rl; text-orientation:mixed;
           pointer-events:none; user-select:none; z-index:4;
         }
 
-        .sys-strip { display:flex; gap:18px; margin-bottom:14px; font-family:'Courier New',monospace; font-size:10px; color:rgba(212,175,55,0.45); flex-wrap:wrap; }
+        .sys-strip { display:flex; gap:18px; margin-bottom:14px; font-family:'Courier New',monospace; font-size:10px; color:rgba(34, 139, 34,0.45); flex-wrap:wrap; }
         .sys-strip span { display:flex; align-items:center; gap:5px; }
+
+        .ide-container {
+          width: 100%;
+          max-width: 650px;
+          height: 480px;
+          background: rgba(5, 5, 8, 0.94);
+          border: 1px solid rgba(34, 139, 34, 0.3);
+          border-radius: 12px;
+          box-shadow: 0 0 60px rgba(34, 139, 34, 0.18), inset 0 0 24px rgba(0, 0, 0, 0.85);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          font-family: 'Courier New', monospace;
+          z-index: 10;
+        }
+        .ide-sidebar {
+          width: 190px;
+          background: rgba(3, 3, 5, 0.96);
+          border-right: 1px solid rgba(34, 139, 34, 0.12);
+          display: flex;
+          flex-direction: column;
+          padding: 12px 0;
+        }
+        .ide-editor {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
 
         /* center divider hidden on mobile/tablet */
         .center-divider { display:block; }
+
+        /* Hide desktop terminals on medium screen widths to avoid overlap with split layout */
+        @media (max-width: 1279px) {
+          .term-desktop { display: none !important; }
+        }
 
         /* ── MOBILE ── */
         @media (max-width: 640px) {
@@ -520,10 +741,12 @@ const Body = () => {
           .hero-role { width:100%; max-width:100%; overflow-wrap:anywhere; }
           .sys-strip { width:100%; justify-content:center; }
           .hero-stats { width:100% !important; max-width:100% !important; }
-          .hero-avatar { width:min(220px,calc(100vw - 80px)) !important; height:min(240px,calc((100vw - 80px)*1.08)) !important; }
-          .hero-glow { width:min(280px,calc(100vw - 44px)) !important; height:min(280px,calc(100vw - 44px)) !important; }
-          .hero-float-left { left:0 !important; bottom:-18px !important; }
-          .hero-float-right { right:0 !important; top:-14px !important; }
+          .ide-sidebar {
+            display: none !important;
+          }
+          .ide-container {
+            height: 420px !important;
+          }
           .term-desktop { display:none !important; }
           .bracket-bg { display:none !important; }
           .data-label { display:none !important; }
@@ -548,208 +771,100 @@ const Body = () => {
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}
         id='Body' name="Home"
-        className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 px-5 md:px-16 lg:px-28 py-16 md:py-0"
-        style={{ background: sectionBg, color: D ? '#ffffff' : '#180e03' }}
+        className="relative min-h-screen w-full flex flex-col items-center justify-center px-5 md:px-16 lg:px-28 py-16 md:py-0"
+        style={{ background: sectionBg, color: D ? '#ffffff' : '#1b5e20' }}
       >
-        <Particles enabled={!isSmallScreen} />
-        <MatrixRain enabled={!isSmallScreen} />
-        <CircuitBoard />
-        <div className="scanlines-overlay" />
 
-        {/* ── CENTER VERTICAL DIVIDER with data stream ── */}
-        <CenterDivider />
 
-        {/* side data labels */}
-        <div className="data-label" style={{ left: 14, top: '22%' }}>SYS::ONLINE ■ v2.0.4</div>
-        <div className="data-label" style={{ right: 14, bottom: '22%' }}>STACK::REACT · NODE · MONGO</div>
+        {/* Drifting Multi-Color Coding Symbols */}
+        {[
+          { text: "const",   top: "14%", left: "7%",   delay: 0,   color: "rgba(80, 160, 255, 0.22)" },
+          { text: "{ }",     top: "70%", left: "8%",   delay: 3,   color: "rgba(255, 200, 60, 0.22)"  },
+          { text: "=>",      top: "38%", left: "5%",   delay: 1.5, color: "rgba(255, 100, 80, 0.20)"  },
+          { text: "import",  top: "80%", right: "8%",  delay: 4.5, color: "rgba(80, 160, 255, 0.20)"  },
+          { text: "[ ]",     top: "22%", right: "9%",  delay: 2,   color: "rgba(255, 200, 60, 0.20)"  },
+          { text: "async",   top: "60%", right: "6%",  delay: 5.5, color: "rgba(80, 160, 255, 0.18)"  },
+          { text: "return",  top: "48%", left: "4%",   delay: 6,   color: "rgba(34, 200, 100, 0.18)"  },
+          { text: "( )",     top: "10%", right: "20%", delay: 7,   color: "rgba(255, 200, 60, 0.16)"  },
+          { text: "export",  top: "55%", right: "18%", delay: 3.5, color: "rgba(80, 160, 255, 0.15)"  },
+        ].map((item, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: [0, 1, 0], y: [0, -14, 0] }}
+            transition={{ duration: 6 + idx * 0.4, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
+            className="absolute font-mono text-[12px] font-semibold pointer-events-none select-none hidden md:block"
+            style={{
+              top: item.top, left: item.left, right: item.right,
+              color: item.color,
+              zIndex: 1,
+              letterSpacing: '0.06em',
+              textShadow: `0 0 8px ${item.color}`,
+              willChange: 'transform, opacity',
+            }}
+          >
+            {item.text}
+          </motion.div>
+        ))}
 
-        {/* bracket decorators */}
-        <div className="bracket-bg" style={{ fontSize: 200, top: '-30px', right: '0.5%', color: '#d4af37', animationDelay: '0s' }}>{'{'}</div>
-        <div className="bracket-bg" style={{ fontSize: 200, bottom: '-40px', left: '0.5%', color: '#d4af37', animationDelay: '2.5s' }}>{'}'}</div>
-        <div className="bracket-bg" style={{ fontSize: 88, top: '44%', right: '30%', color: '#28c864', animationDelay: '1.5s' }}>{'</>'}</div>
-        <div className="bracket-bg" style={{ fontSize: 66, bottom: '14%', left: '22%', color: '#50a0ff', animationDelay: '3s' }}>{'[ ]'}</div>
+        {/* ── Centered Hero Layout ── */}
+        <div className="w-full max-w-[900px] mx-auto z-10 flex flex-col items-center justify-center text-center gap-6 pt-28 pb-16 md:py-24 lg:py-32 select-none">
 
-        {/* ── DESKTOP TERMINALS – all 4 corners, no overlap ── */}
-        <TermWindow className="term-desktop" title="ping.sh"
-          style={{ top: '4%', left: '0.8%' }} delay={3.0} duration={11}>
-          <span style={{ color: '#50a0ff' }}>$ </span><span style={{ color: 'rgba(212,175,55,0.65)' }}>ping imran.dev</span>{'\n'}
-          <span style={{ color: '#28c864' }}>64 bytes </span><span style={{ color: 'rgba(212,175,55,0.45)' }}>ttl=64 time=</span><span style={{ color: '#d4af37' }}>1.2ms</span>{'\n'}
-          <span style={{ color: 'rgba(212,175,55,0.3)' }}>STATUS: </span><span style={{ color: '#28c864' }}>ONLINE ●</span>
-        </TermWindow>
+          {/* Main Greeting Heading */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-2 text-white">
+            Hi, I'm <br />
+            <span className="gold-title mt-2 inline-block">Imran Shaikh</span>
+          </h1>
 
-        <TermWindow className="term-desktop" title="dev.js"
-          style={{ bottom: '5%', left: '0.8%' }} delay={1.2} duration={10}>
-          <span style={{ color: '#50a0ff' }}>const </span>
-          <span style={{ color: '#d4af37' }}>developer</span>
-          <span style={{ color: 'rgba(212,175,55,0.45)' }}> = {'{'}</span>{'\n'}
-          <span style={{ color: 'rgba(212,175,55,0.35)' }}>  name  </span><span style={{ color: 'rgba(212,175,55,0.45)' }}>: </span><span style={{ color: '#88ffaa' }}>"Imran Shaikh"</span>{'\n'}
-          <span style={{ color: 'rgba(212,175,55,0.35)' }}>  stack </span><span style={{ color: 'rgba(212,175,55,0.45)' }}>: </span><span style={{ color: '#88ffaa' }}>"Full Stack"</span>{'\n'}
-          <span style={{ color: 'rgba(212,175,55,0.35)' }}>  open  </span><span style={{ color: 'rgba(212,175,55,0.45)' }}>: </span><span style={{ color: '#28c864' }}>true</span><span style={{ color: 'rgba(212,175,55,0.45)' }}>,{'\n'}{'}'}</span>
-        </TermWindow>
-
-        <TermWindow className="term-desktop" title="index.jsx"
-          style={{ top: '4%', right: '0.8%' }} delay={2.4} duration={8}>
-          <span style={{ color: '#ff5f57' }}>import </span><span style={{ color: '#d4af37' }}>React </span><span style={{ color: 'rgba(212,175,55,0.45)' }}>from </span><span style={{ color: '#88ffaa' }}>'react'</span>{'\n'}
-          <span style={{ color: '#ff5f57' }}>import </span><span style={{ color: '#d4af37' }}>{'{ motion }'} </span><span style={{ color: 'rgba(212,175,55,0.45)' }}>from </span><span style={{ color: '#88ffaa' }}>'framer'</span>{'\n'}
-          <span style={{ color: 'rgba(212,175,55,0.3)' }}>// building pixel-perfect</span>{'\n'}
-          <span style={{ color: 'rgba(212,175,55,0.3)' }}>// experiences ✦</span>
-        </TermWindow>
-
-        <TermWindow className="term-desktop" title="deploy.sh"
-          style={{ bottom: '5%', right: '0.8%' }} delay={1.8} duration={13}>
-          <span style={{ color: '#50a0ff' }}>$ </span><span style={{ color: 'rgba(212,175,55,0.7)' }}>git commit -m </span><span style={{ color: '#88ffaa' }}>"feat: v2.0"</span>{'\n'}
-          <span style={{ color: '#50a0ff' }}>$ </span><span style={{ color: 'rgba(212,175,55,0.7)' }}>npm run build</span>{'\n'}
-          <span style={{ color: '#28c864' }}>✓ </span><span style={{ color: 'rgba(212,175,55,0.55)' }}>compiled in 842ms</span>{'\n'}
-          <span style={{ color: '#50a0ff' }}>$ </span><span style={{ color: 'rgba(212,175,55,0.7)' }}>vercel --prod</span>{'\n'}
-          <span style={{ color: '#28c864' }}>🚀 </span><span style={{ color: '#d4af37' }}>deployed to production</span>
-        </TermWindow>
-
-        {/* ── mobile terminal strip ── */}
-        <div className="term-mobile-strip" style={{
-          position: 'absolute', bottom: '6%', left: '50%', transform: 'translateX(-50%)',
-          background: 'rgba(5,5,8,0.88)', border: '1px solid rgba(212,175,55,0.28)',
-          borderRadius: '10px', padding: '8px 14px', fontFamily: '"Courier New",monospace',
-          fontSize: '10px', color: 'rgba(212,175,55,0.6)', zIndex: 3, pointerEvents: 'none',
-          backdropFilter: 'blur(10px)', whiteSpace: 'nowrap', lineHeight: 1.7,
-          width: 'calc(100vw - 48px)', maxWidth: 340,
-          boxShadow: '0 0 28px rgba(212,175,55,0.1)',
-        }}>
-          <div style={{ display: 'flex', gap: 5, marginBottom: 7 }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ff5f57', boxShadow: '0 0 5px #ff5f57aa' }} />
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#febc2e', boxShadow: '0 0 5px #febc2eaa' }} />
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#28c840', boxShadow: '0 0 5px #28c840aa' }} />
-            <span style={{ marginLeft: 6, fontSize: 9, color: 'rgba(212,175,55,0.35)', letterSpacing: '0.08em' }}>~ terminal</span>
+          {/* Dynamic Typing Subtitle */}
+          <div className="text-2xl md:text-3xl font-mono text-gray-300 mb-4 flex items-center justify-center gap-2">
+            <span className="text-[#28c864]">&gt;</span>
+            <ReactTyped
+              strings={[
+                "Full Stack Developer",
+                // "Next.js & React Specialist",
+                // "PERN Stack Developer",
+                "Problem Solver"
+              ]}
+              typeSpeed={60}
+              backSpeed={40}
+              backDelay={1200}
+              loop
+            />
           </div>
-          <span style={{ color: '#50a0ff' }}>$ </span>
-          <span>npm run dev </span>
-          <span style={{ color: '#28c864' }}>✓ ready on :3000</span>
+
+          {/* Professional Bio */}
+          <p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed font-sans max-w-2xl mx-auto">
+            Passionate full-stack developer specializing in modern web applications.
+            Building performant, interactive, and responsive user experiences with clean code.
+          </p>
+
+          {/* Stats Area */}
+          <div className="w-full max-w-xl mx-auto grid grid-cols-3 gap-6 border-t border-[#228b22]/15 pt-8 mt-4">
+            <Stat value="1+" label="Years Exp" delay={0.4} isDark={D} color="green" />
+            <Stat value="10+" label="Projects" delay={0.5} isDark={D} color="blue" />
+            <Stat value="100%" label="Commitment" delay={0.6} isDark={D} color="purple" />
+          </div>
         </div>
 
-        {/* ══════════ LEFT CONTENT ══════════ */}
+        {/* Scroll Down Indicator */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="hero-copy md:ml-4 relative flex flex-col items-center md:items-start text-center md:text-left max-w-xl w-full"
-          style={{ zIndex: 10 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-1.5 cursor-pointer opacity-40 hover:opacity-100 transition-opacity duration-300"
         >
-          {/* <motion.div initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.5 }} className="hacker-badge">
-            <span className="ping-dot" style={{ background:'#28c864' }} />
-            AVAILABLE FOR WORK
-          </motion.div> */}
-
-
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}
-            className="text-2xl mb-1 flex items-center gap-2" style={{ color: greetColor }}>
-            <span className="text-3xl">👋🏼</span>
-            <span className="font-semibold tracking-wide" style={{ color: 'white' }}>Hello, I'm</span>
-          </motion.div>
-
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8 }}
-            className="gold-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-2">
-            Imran Shaikh
-          </motion.h1>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}
-            className="hero-role flex flex-wrap items-center justify-center md:justify-start gap-2 mt-1 mb-4 text-lg md:text-2xl font-semibold"
-            style={{ color: D ? '#d1d5db' : '#5a3010' }}>
-            <span>I'm a</span>
-            <ReactTyped
-              className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500"
-              strings={["Full Stack Developer", "React.js Expert", "Node.js Engineer", "Programmer"]}
-              typeSpeed={50} backSpeed={35} loop={true}
-            />
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.35 }} className="sys-strip md:justify-start">
-            <span><span style={{ color: '#28c864', fontSize: 8 }}>▶</span> SYS ONLINE</span>
-            <span><span style={{ color: '#50a0ff', fontSize: 8 }}>▶</span> REACT v18</span>
-            <span><span style={{ color: '#ff5f57', fontSize: 8 }}>▶</span> NODE v20</span>
-            <span><span style={{ color: '#d4af37', fontSize: 8 }}>▶</span> FULL STACK</span>
-          </motion.div>
-
-          <div className="w-full md:w-3/4 mb-6" style={{ height: 1, background: dividerBg }} />
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
-            className="hero-stats grid grid-cols-2 sm:grid-cols-4 md:flex gap-4 md:gap-10 mb-8 px-4 sm:px-5 py-4 rounded-xl backdrop-blur-sm w-full md:w-auto"
-            style={{ border: `1px solid ${statBorder}`, background: statBg }}>
-            <Stat value="1+" label="Years Exp." delay={0.1} isDark={D} />
-            <div className="hidden md:block" style={{ width: 1, background: statBorder }} />
-            <Stat value="10+" label="Projects" delay={0.2} isDark={D} />
-            <div className="hidden md:block" style={{ width: 1, background: statBorder }} />
-            <Stat value="BCA" label="Graduate" delay={0.3} isDark={D} />
-            <div className="hidden md:block" style={{ width: 1, background: statBorder }} />
-            <Stat value="10+" label="Technologies" delay={0.4} isDark={D} />
-          </motion.div>
-
-          {/* Download CV button
-          <motion.div initial={{ opacity:0, y:10 }} whileInView={{ opacity:1, y:0 }} transition={{ delay:0.3 }} viewport={{ once:true }} className="mb-8">
-            <button onClick={handleDownloadPdf} className="glow-btn flex cursor-pointer items-center gap-3 px-7 py-3.5 rounded-lg text-black font-bold text-base tracking-wide">
-              <FaFileDownload className="text-lg" /> Download Resume
-            </button>
-          </motion.div> */}
+          <Link to="About" smooth={true} duration={500} className="flex flex-col items-center">
+            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#81c784] mb-1.5">Scroll Down</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-5 h-8 border-2 border-[#228b22]/30 rounded-full flex justify-center pt-1"
+            >
+              <div className="w-1.5 h-1.5 bg-[#28c864] rounded-full" />
+            </motion.div>
+          </Link>
         </motion.div>
-
-        {/* ══════════ RIGHT — AVATAR ══════════ */}
-        <motion.div
-          initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="hero-media relative flex justify-center items-center order-first md:order-last mb-4 md:mb-0"
-          style={{ zIndex: 10 }}
-        >
-          <TiltCard>
-            <div className="relative flex  md:mr-8 items-center justify-center mt-5 md:mt-0">
-              <div className="avatar-ring absolute rounded-full"
-                style={{ width: 'calc(100% + 8px)', height: 'calc(100% + 8px)', top: '-12px', left: '-4px' }} />
-
-              <div className="corner-bracket relative p-2" style={{ transform: 'translateZ(20px)' }}>
-                <span />
-                <div className="hud-pip" style={{ top: 6, left: 6, animationDelay: '0s' }} />
-                <div className="hud-pip" style={{ top: 6, right: 6, background: '#28c864', animationDelay: '0.6s' }} />
-                <div className="hud-pip" style={{ bottom: 6, left: 6, background: '#50a0ff', animationDelay: '1.2s' }} />
-                <div className="hud-pip" style={{ bottom: 6, right: 6, background: '#ff5f57', animationDelay: '1.8s' }} />
-
-                <motion.div className="avatar-inner hero-avatar rounded-2xl overflow-hidden"
-                  style={{
-                    width: '250px', height: '270px', position: 'relative',
-                    boxShadow: '0 0 40px rgba(212,175,55,0.3), 0 0 80px rgba(212,175,55,0.1), inset 0 0 20px rgba(0,0,0,0.5)',
-                  }}>
-                  <img src="./photo/imran-removebg.png" alt="Imran Shaikh"
-                    className="w-full h-full object-cover object-center"
-                    style={{ filter: 'brightness(1.05) contrast(1.05)' }} />
-                  {/* <ScanSweep /> */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-yellow-400/5 pointer-events-none" />
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0,
-                    background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
-                    padding: '10px 10px 6px', fontFamily: '"Courier New",monospace',
-                    fontSize: '8px', color: 'rgba(212,175,55,0.65)', letterSpacing: '0.08em',
-                    display: 'flex', justifyContent: 'space-between',
-                  }}>
-                    <span><span style={{ color: '#28c864' }}>●</span> ID::IMRAN</span>
-                    <span>FULL_STACK</span>
-                    <span style={{ color: '#50a0ff' }}>v2.0</span>
-                  </div>
-                </motion.div>
-              </div>
-
-              <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-                className="hero-float-left absolute -bottom-4 -left-8 px-3 py-1.5 rounded-lg text-xs font-bold text-black bg-gradient-to-r from-yellow-300 to-yellow-500 shadow-lg shadow-yellow-500/30"
-                style={{ zIndex: 20 }}>
-                Full Stack Developer
-              </motion.div>
-
-              <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut', delay: 0.5 }}
-                className="hero-float-right absolute -top-4 -right-8 px-3 py-1.5 rounded-lg text-xs font-bold border border-yellow-500/40 text-yellow-300 bg-black/60 backdrop-blur-sm shadow-lg"
-                style={{ zIndex: 20 }}>
-              </motion.div>
-            </div>
-          </TiltCard>
-
-          <div className="hero-glow absolute rounded-full pointer-events-none"
-            style={{ width: '320px', height: '320px', background: 'radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)', zIndex: 0, filter: 'blur(20px)' }} />
-        </motion.div>
-
       </motion.div>
     </>
   )

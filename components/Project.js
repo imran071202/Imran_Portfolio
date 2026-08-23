@@ -12,7 +12,7 @@ const projects = [
     img: "./photo/job.png",
     laptop: "./photo/laptop1.png",
     tag: "Full Stack",
-    color: "#d4af37",
+    color: "#228b22",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const projects = [
     img: "./photo/homeroots.png",
     laptop: "./photo/laptop1.png",
     tag: "Full Stack",
-    color: "#d4af37",
+    color: "#3b82f6",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const projects = [
     img: "./photo/Msi.png",
     laptop: "./photo/laptop1.png",
     tag: "UI Design",
-    color: "#ef4444",
+    color: "#a855f7",
   },
   {
     id: 5,
@@ -56,7 +56,7 @@ const projects = [
     img: "./photo/amazon.png",
     laptop: "./photo/laptop1.png",
     tag: "Frontend",
-    color: "#f59e0b",
+    color: "#06b6d4",
   },
 ]
 
@@ -73,16 +73,16 @@ const SectionHeading = () => (
       fontFamily: "'Cinzel', serif",
       fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
       fontWeight: 900,
-      background: 'linear-gradient(135deg, #f5d060 0%, #d4af37 40%, #fffacd 60%, #b8860b 100%)',
+      background: 'linear-gradient(135deg, #74c69d 0%, #228b22 40%, #d8f3dc 60%, #1b5e20 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
-      filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.45))',
+      filter: 'drop-shadow(0 0 12px rgba(34,139,34,0.45))',
       letterSpacing: '0.08em',
       textAlign: 'center',
     }}>My Projects</h2>
-    <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#d4af37,transparent)' }} />
-    <div style={{ width: 30, height: 2, marginTop: 5,  background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.4),transparent)' }} />
+    <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#228b22,transparent)' }} />
+    <div style={{ width: 30, height: 2, marginTop: 5,  background: 'linear-gradient(90deg,transparent,rgba(34,139,34,0.4),transparent)' }} />
   </motion.div>
 )
 
@@ -95,9 +95,9 @@ const TechBadge = ({ label, isDark }) => (
     fontSize: '0.7rem',
     fontWeight: 700,
     letterSpacing: '0.06em',
-    border: `1px solid ${isDark ? 'rgba(212,175,55,0.25)' : 'rgba(160,110,10,0.28)'}`,
-    background: isDark ? 'rgba(212,175,55,0.08)' : 'rgba(180,130,10,0.08)',
-    color: isDark ? 'rgba(212,175,55,0.8)' : '#7a4d0a',
+    border: `1px solid ${isDark ? 'rgba(34,139,34,0.25)' : 'rgba(27,94,32,0.28)'}`,
+    background: isDark ? 'rgba(34,139,34,0.08)' : 'rgba(27,94,32,0.08)',
+    color: isDark ? 'rgba(34,139,34,0.8)' : '#1b5e20',
     fontFamily: 'Rajdhani, sans-serif',
   }}>{label}</span>
 )
@@ -106,11 +106,11 @@ const TechBadge = ({ label, isDark }) => (
 const ProjectCard = ({ project, index, isDark }) => {
   const isEven = index % 2 === 0
 
-  const bgCard  = isDark ? 'rgba(10,8,3,0.92)'         : 'rgba(255,253,242,0.97)'
-  const border  = isDark ? 'rgba(212,175,55,0.14)'      : 'rgba(160,110,10,0.2)'
-  const textH   = isDark ? '#f3f4f6'                   : '#180e03'
-  const textB   = isDark ? '#c9cdd5'                   : '#2d1a04'
-  const textM   = isDark ? '#8b929e'                   : '#7a4d0a'
+  const bgCard  = isDark ? 'rgba(10,8,3,0.92)'         : 'rgba(232, 245, 233,0.97)'
+  const border  = isDark ? 'rgba(34, 139, 34,0.14)'      : 'rgba(27, 94, 32,0.2)'
+  const textH   = isDark ? '#f3f4f6'                   : '#1b5e20'
+  const textB   = isDark ? '#c9cdd5'                   : '#1b5e20'
+  const textM   = isDark ? '#8b929e'                   : '#1b5e20'
 
   return (
     <motion.div
@@ -132,7 +132,7 @@ const ProjectCard = ({ project, index, isDark }) => {
       {/* top shimmer */}
       <div style={{
         position: 'absolute', top: 0, left: '8%', right: '8%', height: 1,
-        background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.5),transparent)',
+        background: 'linear-gradient(90deg,transparent,rgba(34, 139, 34,0.5),transparent)',
         opacity: 0, transition: 'opacity 0.3s',
       }} className="card-shimmer" />
 
@@ -144,7 +144,7 @@ const ProjectCard = ({ project, index, isDark }) => {
           <span style={{
             position: 'absolute', top: 12, left: isEven ? 'auto' : 12, right: isEven ? 12 : 'auto',
             fontFamily: 'Cinzel, serif', fontSize: '5rem', fontWeight: 900, lineHeight: 1,
-            color: isDark ? 'rgba(212,175,55,0.07)' : 'rgba(160,110,10,0.06)',
+            color: isDark ? 'rgba(34, 139, 34,0.07)' : 'rgba(27, 94, 32,0.06)',
             userSelect: 'none', zIndex: 0,
           }}>{String(index + 1).padStart(2, '0')}</span>
 
@@ -161,13 +161,13 @@ const ProjectCard = ({ project, index, isDark }) => {
               style={{
                 borderRadius: '5px 5px 0 0',
                 overflow: 'hidden',
-                border: `2px solid ${isDark ? 'rgba(212,175,55,0.3)' : 'rgba(160,110,10,0.3)'}`,
+                border: `2px solid ${isDark ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.3)'}`,
                 borderBottom: 'none',
                 margin: '10px 20px 0 20px',
                 padding:'10px 10px 12px 10px',
                 boxShadow: isDark
-                  ? '0 0 30px rgba(212,175,55,0.12), 0 -4px 20px rgba(0,0,0,0.4)'
-                  : '0 0 20px rgba(160,110,10,0.1), 0 -4px 16px rgba(0,0,0,0.1)',
+                  ? '0 0 30px rgba(34, 139, 34,0.12), 0 -4px 20px rgba(0,0,0,0.4)'
+                  : '0 0 20px rgba(27, 94, 32,0.1), 0 -4px 16px rgba(0,0,0,0.1)',
               }}>
                 <img 
                   src={project.img}
@@ -207,7 +207,7 @@ const ProjectCard = ({ project, index, isDark }) => {
               fontFamily: 'Cinzel, serif',
               fontSize: 'clamp(1.2rem, 2.5vw, 1.55rem)',
               fontWeight: 900, lineHeight: 1.2,
-              background: 'linear-gradient(135deg,#f5d060,#d4af37,#c4961a)',
+              background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             }}>{project.title}</h3>
             <p style={{ color: textM, fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.08em', marginTop: 2 }}>
@@ -216,7 +216,7 @@ const ProjectCard = ({ project, index, isDark }) => {
           </div>
 
           {/* divider */}
-          <div style={{ height: 1, margin: '14px 0', background: `linear-gradient(90deg,${isDark ? 'rgba(212,175,55,0.2)' : 'rgba(160,110,10,0.18)'},transparent)` }} />
+          <div style={{ height: 1, margin: '14px 0', background: `linear-gradient(90deg,${isDark ? 'rgba(34, 139, 34,0.2)' : 'rgba(27, 94, 32,0.18)'},transparent)` }} />
 
           {/* description */}
           <p style={{ color: textB, lineHeight: 1.85, fontSize: '0.9rem', marginBottom: 18 }}>
@@ -238,8 +238,8 @@ const ProjectCard = ({ project, index, isDark }) => {
       {/* hover glow border overlay */}
       <style>{`
         .proj-card:hover {
-          border-color: rgba(212,175,55,0.35) !important;
-          box-shadow: 0 0 40px rgba(212,175,55,0.1), 0 12px 40px rgba(0,0,0,0.25);
+          border-color: rgba(34, 139, 34,0.35) !important;
+          box-shadow: 0 0 40px rgba(34, 139, 34,0.1), 0 12px 40px rgba(0,0,0,0.25);
           transform: translateY(-4px);
         }
         .proj-card:hover .card-shimmer { opacity: 1 !important; }
@@ -264,8 +264,8 @@ const Project = () => {
   }, [])
 
   const D = isDark
-  const bg       = D ? '#050503'  : '#faf6e8'
-  const gridLine = D ? 'rgba(212,175,55,0.035)' : 'rgba(160,120,10,0.06)'
+  const bg       = D ? 'transparent'  : '#faf6e8'
+  const gridLine = D ? 'rgba(34, 139, 34,0.035)' : 'rgba(27, 94, 32,0.06)'
 
   return (
     <>
@@ -273,14 +273,6 @@ const Project = () => {
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap');
         #Project { font-family: 'Rajdhani', sans-serif; }
         .proj-wrap { position: relative; }
-        .proj-wrap::before {
-          content: '';
-          position: absolute; inset: 0; pointer-events: none; z-index: 0;
-          background-image:
-            linear-gradient(${gridLine} 1px, transparent 1px),
-            linear-gradient(90deg, ${gridLine} 1px, transparent 1px);
-          background-size: 56px 56px;
-        }
       `}</style>
 
       <section
@@ -291,10 +283,10 @@ const Project = () => {
       >
         {/* ambient glow orbs */}
         <div style={{ position:'absolute', top:'8%', left:'3%', width:450, height:450,
-          background:'radial-gradient(circle,rgba(212,175,55,0.055) 0%,transparent 70%)',
+          background:'radial-gradient(circle,rgba(34, 139, 34,0.055) 0%,transparent 70%)',
           pointerEvents:'none', borderRadius:'50%', zIndex:0 }} />
         <div style={{ position:'absolute', bottom:'10%', right:'3%', width:350, height:350,
-          background:'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)',
+          background:'radial-gradient(circle,rgba(34, 139, 34,0.04) 0%,transparent 70%)',
           pointerEvents:'none', borderRadius:'50%', zIndex:0 }} />
 
         <div className="max-w-5xl mx-auto relative z-10">
@@ -312,9 +304,9 @@ const Project = () => {
               padding: '6px 20px', borderRadius: 99,
               fontSize: '0.65rem', fontWeight: 700,
               textTransform: 'uppercase', letterSpacing: '0.2em',
-              border: '1px solid rgba(212,175,55,0.25)',
-              background: 'rgba(212,175,55,0.06)',
-              color: D ? 'rgba(212,175,55,0.7)' : '#7a4d0a',
+              border: '1px solid rgba(34, 139, 34,0.25)',
+              background: 'rgba(34, 139, 34,0.06)',
+              color: D ? 'rgba(34, 139, 34,0.7)' : '#1b5e20',
               fontFamily: 'Rajdhani, sans-serif',
             }}>
               {projects.length} Featured Projects
@@ -337,7 +329,7 @@ const Project = () => {
             className="text-center mt-14"
             style={{
               fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase',
-              color: D ? 'rgba(212,175,55,0.35)' : 'rgba(140,90,10,0.4)',
+              color: D ? 'rgba(34, 139, 34,0.35)' : 'rgba(27, 94, 32,0.4)',
               fontFamily: 'Rajdhani, sans-serif',
             }}
           >
@@ -346,7 +338,7 @@ const Project = () => {
         </div>
       </section>
 
-      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D?'rgba(212,175,55,0.3)':'rgba(160,110,10,0.3)'},transparent)` }} />
+      <div style={{ height: 0, background: `linear-gradient(90deg,transparent,${D?'rgba(34, 139, 34,0.3)':'rgba(27, 94, 32,0.3)'},transparent)` }} />
     </>
   )
 }

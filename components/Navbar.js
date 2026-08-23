@@ -27,7 +27,7 @@ const socials = [
   { href: "https://www.linkedin.com/in/imran-shaikh-163372241/", icon: <BsLinkedin />,       colorDark: "#38bdf8", colorLight: "#0284c7", label: "LinkedIn"    },
   { href: "https://x.com/Imran___02",                            icon: <FaXTwitter />,       colorDark: "#e2e8f0", colorLight: "#1f2937", label: "X / Twitter" },
   { href: "https://www.facebook.com/imran.shaikh.562433",        icon: <FaFacebookSquare />, colorDark: "#3b82f6", colorLight: "#1d4ed8", label: "Facebook"    },
-  // { href: "mailto:imran@example.com",                            icon: <FaEnvelope />,       colorDark: "#d4af37", colorLight: "#92650a", label: "Email"       },
+  // { href: "mailto:imran@example.com",                            icon: <FaEnvelope />,       colorDark: "#228b22", colorLight: "#1b5e20", label: "Email"       },
 ]
 
 /* ════════════ SUB-COMPONENTS ════════════ */
@@ -40,7 +40,7 @@ const GDiv = () => (
     transition={{ duration: 0.8, delay: 0.5 }}
     style={{
       width: 38, height: 1,
-      background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)',
+      background: 'linear-gradient(90deg, transparent, rgba(34, 139, 34,0.6), transparent)',
     }}
   />
 )
@@ -54,7 +54,7 @@ const PulseOrb = () => (
       transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
       style={{
         position: 'absolute', width: 18, height: 18, borderRadius: '50%',
-        background: 'rgba(212,175,55,0.22)',
+        background: 'rgba(34, 139, 34,0.22)',
       }}
     />
     {/* outer ring 2 */}
@@ -63,14 +63,14 @@ const PulseOrb = () => (
       transition={{ repeat: Infinity, duration: 2.8, delay: 0.4, ease: 'easeInOut' }}
       style={{
         position: 'absolute', width: 12, height: 12, borderRadius: '50%',
-        background: 'rgba(212,175,55,0.3)',
+        background: 'rgba(34, 139, 34,0.3)',
       }}
     />
     {/* core */}
     <div style={{
       width: 7, height: 7, borderRadius: '50%', position: 'relative', zIndex: 1,
-      background: 'radial-gradient(circle, #fffacd 0%, #d4af37 60%)',
-      boxShadow: '0 0 10px rgba(212,175,55,0.95), 0 0 20px rgba(212,175,55,0.4)',
+      background: 'radial-gradient(circle, #e8f5e9 0%, #228b22 60%)',
+      boxShadow: '0 0 10px rgba(34, 139, 34,0.95), 0 0 20px rgba(34, 139, 34,0.4)',
     }} />
   </div>
 )
@@ -83,10 +83,10 @@ const ThemeBtn = ({ isDark, onToggle }) => (
     whileTap={{ scale: 0.85 }}
     style={{
       width: 42, height: 42, borderRadius: 14, cursor: 'pointer',
-      border: '1px solid rgba(212,175,55,0.35)',
+      border: '1px solid rgba(34, 139, 34,0.35)',
       background: isDark
-        ? 'linear-gradient(135deg,rgba(212,175,55,0.08),rgba(212,175,55,0.03))'
-        : 'linear-gradient(135deg,rgba(180,140,20,0.12),rgba(180,140,20,0.06))',
+        ? 'linear-gradient(135deg,rgba(34, 139, 34,0.08),rgba(34, 139, 34,0.03))'
+        : 'linear-gradient(135deg,rgba(27, 94, 32,0.12),rgba(27, 94, 32,0.06))',
       position: 'relative', overflow: 'hidden',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}
@@ -95,14 +95,14 @@ const ThemeBtn = ({ isDark, onToggle }) => (
     {/* hover glow bg */}
     <motion.span
       style={{ position: 'absolute', inset: 0, borderRadius: 14, pointerEvents: 'none' }}
-      variants={{ hov: { background: 'rgba(212,175,55,0.18)', boxShadow: '0 0 20px rgba(212,175,55,0.4)' } }}
+      variants={{ hov: { background: 'rgba(34, 139, 34,0.18)', boxShadow: '0 0 20px rgba(34, 139, 34,0.4)' } }}
       transition={{ duration: 0.2 }}
     />
     {/* inner ring decoration */}
     <motion.span
       style={{
         position: 'absolute', inset: 3, borderRadius: 10, pointerEvents: 'none',
-        border: '1px solid rgba(212,175,55,0.12)',
+        border: '1px solid rgba(34, 139, 34,0.12)',
       }}
     />
     <AnimatePresence mode="wait">
@@ -112,7 +112,7 @@ const ThemeBtn = ({ isDark, onToggle }) => (
             animate={{ rotate: 0, opacity: 1, scale: 1 }}
             exit={{ rotate: 120, opacity: 0, scale: 0.4 }}
             transition={{ duration: 0.28, ease: 'backOut' }}
-            style={{ position: 'relative', zIndex: 1, fontSize: '1.15rem', color: '#f5d060',
+            style={{ position: 'relative', zIndex: 1, fontSize: '1.15rem', color: '#81c784',
               filter: 'drop-shadow(0 0 6px rgba(245,208,96,0.8))' }}>
             <BiSolidSun />
           </motion.span>
@@ -121,7 +121,7 @@ const ThemeBtn = ({ isDark, onToggle }) => (
             animate={{ rotate: 0, opacity: 1, scale: 1 }}
             exit={{ rotate: -120, opacity: 0, scale: 0.4 }}
             transition={{ duration: 0.28, ease: 'backOut' }}
-            style={{ position: 'relative', zIndex: 1, fontSize: '0.95rem', color: '#92650a',
+            style={{ position: 'relative', zIndex: 1, fontSize: '0.95rem', color: '#1b5e20',
               filter: 'drop-shadow(0 0 4px rgba(146,101,10,0.6))' }}>
             <FaRegMoon />
           </motion.span>
@@ -141,10 +141,10 @@ const SocialBtn = ({ href, icon, colorDark, colorLight, label, delay = 0, isDark
     style={{
       position: 'relative', width: 40, height: 40, borderRadius: 12, cursor: 'pointer',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      border: isDark ? '1px solid rgba(212,175,55,0.15)' : '1px solid rgba(180,140,20,0.22)',
+      border: isDark ? '1px solid rgba(34, 139, 34,0.15)' : '1px solid rgba(27, 94, 32,0.22)',
       background: isDark
-        ? 'linear-gradient(135deg,rgba(212,175,55,0.05),rgba(212,175,55,0.02))'
-        : 'linear-gradient(135deg,rgba(180,140,20,0.08),rgba(180,140,20,0.04))',
+        ? 'linear-gradient(135deg,rgba(34, 139, 34,0.05),rgba(34, 139, 34,0.02))'
+        : 'linear-gradient(135deg,rgba(27, 94, 32,0.08),rgba(27, 94, 32,0.04))',
       color: isDark ? colorDark : colorLight,
       overflow: 'hidden',
     }}
@@ -152,14 +152,14 @@ const SocialBtn = ({ href, icon, colorDark, colorLight, label, delay = 0, isDark
     {/* shimmer sweep on hover */}
     <motion.span
       style={{ position: 'absolute', inset: 0, borderRadius: 12, pointerEvents: 'none' }}
-      variants={{ hov: { background: 'rgba(212,175,55,0.14)', boxShadow: '0 0 18px rgba(212,175,55,0.32)' } }}
+      variants={{ hov: { background: 'rgba(34, 139, 34,0.14)', boxShadow: '0 0 18px rgba(34, 139, 34,0.32)' } }}
       transition={{ duration: 0.2 }}
     />
     {/* inner border ring */}
     <motion.span
       style={{ position: 'absolute', inset: 2, borderRadius: 10, pointerEvents: 'none',
-        border: '1px solid rgba(212,175,55,0.08)' }}
-      variants={{ hov: { borderColor: 'rgba(212,175,55,0.25)' } }}
+        border: '1px solid rgba(34, 139, 34,0.08)' }}
+      variants={{ hov: { borderColor: 'rgba(34, 139, 34,0.25)' } }}
       transition={{ duration: 0.2 }}
     />
     <span style={{ position: 'relative', zIndex: 1, fontSize: '0.95rem', lineHeight: 1 }}>{icon}</span>
@@ -173,9 +173,9 @@ const SocialBtn = ({ href, icon, colorDark, colorLight, label, delay = 0, isDark
         position: 'absolute', left: 'calc(100% + 12px)',
         padding: '4px 10px', borderRadius: 8,
         fontSize: '0.68rem', fontWeight: 700, whiteSpace: 'nowrap', pointerEvents: 'none',
-        background: isDark ? 'rgba(4,3,1,0.96)' : 'rgba(255,251,235,0.97)',
-        border: '1px solid rgba(212,175,55,0.38)',
-        color: '#c9950a',
+        background: isDark ? 'rgba(4,3,1,0.96)' : 'rgba(232, 245, 233,0.97)',
+        border: '1px solid rgba(34, 139, 34,0.38)',
+        color: '#228b22',
         backdropFilter: 'blur(12px)',
         fontFamily: 'Rajdhani, sans-serif', letterSpacing: '0.1em',
         textTransform: 'uppercase',
@@ -228,8 +228,8 @@ const NavPill = ({ item, active, index, isDark, onActivate }) => (
         style={{
           position: 'absolute', left: '50%', bottom: 8, transform: 'translateX(-50%)',
           height: 2, borderRadius: 99,
-          background: '#d4af37',
-          boxShadow: '0 0 12px rgba(212,175,55,0.5)',
+          background: '#228b22',
+          boxShadow: '0 0 12px rgba(34,139,34,0.5)',
           transformOrigin: 'center',
         }}
         transition={{ type: 'spring', stiffness: 260, damping: 24, duration: 0.18 }}
@@ -241,10 +241,10 @@ const NavPill = ({ item, active, index, isDark, onActivate }) => (
       <motion.span
         style={{ position: 'relative', zIndex: 1, fontSize: '1.15rem', lineHeight: 1 }}
         animate={{
-          color: active ? '#d4af37' : isDark ? '#3f4652' : '#9a7d3a',
+          color: active ? '#228b22' : isDark ? '#3f4652' : '#1b5e20',
           rotate: active ? [0, 4, 0] : 0,
         }}
-        variants={{ hov: { color: '#d4af37', filter: 'drop-shadow(0 0 6px rgba(212,175,55,0.6))' } }}
+        variants={{ hov: { color: '#228b22', filter: 'drop-shadow(0 0 6px rgba(34,139,34,0.6))' } }}
         transition={{ duration: 0.22, ease: 'easeOut' }}
       >{item.icon}</motion.span>
 
@@ -257,9 +257,9 @@ const NavPill = ({ item, active, index, isDark, onActivate }) => (
           position: 'absolute', right: 'calc(100% + 12px)',
           padding: '4px 12px', borderRadius: 8,
           fontSize: '0.68rem', fontWeight: 800, whiteSpace: 'nowrap', pointerEvents: 'none',
-          background: isDark ? 'rgba(4,3,1,0.96)' : 'rgba(255,251,235,0.97)',
-          border: '1px solid rgba(212,175,55,0.38)',
-          color: '#c9950a',
+          background: isDark ? 'rgba(4,3,1,0.96)' : 'rgba(232, 245, 233,0.97)',
+          border: '1px solid rgba(34,139,34,0.38)',
+          color: '#228b22',
           backdropFilter: 'blur(12px)',
           fontFamily: 'Rajdhani, sans-serif', letterSpacing: '0.14em',
           textTransform: 'uppercase',
@@ -293,11 +293,11 @@ const Navbar = () => {
   /* sidebar bg tokens */
   const sbBg    = D
     ? 'linear-gradient(180deg,rgba(5,4,2,0.97) 0%,rgba(9,7,2,0.98) 100%)'
-    : 'linear-gradient(180deg,rgba(255,253,242,0.98) 0%,rgba(250,246,224,0.99) 100%)'
-  const sbBdrL  = D ? 'rgba(212,175,55,0.12)' : 'rgba(180,140,20,0.2)'
-  const sbBdrR  = D ? 'rgba(212,175,55,0.12)' : 'rgba(180,140,20,0.2)'
-  const sbShdL  = D ? '3px 0 30px rgba(0,0,0,0.6), 1px 0 0 rgba(212,175,55,0.06)' : '3px 0 24px rgba(180,140,20,0.1)'
-  const sbShdR  = D ? '-3px 0 30px rgba(0,0,0,0.6), -1px 0 0 rgba(212,175,55,0.06)' : '-3px 0 24px rgba(180,140,20,0.1)'
+    : 'linear-gradient(180deg,rgba(232, 245, 233,0.98) 0%,rgba(200, 230, 201,0.99) 100%)'
+  const sbBdrL  = D ? 'rgba(34, 139, 34,0.12)' : 'rgba(27, 94, 32,0.2)'
+  const sbBdrR  = D ? 'rgba(34, 139, 34,0.12)' : 'rgba(27, 94, 32,0.2)'
+  const sbShdL  = D ? '3px 0 30px rgba(0,0,0,0.6), 1px 0 0 rgba(34, 139, 34,0.06)' : '3px 0 24px rgba(27, 94, 32,0.1)'
+  const sbShdR  = D ? '-3px 0 30px rgba(0,0,0,0.6), -1px 0 0 rgba(34, 139, 34,0.06)' : '-3px 0 24px rgba(27, 94, 32,0.1)'
 
   return (
     <>
@@ -318,14 +318,14 @@ const Navbar = () => {
         .nb::before {
           content: '';
           position: absolute; top: 0; left: 0; right: 0; height: 2px;
-          background: linear-gradient(90deg, transparent 0%, #d4af37 35%, #fffacd 50%, #d4af37 65%, transparent 100%);
-          filter: drop-shadow(0 0 4px rgba(212,175,55,0.7));
+          background: linear-gradient(90deg, transparent 0%, #228b22 35%, #e8f5e9 50%, #228b22 65%, transparent 100%);
+          filter: drop-shadow(0 0 4px rgba(34, 139, 34,0.7));
         }
         /* bottom gold cap line */
         .nb::after {
           content: '';
           position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-          background: linear-gradient(90deg, transparent 10%, rgba(212,175,55,0.5) 50%, transparent 90%);
+          background: linear-gradient(90deg, transparent 10%, rgba(34, 139, 34,0.5) 50%, transparent 90%);
         }
 
         .nb-l { left: 0; }
@@ -334,15 +334,15 @@ const Navbar = () => {
         /* ── logo ── */
         .nb-logo {
           font-family: 'Cinzel', serif; font-weight: 900; font-size: 0.78rem;
-          background: linear-gradient(180deg, #fffacd 0%, #f5d060 20%, #d4af37 50%, #fffacd 70%, #b8860b 100%);
+          background: linear-gradient(180deg, #e8f5e9 0%, #81c784 20%, #228b22 50%, #e8f5e9 70%, #1b5e20 100%);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-          filter: drop-shadow(0 0 8px rgba(212,175,55,0.6));
+          filter: drop-shadow(0 0 8px rgba(34,139,34,0.6));
           writing-mode: vertical-rl; transform: rotate(180deg);
           letter-spacing: 0.16em; text-decoration: none;
           transition: filter 0.35s;
         }
         .nb-logo:hover {
-          filter: drop-shadow(0 0 18px rgba(212,175,55,1)) drop-shadow(0 0 4px rgba(255,250,200,0.8));
+          filter: drop-shadow(0 0 18px rgba(34,139,34,1)) drop-shadow(0 0 4px rgba(200,255,200,0.8));
         }
 
         .nb-sub {
@@ -350,8 +350,8 @@ const Navbar = () => {
           text-transform: uppercase; letter-spacing: 0.3em;
           writing-mode: vertical-rl; transform: rotate(180deg);
         }
-        .nb-sub-d { color: rgba(212,175,55,0.3); }
-        .nb-sub-l { color: rgba(130,90,8,0.55); }
+        .nb-sub-d { color: rgba(34, 139, 34,0.3); }
+        .nb-sub-l { color: rgba(27, 94, 32,0.55); }
 
         /* ── mobile top bar ── */
         .nb-top {
@@ -364,42 +364,42 @@ const Navbar = () => {
         .nb-top::before {
           content: '';
           position: absolute; top: 0; left: 0; right: 0; height: 2px;
-          background: linear-gradient(90deg, transparent, #d4af37, #fffacd, #d4af37, transparent);
-          filter: drop-shadow(0 0 4px rgba(212,175,55,0.7));
+          background: linear-gradient(90deg, transparent, #228b22, #e8f5e9, #228b22, transparent);
+          filter: drop-shadow(0 0 4px rgba(34, 139, 34,0.7));
         }
         /* center bottom accent */
         .nb-top::after {
           content: '';
           position: absolute; bottom: 0; left: 12%; right: 12%; height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(212,175,55,0.55), transparent);
+          background: linear-gradient(90deg, transparent, rgba(34, 139, 34,0.55), transparent);
         }
-        .nb-top-d { background: rgba(4,3,1,0.97); border-bottom: 1px solid rgba(212,175,55,0.1); }
-        .nb-top-l { background: rgba(255,253,242,0.98); border-bottom: 1px solid rgba(180,140,20,0.18); }
+        .nb-top-d { background: rgba(4,3,1,0.97); border-bottom: 1px solid rgba(34, 139, 34,0.1); }
+        .nb-top-l { background: rgba(232, 245, 233,0.98); border-bottom: 1px solid rgba(27, 94, 32,0.18); }
 
         .nb-mLogo {
           font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 900;
-          background: linear-gradient(135deg, #fffacd 0%, #f5d060 25%, #d4af37 55%, #b8860b 100%);
+          background: linear-gradient(135deg, #e8f5e9 0%, #81c784 25%, #228b22 55%, #1b5e20 100%);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-          filter: drop-shadow(0 0 7px rgba(212,175,55,0.55));
+          filter: drop-shadow(0 0 7px rgba(34,139,34,0.55));
           text-decoration: none;
         }
         .nb-ham {
           width: 42px; height: 42px;
           display: flex; align-items: center; justify-content: center;
           border-radius: 12px;
-          border: 1px solid rgba(212,175,55,0.32);
+          border: 1px solid rgba(34, 139, 34,0.32);
           cursor: pointer; font-size: 1.2rem;
           transition: all 0.25s; position: relative; overflow: hidden;
         }
         .nb-ham::before {
           content: ''; position: absolute; inset: 0; border-radius: 12px;
-          border: 1px solid rgba(212,175,55,0.1);
+          border: 1px solid rgba(34, 139, 34,0.1);
         }
-        .nb-ham-d { color: #d4af37; background: linear-gradient(135deg,rgba(212,175,55,0.08),rgba(212,175,55,0.03)); }
-        .nb-ham-l { color: #92650a; background: linear-gradient(135deg,rgba(180,140,20,0.1),rgba(180,140,20,0.04)); }
+        .nb-ham-d { color: #228b22; background: linear-gradient(135deg,rgba(34,139,34,0.08),rgba(34,139,34,0.03)); }
+        .nb-ham-l { color: #1b5e20; background: linear-gradient(135deg,rgba(27,94,32,0.1),rgba(27,94,32,0.04)); }
         .nb-ham:hover {
-          border-color: rgba(212,175,55,0.6);
-          box-shadow: 0 0 18px rgba(212,175,55,0.32), inset 0 0 10px rgba(212,175,55,0.08);
+          border-color: rgba(34, 139, 34,0.6);
+          box-shadow: 0 0 18px rgba(34, 139, 34,0.32), inset 0 0 10px rgba(34, 139, 34,0.08);
         }
         .nb-ham::before {
           content: '';
@@ -415,7 +415,7 @@ const Navbar = () => {
           position: absolute;
           inset: 0;
           border-radius: 12px;
-          background: radial-gradient(circle at center, rgba(212,175,55,0.14), transparent 48%);
+          background: radial-gradient(circle at center, rgba(34, 139, 34,0.14), transparent 48%);
           opacity: 0;
           transition: opacity 0.3s ease;
           pointer-events: none;
@@ -428,13 +428,13 @@ const Navbar = () => {
           position: absolute;
           inset: 4px;
           border-radius: 10px;
-          border: 1px solid rgba(212,175,55,0.14);
+          border: 1px solid rgba(34, 139, 34,0.14);
           opacity: 0.65;
           pointer-events: none;
         }
         .nb-ham-on .nb-ham-ring {
           opacity: 1;
-          box-shadow: 0 0 14px rgba(212,175,55,0.45);
+          box-shadow: 0 0 14px rgba(34, 139, 34,0.45);
           transform: scale(1.05);
         }
         @keyframes nbHamPulse {
@@ -448,39 +448,39 @@ const Navbar = () => {
           display: flex; flex-direction: column; align-items: center; justify-content: center;
           overflow: hidden;
           backdrop-filter: blur(18px);
-          border-top: 1px solid rgba(212,175,55,0.08);
+          border-top: 1px solid rgba(34, 139, 34,0.08);
         }
         .nb-overlay::before {
           content: ''; position: absolute; top: -90px; left: -88px;
           width: 340px; height: 340px;
-          background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 62%);
+          background: radial-gradient(circle, rgba(34, 139, 34,0.12) 0%, transparent 62%);
           filter: blur(2px);
           pointer-events: none;
         }
         .nb-overlay::after {
           content: ''; position: absolute; bottom: -90px; right: -88px;
           width: 320px; height: 320px;
-          background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
+          background: radial-gradient(circle, rgba(34, 139, 34,0.08) 0%, transparent 60%);
           filter: blur(2px);
           pointer-events: none;
         }
         .nb-ol-d {
-          background: radial-gradient(circle at 20% 20%, rgba(212,175,55,0.08), transparent 28%),
-                      radial-gradient(circle at 80% 80%, rgba(212,175,55,0.05), transparent 30%),
+          background: radial-gradient(circle at 20% 20%, rgba(34, 139, 34,0.08), transparent 28%),
+                      radial-gradient(circle at 80% 80%, rgba(34, 139, 34,0.05), transparent 30%),
                       rgba(3,2,1,0.98);
         }
         .nb-ol-l {
-          background: radial-gradient(circle at 20% 20%, rgba(180,140,20,0.08), transparent 28%),
-                      radial-gradient(circle at 80% 80%, rgba(180,140,20,0.05), transparent 30%),
-                      rgba(255,253,242,0.99);
+          background: radial-gradient(circle at 20% 20%, rgba(27, 94, 32,0.08), transparent 28%),
+                      radial-gradient(circle at 80% 80%, rgba(27, 94, 32,0.05), transparent 30%),
+                      rgba(232, 245, 233,0.99);
         }
 
-        .nb-ol-d::before { background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%) !important; }
+        .nb-ol-d::before { background: radial-gradient(circle, rgba(34, 139, 34,0.08) 0%, transparent 70%) !important; }
 
         .nb-mi {
           display: flex; align-items: center; gap: 18px;
           padding: 18px 22px; width: 300px;
-          border-bottom: 1px solid rgba(212,175,55,0.08);
+          border-bottom: 1px solid rgba(34, 139, 34,0.08);
           border-radius: 18px;
           margin-bottom: 12px;
           background: rgba(255,255,255,0.03);
@@ -493,51 +493,51 @@ const Navbar = () => {
         .nb-mi-d { color: #b8b8b8; }
         .nb-mi-l { color: #8c6c1a; }
         .nb-mi .ic { font-size: 1.15rem; transition: all 0.2s; flex-shrink: 0; }
-        .nb-mi-d .ic { color: rgba(212,175,55,0.35); }
-        .nb-mi-l .ic { color: rgba(140,100,10,0.45); }
-        .nb-mi:hover, .nb-mi.on { color: #d4af37; transform: translateX(6px); background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.12); }
+        .nb-mi-d .ic { color: rgba(34, 139, 34,0.35); }
+        .nb-mi-l .ic { color: rgba(27, 94, 32,0.45); }
+        .nb-mi:hover, .nb-mi.on { color: #228b22; transform: translateX(6px); background: rgba(34, 139, 34,0.08); border-color: rgba(34, 139, 34,0.12); }
         .nb-mi:hover .ic, .nb-mi.on .ic {
-          color: #d4af37;
-          filter: drop-shadow(0 0 6px rgba(212,175,55,0.7));
+          color: #228b22;
+          filter: drop-shadow(0 0 6px rgba(34, 139, 34,0.7));
         }
         .nb-mi.on {
-          box-shadow: inset 0 0 24px rgba(212,175,55,0.08);
+          box-shadow: inset 0 0 24px rgba(34,139,34,0.08);
         }
         .nb-mi.on::before {
           content: '';
           position: absolute; left: 0; top: 10%; bottom: 10%;
           width: 4px;
           border-radius: 999px;
-          background: linear-gradient(180deg, #fffacd, #d4af37, #b8860b);
-          box-shadow: 0 0 12px rgba(212,175,55,0.45);
+          background: linear-gradient(180deg, #e8f5e9, #228b22, #1b5e20);
+          box-shadow: 0 0 12px rgba(34,139,34,0.45);
         }
 
         /* ── breakpoint visibility — logic unchanged ── */
         .nb-mi {
           display: flex; align-items: center; gap: 18px;
           padding: 16px 0; width: 280px;
-          border-bottom: 1px solid rgba(212,175,55,0.07);
+          border-bottom: 1px solid rgba(34, 139, 34,0.07);
           font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.2em;
           cursor: pointer; transition: all 0.22s ease; position: relative;
         }
         .nb-mi-d { color: #3f4652; }
-        .nb-mi-l { color: #92700a; }
+        .nb-mi-l { color: #1b5e20; }
         .nb-mi .ic { font-size: 1.15rem; transition: all 0.2s; flex-shrink: 0; }
-        .nb-mi-d .ic { color: rgba(212,175,55,0.3); }
-        .nb-mi-l .ic { color: rgba(140,100,10,0.4); }
-        .nb-mi:hover, .nb-mi.on { color: #d4af37; padding-left: 16px; }
+        .nb-mi-d .ic { color: rgba(34,139,34,0.3); }
+        .nb-mi-l .ic { color: rgba(27,94,32,0.4); }
+        .nb-mi:hover, .nb-mi.on { color: #228b22; padding-left: 16px; }
         .nb-mi:hover .ic, .nb-mi.on .ic {
-          color: #d4af37;
-          filter: drop-shadow(0 0 4px rgba(212,175,55,0.6));
+          color: #228b22;
+          filter: drop-shadow(0 0 4px rgba(34,139,34,0.6));
         }
         /* active left accent */
         .nb-mi.on::before {
           content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
           width: 3px; height: 55%;
-          background: linear-gradient(180deg, #fffacd, #d4af37, #b8860b);
+          background: linear-gradient(180deg, #e8f5e9, #228b22, #1b5e20);
           border-radius: 2px;
-          box-shadow: 0 0 8px rgba(212,175,55,0.7);
+          box-shadow: 0 0 8px rgba(34,139,34,0.7);
         }
 
         /* ── breakpoint visibility — logic unchanged ── */
@@ -637,7 +637,7 @@ const Navbar = () => {
           {/* <ThemeBtn isDark={D} onToggle={() => setIsDark(p => !p)} /> */}
 
           <div style={{ width: 1, height: 24,
-            background: D ? 'rgba(212,175,55,0.22)' : 'rgba(180,140,20,0.25)' }} />
+            background: D ? 'rgba(34, 139, 34,0.22)' : 'rgba(27, 94, 32,0.25)' }} />
 
           <motion.button
             className={`nb-ham ${D ? 'nb-ham-d' : 'nb-ham-l'} ${menu ? 'nb-ham-on' : ''}`}
@@ -685,7 +685,7 @@ const Navbar = () => {
               transition={{ delay: 0.2 }}
               style={{
                 fontFamily: 'Rajdhani, sans-serif', fontSize: '0.52rem',
-                color: D ? 'rgba(212,175,55,0.3)' : 'rgba(140,100,10,0.5)',
+                color: D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.5)',
                 letterSpacing: '0.38em', textTransform: 'uppercase', marginBottom: 20,
               }}
             >── Navigation ──</motion.p>
@@ -707,8 +707,8 @@ const Navbar = () => {
                         layoutId="mActive"
                         className="ml-auto"
                         style={{
-                          fontSize: '0.55rem', color: '#d4af37',
-                          filter: 'drop-shadow(0 0 4px rgba(212,175,55,0.7))',
+                          fontSize: '0.55rem', color: '#228b22',
+                          filter: 'drop-shadow(0 0 4px rgba(34,139,34,0.7))',
                         }}
                       >◆</motion.span>
                     )}

@@ -23,7 +23,7 @@ const experiences = [
       "Participated in daily stand-ups and agile sprint planning",
     ],
     tech: ["React.js", "Node.js", "PostgreSQl", "Tailwind CSS", "Express.js", 'Firebase'],
-    color: "#d4af37",
+    color: "#228b22",
     current: true,
   },
   {
@@ -44,7 +44,7 @@ const experiences = [
       "Enhanced debugging and coding practices in both front-end and back-end environments",
     ],
     tech: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "MongoDB"],
-    color: "#22c55e",
+    color: "#3b82f6",
     current: false,
   },
   
@@ -64,16 +64,16 @@ const SectionHeading = () => (
       fontFamily: "'Cinzel', serif",
       fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
       fontWeight: 900,
-      background: 'linear-gradient(135deg, #f5d060 0%, #d4af37 40%, #fffacd 60%, #b8860b 100%)',
+      background: 'linear-gradient(135deg, #74c69d 0%, #228b22 40%, #d8f3dc 60%, #1b5e20 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
-      filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.45))',
+      filter: 'drop-shadow(0 0 12px rgba(34,139,34,0.45))',
       letterSpacing: '0.08em',
       textAlign: 'center',
     }}>Experience</h2>
-    <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#d4af37,transparent)' }} />
-    <div style={{ width: 30, height: 2, marginTop: 5, background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.4),transparent)' }} />
+    <div style={{ width: 70, height: 2, marginTop: 12, background: 'linear-gradient(90deg,transparent,#228b22,transparent)' }} />
+    <div style={{ width: 30, height: 2, marginTop: 5, background: 'linear-gradient(90deg,transparent,rgba(34,139,34,0.4),transparent)' }} />
     <p style={{
       marginTop: 14, fontSize: '0.88rem', letterSpacing: '0.06em',
       textAlign: 'center', maxWidth: 420,
@@ -89,9 +89,9 @@ const TechBadge = ({ label, isDark }) => (
   <span style={{
     display: 'inline-block', padding: '3px 11px', borderRadius: 7,
     fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.05em',
-    border: `1px solid ${isDark ? 'rgba(212,175,55,0.22)' : 'rgba(160,110,10,0.25)'}`,
-    background: isDark ? 'rgba(212,175,55,0.07)' : 'rgba(180,130,10,0.08)',
-    color: isDark ? 'rgba(212,175,55,0.8)' : '#7a4d0a',
+    border: `1px solid ${isDark ? 'rgba(34,139,34,0.22)' : 'rgba(27,94,32,0.25)'}`,
+    background: isDark ? 'rgba(34,139,34,0.07)' : 'rgba(27,94,32,0.08)',
+    color: isDark ? 'rgba(34,139,34,0.8)' : '#1b5e20',
     fontFamily: 'Rajdhani, sans-serif',
   }}>{label}</span>
 )
@@ -101,13 +101,13 @@ const ExperienceCard = ({ exp, index, isDark }) => {
   const [expanded, setExpanded] = useState(false)
 
   const D = isDark
-  const bgCard   = D ? 'rgba(10,8,3,0.92)'        : 'rgba(255,253,242,0.97)'
-  const borderC  = D ? 'rgba(212,175,55,0.14)'     : 'rgba(160,110,10,0.2)'
-  const borderHv = D ? 'rgba(212,175,55,0.45)'     : 'rgba(160,110,10,0.5)'
-  const textH    = D ? '#f3f4f6'                   : '#180e03'
-  const textB    = D ? '#c9cdd5'                   : '#2d1a04'
-  const textM    = D ? '#7a8090'                   : '#7a4d0a'
-  const hlBg     = D ? 'rgba(212,175,55,0.06)'     : 'rgba(180,130,10,0.07)'
+  const bgCard   = D ? 'rgba(10,8,3,0.92)'        : 'rgba(232, 245, 233,0.97)'
+  const borderC  = D ? 'rgba(34, 139, 34,0.14)'     : 'rgba(27, 94, 32,0.2)'
+  const borderHv = D ? 'rgba(34, 139, 34,0.45)'     : 'rgba(27, 94, 32,0.5)'
+  const textH    = D ? '#f3f4f6'                   : '#1b5e20'
+  const textB    = D ? '#c9cdd5'                   : '#1b5e20'
+  const textM    = D ? '#7a8090'                   : '#1b5e20'
+  const hlBg     = D ? 'rgba(34, 139, 34,0.06)'     : 'rgba(27, 94, 32,0.07)'
 
   return (
     <motion.div
@@ -127,14 +127,14 @@ const ExperienceCard = ({ exp, index, isDark }) => {
       }}
       whileHover={{
         borderColor: borderHv,
-        boxShadow: `0 0 35px rgba(212,175,55,0.12), 0 8px 32px rgba(0,0,0,0.25)`,
+        boxShadow: `0 0 35px rgba(34, 139, 34,0.12), 0 8px 32px rgba(0,0,0,0.25)`,
         y: -4,
       }}
     >
       {/* top shimmer line */}
       <div style={{
         position: 'absolute', top: 0, left: '6%', right: '6%', height: 1,
-        background: 'linear-gradient(90deg,transparent,rgba(212,175,55,0.5),transparent)',
+        background: 'linear-gradient(90deg,transparent,rgba(34, 139, 34,0.5),transparent)',
       }} />
 
       {/* left accent bar */}
@@ -149,7 +149,7 @@ const ExperienceCard = ({ exp, index, isDark }) => {
       <span style={{
         position: 'absolute', right: 20, top: 10,
         fontFamily: 'Cinzel, serif', fontSize: '5.5rem', fontWeight: 900, lineHeight: 1,
-        color: D ? 'rgba(212,175,55,0.05)' : 'rgba(160,110,10,0.05)',
+        color: D ? 'rgba(34, 139, 34,0.05)' : 'rgba(27, 94, 32,0.05)',
         userSelect: 'none', pointerEvents: 'none', zIndex: 0,
       }}>{String(index + 1).padStart(2, '0')}</span>
 
@@ -177,7 +177,7 @@ const ExperienceCard = ({ exp, index, isDark }) => {
                 fontFamily: 'Cinzel, serif',
                 fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                 fontWeight: 900, lineHeight: 1.2, marginBottom: 3,
-                background: 'linear-gradient(135deg,#f5d060,#d4af37,#c4961a)',
+                background: 'linear-gradient(135deg,#81c784,#228b22,#1b5e20)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               }}>{exp.role}</h3>
 
@@ -186,7 +186,7 @@ const ExperienceCard = ({ exp, index, isDark }) => {
                 {exp.company}
                 {exp.url && exp.url !== '#' && (
                   <a href={exp.url} target="_blank" rel="noopener noreferrer"
-                    style={{ color: 'rgba(212,175,55,0.5)', marginLeft: 6, fontSize: '0.75rem', verticalAlign: 'middle' }}>
+                    style={{ color: 'rgba(34,139,34,0.5)', marginLeft: 6, fontSize: '0.75rem', verticalAlign: 'middle' }}>
                     <FiExternalLink style={{ display: 'inline' }} />
                   </a>
                 )}
@@ -234,14 +234,13 @@ const ExperienceCard = ({ exp, index, isDark }) => {
         </div>
 
         {/* ── META ROW ── */}
-        <div className="flex flex-wrap gap-x-5 gap-y-1.5 mb-5">
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: textM, fontSize: '0.82rem', fontFamily: 'Rajdhani, sans-serif' }}>
-            <FiCalendar style={{ color: '#d4af37', fontSize: '0.8rem', flexShrink: 0 }} />
+        <div className="flex flex-wrap gap-x-5 gap-y-1.5" style={{ zIndex: 10, position: 'relative' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: textM, fontFamily: 'Rajdhani, sans-serif' }}>
+            <FiCalendar style={{ color: '#228b22', fontSize: '0.8rem', flexShrink: 0 }} />
             {exp.period}
-            <span style={{ color: 'rgba(212,175,55,0.45)', fontSize: '0.72rem' }}>· {exp.duration}</span>
           </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: textM, fontSize: '0.82rem', fontFamily: 'Rajdhani, sans-serif' }}>
-            <FiMapPin style={{ color: '#d4af37', fontSize: '0.8rem', flexShrink: 0 }} />
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: textM, fontFamily: 'Rajdhani, sans-serif' }}>
+            <FiMapPin style={{ color: '#228b22', fontSize: '0.8rem', flexShrink: 0 }} />
             {exp.location}
           </span>
         </div>
@@ -263,7 +262,7 @@ const ExperienceCard = ({ exp, index, isDark }) => {
               fontSize: '0.68rem', fontWeight: 800, textTransform: 'uppercase',
               letterSpacing: '0.18em', cursor: 'pointer', border: 'none',
               background: 'transparent', padding: 0, marginBottom: 10,
-              color: D ? 'rgba(212,175,55,0.7)' : '#8a5208',
+              color: D ? 'rgba(34,139,34,0.7)' : '#228b22',
               fontFamily: 'Rajdhani, sans-serif',
               transition: 'color 0.2s',
             }}
@@ -286,25 +285,25 @@ const ExperienceCard = ({ exp, index, isDark }) => {
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 style={{ overflow: 'hidden', listStyle: 'none', padding: 0, margin: 0 }}
               >
-                {exp.highlights.map((h, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                    style={{
-                      display: 'flex', alignItems: 'flex-start', gap: 10,
-                      padding: '8px 12px', borderRadius: 9, marginBottom: 6,
-                      background: hlBg,
-                      border: `1px solid ${borderC}`,
-                      fontSize: '0.84rem', color: textB,
-                      fontFamily: 'Rajdhani, sans-serif', lineHeight: 1.6,
-                    }}
-                  >
-                    <span style={{ color: '#d4af37', fontSize: '0.55rem', marginTop: 5, flexShrink: 0 }}>◆</span>
-                    {h}
-                  </motion.li>
-                ))}
+                  {exp.highlights.map((hl, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.06 }}
+                      className="flex items-start gap-2.5" 
+                      style={{ 
+                        color: textB, 
+                        padding: '8px 12px', borderRadius: 9, marginBottom: 6,
+                        background: hlBg,
+                        border: `1px solid ${borderC}`,
+                        fontSize: '0.84rem', fontFamily: 'Rajdhani, sans-serif', lineHeight: 1.6
+                      }}
+                    >
+                      <span style={{ color: '#228b22', fontSize: '0.55rem', marginTop: 5, flexShrink: 0 }}>◆</span>
+                      <span>{hl}</span>
+                    </motion.li>
+                  ))}
               </motion.ul>
             )}
           </AnimatePresence>
@@ -341,9 +340,9 @@ const Experience = () => {
   }, [])
 
   const D = isDark
-  const bg       = D ? '#050503'                       : '#faf6e8'
-  const gridLine = D ? 'rgba(212,175,55,0.035)'        : 'rgba(160,120,10,0.055)'
-  const subText  = D ? '#6b7280'                       : '#7a4d0a'
+  const bg       = D ? 'transparent'                   : '#faf6e8'
+  const gridLine = D ? 'rgba(34, 139, 34,0.035)'        : 'rgba(27, 94, 32,0.055)'
+  const subText  = D ? '#6b7280'                       : '#1b5e20'
 
   return (
     <>
@@ -351,13 +350,6 @@ const Experience = () => {
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap');
         #Experience { font-family: 'Rajdhani', sans-serif; }
         .exp-wrap { position: relative; }
-        .exp-wrap::before {
-          content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
-          background-image:
-            linear-gradient(${gridLine} 1px, transparent 1px),
-            linear-gradient(90deg, ${gridLine} 1px, transparent 1px);
-          background-size: 56px 56px;
-        }
         .exp-subtext { color: ${subText}; }
       `}</style>
 
@@ -370,12 +362,12 @@ const Experience = () => {
         {/* ambient glow orbs */}
         <div style={{
           position: 'absolute', top: '8%', right: '4%', width: 420, height: 420,
-          background: 'radial-gradient(circle,rgba(212,175,55,0.055) 0%,transparent 70%)',
+          background: 'radial-gradient(circle,rgba(34, 139, 34,0.055) 0%,transparent 70%)',
           pointerEvents: 'none', borderRadius: '50%', zIndex: 0,
         }} />
         <div style={{
           position: 'absolute', bottom: '12%', left: '3%', width: 300, height: 300,
-          background: 'radial-gradient(circle,rgba(212,175,55,0.04) 0%,transparent 70%)',
+          background: 'radial-gradient(circle,rgba(34, 139, 34,0.04) 0%,transparent 70%)',
           pointerEvents: 'none', borderRadius: '50%', zIndex: 0,
         }} />
 
@@ -390,8 +382,8 @@ const Experience = () => {
             viewport={{ once: true }}
             className="flex flex-wrap justify-center gap-6 mb-12 px-6 py-4 rounded-2xl"
             style={{
-              border: `1px solid ${D ? 'rgba(212,175,55,0.14)' : 'rgba(160,110,10,0.2)'}`,
-              background: D ? 'rgba(10,8,3,0.7)' : 'rgba(255,253,242,0.85)',
+              border: `1px solid ${D ? 'rgba(34, 139, 34,0.14)' : 'rgba(27, 94, 32,0.2)'}`,
+              background: D ? 'rgba(10,8,3,0.7)' : 'rgba(232, 245, 233,0.85)',
               backdropFilter: 'blur(12px)',
               maxWidth: 480, margin: '0 auto 48px',
             }}
@@ -402,14 +394,14 @@ const Experience = () => {
               { val: '1+',                                                  lbl: 'Years Total'  },
             ].map((s, i) => (
               <React.Fragment key={s.lbl}>
-                {i > 0 && <div style={{ width: 1, background: D ? 'rgba(212,175,55,0.2)' : 'rgba(160,110,10,0.2)' }} />}
+                {i > 0 && <div style={{ width: 1, background: D ? 'rgba(34, 139, 34,0.2)' : 'rgba(27, 94, 32,0.2)' }} />}
                 <div className="text-center">
                   <p style={{
                     fontSize: '1.6rem', fontWeight: 900, lineHeight: 1,
-                    background: 'linear-gradient(135deg,#f5d060,#d4af37)',
+                    background: 'linear-gradient(135deg,#81c784,#228b22)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   }}>{s.val}</p>
-                  <p style={{ fontSize: '0.62rem', textTransform: 'uppercase', letterSpacing: '0.18em', color: D ? '#6b7280' : '#7a4d0a', marginTop: 2, fontFamily: 'Rajdhani, sans-serif' }}>{s.lbl}</p>
+                  <p style={{ fontSize: '0.62rem', textTransform: 'uppercase', letterSpacing: '0.18em', color: D ? '#6b7280' : '#1b5e20', marginTop: 2, fontFamily: 'Rajdhani, sans-serif' }}>{s.lbl}</p>
                 </div>
               </React.Fragment>
             ))}
@@ -419,7 +411,7 @@ const Experience = () => {
           <div className="relative">
             <div style={{
               position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1,
-              background: `linear-gradient(180deg, transparent, ${D ? 'rgba(212,175,55,0.15)' : 'rgba(160,110,10,0.18)'}, transparent)`,
+              background: `linear-gradient(180deg, transparent, ${D ? 'rgba(34, 139, 34,0.15)' : 'rgba(27, 94, 32,0.18)'}, transparent)`,
               display: 'none', // hidden on mobile, shown on xl
             }} className="hidden xl:block" />
 
@@ -440,14 +432,14 @@ const Experience = () => {
             className="text-center mt-14"
             style={{
               fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase',
-              color: D ? 'rgba(212,175,55,0.3)' : 'rgba(140,90,10,0.38)',
+              color: D ? 'rgba(34, 139, 34,0.3)' : 'rgba(27, 94, 32,0.38)',
               fontFamily: 'Rajdhani, sans-serif',
             }}
           >── More experience coming soon ──</motion.p> */}
         </div>
       </section>
 
-      <div style={{ height: 0.5, background: `linear-gradient(90deg,transparent,${D ? 'rgba(212,175,55,0.055)' : 'rgba(212,175,55,0.055)'},transparent)` }} />
+      <div style={{ height: 0.5, background: `linear-gradient(90deg,transparent,${D ? 'rgba(34, 139, 34,0.055)' : 'rgba(34, 139, 34,0.055)'},transparent)` }} />
     </>
   )
 }
